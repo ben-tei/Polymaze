@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class UIView extends JFrame
 {
@@ -10,13 +11,8 @@ public class UIView extends JFrame
 
 	public UIView()
 	{
-		this.setTitle("Polymaze - Welcome");
 
-		this.setContentPane(new UILogin());
-
-		this.getContentPane().setPreferredSize(new Dimension(800, 600));
-		this.getContentPane().setLayout(null);
-		this.pack();
+		this.updatePanel(new UILogin(this));
 
 		this.setLocationRelativeTo(null);
 
@@ -25,6 +21,19 @@ public class UIView extends JFrame
 		this.setResizable(false);
 
 		this.setVisible(true);
+	}
+
+	public void updatePanel(JPanel jpanel)
+	{
+
+		jpanel.setPreferredSize(new Dimension(800, 600));
+		jpanel.setLayout(null);
+		this.setContentPane(jpanel);
+
+		this.pack();
+		this.getContentPane().revalidate();
+		this.getContentPane().repaint();
+
 	}
 
 }
