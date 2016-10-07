@@ -8,7 +8,8 @@ import java.sql.Date;
  * @author Gaetan FRANCOIS
  *
  */
-public class Maze {
+public class Maze
+{
 
 	// Attributes
 	private Integer id;
@@ -18,26 +19,34 @@ public class Maze {
 	private String content;
 	private Date creationDate;
 	private Person creator;
-	
+
 	// Constructors
 	/**
 	 * Default constructor
 	 */
-	public Maze() {
+	public Maze()
+	{
 		super();
 	}
 
 	/**
 	 * Constructor using all the attributes except the id
 	 * 
-	 * @param name: the Maze's name
-	 * @param length: the Maze's length
-	 * @param width: the Maze's width
-	 * @param content: representation of the Maze using a String
-	 * @param date: the Maze's date of creation
-	 * @param creator: the Person who created the Maze
+	 * @param name:
+	 *            the Maze's name
+	 * @param length:
+	 *            the Maze's length
+	 * @param width:
+	 *            the Maze's width
+	 * @param content:
+	 *            representation of the Maze using a String
+	 * @param date:
+	 *            the Maze's date of creation
+	 * @param creator:
+	 *            the Person who created the Maze
 	 */
-	public Maze(String name, Integer length, Integer width, String content, Date creationDate, Person creator) {
+	public Maze(String name, Integer length, Integer width, String content, Date creationDate, Person creator)
+	{
 		super();
 		this.name = name;
 		this.length = length;
@@ -50,15 +59,23 @@ public class Maze {
 	/**
 	 * Constructor using all the attributes
 	 * 
-	 * @param id: the Maze's id
-	 * @param name: the Maze's name
-	 * @param length: the Maze's length
-	 * @param width: the Maze's width
-	 * @param content: representation of the Maze using a String
-	 * @param date: the Maze's date of creation
-	 * @param creator: the Person who created the Maze
+	 * @param id:
+	 *            the Maze's id
+	 * @param name:
+	 *            the Maze's name
+	 * @param length:
+	 *            the Maze's length
+	 * @param width:
+	 *            the Maze's width
+	 * @param content:
+	 *            representation of the Maze using a String
+	 * @param date:
+	 *            the Maze's date of creation
+	 * @param creator:
+	 *            the Person who created the Maze
 	 */
-	public Maze(Integer id, String name, Integer length, String content, Date creationDate, Person creator) {
+	public Maze(Integer id, String name, Integer length, String content, Date creationDate, Person creator)
+	{
 		super();
 		this.id = id;
 		this.name = name;
@@ -67,64 +84,78 @@ public class Maze {
 		this.creationDate = creationDate;
 		this.creator = creator;
 	}
-	
+
 	// Getters & setters
 	// Getters
-	public Integer getId() {
+	public Integer getId()
+	{
 		return id;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public Integer getLength() {
+	public Integer getLength()
+	{
 		return length;
 	}
 
-	public Integer getWidth() {
+	public Integer getWidth()
+	{
 		return width;
 	}
 
-	public String getContent() {
+	public String getContent()
+	{
 		return content;
 	}
 
-	public Date getCreationDate() {
+	public Date getCreationDate()
+	{
 		return creationDate;
 	}
 
-	public Person getCreator() {
+	public Person getCreator()
+	{
 		return creator;
 	}
-	
+
 	// Setters
-	public void setId(Integer id) {
+	public void setId(Integer id)
+	{
 		this.id = id;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public void setLength(Integer length) {
+	public void setLength(Integer length)
+	{
 		this.length = length;
 	}
 
-	public void setWidth(Integer width) {
+	public void setWidth(Integer width)
+	{
 		this.width = width;
 	}
 
-	public void setContent(String content) {
+	public void setContent(String content)
+	{
 		this.content = content;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(Date creationDate)
+	{
 		this.creationDate = creationDate;
 	}
 
-	public void setCreator(Person creator) {
+	public void setCreator(Person creator)
+	{
 		this.creator = creator;
 	}
-	
+
 }
