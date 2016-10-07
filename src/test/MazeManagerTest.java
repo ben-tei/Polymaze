@@ -1,5 +1,6 @@
 package test;
 
-public class MazeManagerTest {
+public class MazeManagerTest
+{
 
 }
