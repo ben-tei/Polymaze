@@ -8,11 +8,12 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class UILogin extends JPanel implements KeyListener, ActionListener
+public class UISignIn extends JPanel implements KeyListener, ActionListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +34,7 @@ public class UILogin extends JPanel implements KeyListener, ActionListener
 
 	private UIView myUIView;
 
-	public UILogin(UIView uiView)
+	public UISignIn(UIView uiView)
 	{
 		this.myUIView = uiView;
 		this.myUIView.setTitle("Polymaze - Login");
@@ -112,11 +113,18 @@ public class UILogin extends JPanel implements KeyListener, ActionListener
 
 		if(cmd.equals("login"))
 		{
+			if(this.loginTextField.getText().length() > 0 && this.passwordTextField.getPassword().length > 0)
+			{
+				this.myUIView.getUIController().signIn(this.loginTextField.getText(),
+						new String(this.passwordTextField.getPassword()));
+				JOptionPane.showMessageDialog(null, "Welcome on Polymaze, " + this.loginTextField.getText() + " !",
+						"Success", JOptionPane.INFORMATION_MESSAGE);
 
+			}
 		}
 		else if(cmd.equals("register"))
 		{
-			this.myUIView.updatePanel(new UIRegister(this.myUIView));
+			this.myUIView.updatePanel(new UISignUp(this.myUIView));
 		}
 	}
 
