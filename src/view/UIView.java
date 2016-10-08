@@ -5,14 +5,19 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.UIController;
+
 public class UIView extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 
-	public UIView()
-	{
+	private UIController myUIController;
 
-		this.updatePanel(new UILogin(this));
+	public UIView(UIController uiController)
+	{
+		this.myUIController = uiController;
+
+		this.updatePanel(new UISignIn(this));
 
 		this.setLocationRelativeTo(null);
 
@@ -34,6 +39,11 @@ public class UIView extends JFrame
 		this.getContentPane().revalidate();
 		this.getContentPane().repaint();
 
+	}
+
+	public UIController getUIController()
+	{
+		return this.myUIController;
 	}
 
 }

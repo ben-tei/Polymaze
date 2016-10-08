@@ -5,14 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class UIRegister extends JPanel implements KeyListener, ActionListener
+public class UISignUp extends JPanel implements KeyListener, ActionListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +39,7 @@ public class UIRegister extends JPanel implements KeyListener, ActionListener
 
 	private UIView myUIView;
 
-	public UIRegister(UIView uiView)
+	public UISignUp(UIView uiView)
 	{
 		this.myUIView = uiView;
 		this.myUIView.setTitle("Polymaze - Register");
@@ -128,11 +130,33 @@ public class UIRegister extends JPanel implements KeyListener, ActionListener
 
 		if(cmd.equals("register"))
 		{
+			if(this.loginTextField.getText().length() > 0 && this.passwordTextField.getPassword().length > 0
+					&& this.confirmPasswordTextField.getPassword().length > 0)
+			{
+				if(Arrays.equals(this.passwordTextField.getPassword(), this.confirmPasswordTextField.getPassword()))
+				{
+					this.myUIView.getUIController().signUp(this.loginTextField.getText(),
+							new String(this.passwordTextField.getPassword()));
+					JOptionPane.showMessageDialog(null,
+							"You are now registered, " + this.loginTextField.getText() + " !", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "The two passwords do not match !", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
 
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Please fill in all fields !", "Blank fields",
+						JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		else if(cmd.equals("back"))
 		{
-			this.myUIView.updatePanel(new UILogin(this.myUIView));
+			this.myUIView.updatePanel(new UISignIn(this.myUIView));
 		}
 	}
 
