@@ -1,11 +1,13 @@
 package view;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -15,13 +17,19 @@ public class UILogin extends JPanel implements KeyListener, ActionListener
 
 	private static final long serialVersionUID = 1L;
 
-	private final JPasswordField passwordTextField;
+	private JLabel connectionLbl;
 
-	private final JTextField loginTextField;
+	private JLabel loginLbl;
 
-	private final JButton loginBtn;
+	private JLabel passwordLbl;
 
-	private final JButton registerBtn;
+	private JPasswordField passwordTextField;
+
+	private JTextField loginTextField;
+
+	private JButton loginBtn;
+
+	private JButton registerBtn;
 
 	private UIView myUIView;
 
@@ -30,28 +38,46 @@ public class UILogin extends JPanel implements KeyListener, ActionListener
 		this.myUIView = uiView;
 		this.myUIView.setTitle("Polymaze - Login");
 
+		this.connectionLbl = new JLabel("Connection");
+		connectionLbl.setBounds(10, 10, 100, 25);
+		this.connectionLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		this.add(connectionLbl);
+
+		this.loginLbl = new JLabel("Login");
+		loginLbl.setBounds(200, 150, 100, 25);
+		this.loginLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(loginLbl);
+
+		this.passwordLbl = new JLabel("Password");
+		passwordLbl.setBounds(200, 250, 100, 25);
+		this.passwordLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		this.add(passwordLbl);
+
 		this.loginTextField = new JTextField();
-		this.loginTextField.setBounds(120, 10, 210, 30);
+		this.loginTextField.setBounds(this.loginLbl.getX() + 200, this.loginLbl.getY(), 210, 30);
 		this.add(this.loginTextField);
 		this.loginTextField.addKeyListener(this);
 		this.loginTextField.setColumns(10);
 
 		this.passwordTextField = new JPasswordField();
-		this.passwordTextField.setBounds(120, 50, 210, 30);
+		this.passwordTextField.setBounds(this.passwordLbl.getX() + 200, this.passwordLbl.getY(), 210, 30);
 		this.passwordTextField.addKeyListener(this);
 		this.add(this.passwordTextField);
 		this.passwordTextField.setColumns(10);
 
 		this.loginBtn = new JButton("Login");
-		this.loginBtn.setBounds(120, 90, 100, 25);
+		this.loginBtn.setBounds(this.loginTextField.getX() + this.loginTextField.getWidth() - 100,
+				this.passwordLbl.getY() + 100, 100, 25);
 		this.loginBtn.addActionListener(this);
 		this.loginBtn.setActionCommand("login");
+		this.loginBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.loginBtn);
 
 		this.registerBtn = new JButton("Register");
-		this.registerBtn.setBounds(230, 90, 100, 25);
+		this.registerBtn.setBounds(this.loginLbl.getX(), this.passwordLbl.getY() + 100, 100, 25);
 		this.registerBtn.addActionListener(this);
 		this.registerBtn.setActionCommand("register");
+		this.registerBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.registerBtn);
 	}
 
