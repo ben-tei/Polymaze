@@ -18,20 +18,20 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
  * @author Gaetan FRANCOIS
  *
  */
-public class FacadeBD
+public class Connect
 {
 
 	// Logger
-	private static final Logger LOGGER = Logger.getLogger(FacadeBD.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Connect.class.getName());
 
 	// Attributes
-	private static FacadeBD instance = null;
+	private static Connect instance = null;
 	private Properties properties;
 	private FileInputStream fis;
 	private MysqlDataSource dataSource;
 
 	// Constructor
-	private FacadeBD()
+	private Connect()
 	{
 		properties = new Properties();
 		fis = null;
@@ -53,11 +53,11 @@ public class FacadeBD
 	}
 
 	// getInstance
-	public static synchronized FacadeBD getInstance()
+	public static synchronized Connect getInstance()
 	{
 		if(instance == null)
 		{
-			instance = new FacadeBD();
+			instance = new Connect();
 		}
 		return instance;
 	}
@@ -74,5 +74,14 @@ public class FacadeBD
 			LOGGER.log(Level.SEVERE, "Connection to database failed.", e);
 		}
 		return connection;
+	}
+	
+	public void closeConnection() {
+		try {
+			this.getConnection().close();
+		}
+		catch (SQLException e) {
+			LOGGER.log(Level.SEVERE, "Impossible to close connection to database.", e);
+		}
 	}
 }

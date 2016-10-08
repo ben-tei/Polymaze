@@ -12,7 +12,6 @@ public class Person
 	// Attributes
 	private Integer id;
 	private String name;
-	private String password;
 
 	// Constructors
 	/**
@@ -24,36 +23,19 @@ public class Person
 	}
 
 	/**
-	 * Constructor using all the attributes except the id
-	 * 
-	 * @param name:
-	 *            the Person's name
-	 * @param password:
-	 *            the Person's password
-	 */
-	public Person(String name, String password)
-	{
-		super();
-		this.name = name;
-		this.password = password;
-	}
-
-	/**
 	 * Constructor using all the attributes
 	 * 
 	 * @param id:
 	 *            the Person's id
 	 * @param name:
 	 *            the Person's name
-	 * @param password:
-	 *            the Person's password
+	 *
 	 */
-	public Person(Integer id, String name, String password)
+	public Person(Integer id, String name)
 	{
 		super();
 		this.id = id;
 		this.name = name;
-		this.password = password;
 	}
 
 	// Getters & setters
@@ -67,12 +49,7 @@ public class Person
 	{
 		return name;
 	}
-
-	public String getPassword()
-	{
-		return password;
-	}
-
+	
 	// Setters
 	public void setId(Integer id)
 	{
@@ -82,11 +59,6 @@ public class Person
 	public void setName(String name)
 	{
 		this.name = name;
-	}
-
-	public void setPassword(String password)
-	{
-		this.password = password;
 	}
 
 }

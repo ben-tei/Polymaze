@@ -74,12 +74,13 @@ public class Maze
 	 * @param creator:
 	 *            the Person who created the Maze
 	 */
-	public Maze(Integer id, String name, Integer length, String content, Date creationDate, Person creator)
+	public Maze(Integer id, String name, Integer length, Integer width, String content, Date creationDate, Person creator)
 	{
 		super();
 		this.id = id;
 		this.name = name;
 		this.length = length;
+		this.width = width;
 		this.content = content;
 		this.creationDate = creationDate;
 		this.creator = creator;
