@@ -116,5 +116,11 @@ public class MazeDaoImpl implements MazeDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Maze> getAllMazes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

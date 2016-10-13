@@ -42,4 +42,11 @@ public interface MazeDao {
 	 * @return the list of retrieved mazes
 	 */
 	public List<Maze> getMazesByCreator(Person person);
+	
+	/**
+	 * This method retrieves all mazes on the DB
+	 * @param person: the creator
+	 * @return the list of retrieved mazes
+	 */
+	public List<Maze> getAllMazes();
 }
