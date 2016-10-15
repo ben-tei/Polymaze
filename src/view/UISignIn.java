@@ -115,10 +115,17 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 		{
 			if(this.loginTextField.getText().length() > 0 && this.passwordTextField.getPassword().length > 0)
 			{
-				this.myUIView.getUIController().signIn(this.loginTextField.getText(),
-						new String(this.passwordTextField.getPassword()));
-				JOptionPane.showMessageDialog(null, "Welcome on Polymaze, " + this.loginTextField.getText() + " !",
-						"Success", JOptionPane.INFORMATION_MESSAGE);
+				if(this.myUIView.getUIController().signIn(this.loginTextField.getText(),
+						new String(this.passwordTextField.getPassword()))) {
+					JOptionPane.showMessageDialog(null, "Welcome on Polymaze, " + this.loginTextField.getText() + " !",
+							"Success", JOptionPane.INFORMATION_MESSAGE);
+					
+					this.myUIView.updatePanel(new UIMazeDrawer(this.myUIView));
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid username or password",
+							"Failed to login", JOptionPane.INFORMATION_MESSAGE);
+				}
 
 			}
 		}

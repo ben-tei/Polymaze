@@ -30,4 +30,22 @@ public final class DataBaseFacade {
 			throw e;
 		}
 	}
+	
+	public static Person tryLogin(String login, String password){
+		try {
+			Person tmp = userDao_.getPersonByLogin(login, password);
+			return tmp;
+		} catch (PolymazeException e) {
+			return null; // if the person doesn't exist, return null
+		}
+	}
+	
+	public static Person createUser(String login, String password){
+		try {
+			Person tmp = userDao_.createPerson(login, password);
+			return tmp;
+		} catch (PolymazeException e) {
+			return null; // if the person was not created, return null
+		}
+	}
 }

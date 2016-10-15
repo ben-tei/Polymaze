@@ -135,11 +135,17 @@ public class UISignUp extends JPanel implements KeyListener, ActionListener
 			{
 				if(Arrays.equals(this.passwordTextField.getPassword(), this.confirmPasswordTextField.getPassword()))
 				{
-					this.myUIView.getUIController().signUp(this.loginTextField.getText(),
-							new String(this.passwordTextField.getPassword()));
-					JOptionPane.showMessageDialog(null,
-							"You are now registered, " + this.loginTextField.getText() + " !", "Success",
-							JOptionPane.INFORMATION_MESSAGE);
+					if(this.myUIView.getUIController().signUp(this.loginTextField.getText(),
+							new String(this.passwordTextField.getPassword()))){
+						JOptionPane.showMessageDialog(null,
+								"You are now registered, " + this.loginTextField.getText() + " !", "Success",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"User: \"" + this.loginTextField.getText() + "\" already exists!", "Failure",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				}
 				else
 				{

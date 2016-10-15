@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.util.Vector;
 
 import model.business.Maze;
@@ -12,13 +13,15 @@ public class MazeManager
 {
 	private Vector<Maze> mazeList_;
 	private MazeFactory mazeFactory_;
+	private UserManager userManager_; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 	
 	/**
 	 * Default constructor
 	 */
-	public MazeManager()
+	public MazeManager(UserManager userManager)
 	{
 		super();
+		userManager_ = userManager;
 	}
 	
 	/**
@@ -28,9 +31,9 @@ public class MazeManager
 	 * @param name:
 	 *            the Maze's name
 	 * @param length:
-	 *            the Maze's length (y)
+	 *            the Maze's length
 	 * @param width:
-	 *            the Maze's width (x)
+	 *            the Maze's width
 	 * @param creator:
 	 *            the Person who created the Maze
 	 * @throws PolymazeException 
