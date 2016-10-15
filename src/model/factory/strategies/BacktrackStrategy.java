@@ -9,8 +9,9 @@ import model.factory.MazeFactoryStrategyName;
 public class BacktrackStrategy extends MazeFactoryStrategy {
 	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Backtrack; 
 	
+	// attribute
 	private Maze maze;
-	private BacktrackCell[][] mazeArray;
+	private BacktrackCell[][] mazeArray; // BacktrackCell[][] used locally to generate the maze.
 	
 	/**
 	 * Method to create a Maze using Backtrack method.
@@ -27,7 +28,7 @@ public class BacktrackStrategy extends MazeFactoryStrategy {
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator) {
 		this.maze = new Maze(name, length, width, null, creator);
 		
-		this.initialiseMazeArray();
+		this.initializeMazeArray();
 		this.exploreMaze(this.maze.getStartX(),this.maze.getStartY());
 		this.maze.setContent(this.mazeArray);
 		
@@ -109,7 +110,10 @@ public class BacktrackStrategy extends MazeFactoryStrategy {
 	}
 	
 	
-	private void initialiseMazeArray() {
+	/**
+	 * Initialize the private attribute mazeArray of type : BacktrackCell[width][length]
+	 */
+	private void initializeMazeArray() {
 		this.mazeArray = new BacktrackCell[this.maze.getWidth()][this.maze.getLength()];
 		
 		for (int y = 0; y < this.maze.getLength(); y++) {
