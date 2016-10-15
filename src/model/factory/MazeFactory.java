@@ -2,6 +2,10 @@ package model.factory;
 
 import model.business.Maze;
 import model.business.Person;
+import model.factory.strategies.BacktrackStrategy;
+import model.factory.strategies.EllerStrategy;
+import model.factory.strategies.KruskalStrategy;
+import model.factory.strategies.PrimStrategy;
 
 public class MazeFactory {
 	private MazeFactoryStrategy currentStrategy_; 
@@ -11,8 +15,8 @@ public class MazeFactory {
 		case Backtrack :
 			currentStrategy_ = new BacktrackStrategy();
 			break;
-		case Euler :
-			currentStrategy_ = new EulerStrategy();
+		case Eller :
+			currentStrategy_ = new EllerStrategy();
 			break;
 		case Kruskal :
 			currentStrategy_ = new KruskalStrategy();

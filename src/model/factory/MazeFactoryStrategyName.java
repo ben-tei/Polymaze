@@ -2,7 +2,7 @@ package model.factory;
 
 public enum MazeFactoryStrategyName {
 	Backtrack,
-	Euler,
+	Eller,
 	Kruskal,
 	Prim,
 	Default

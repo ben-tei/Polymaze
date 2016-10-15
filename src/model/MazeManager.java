@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Date;
 import java.util.Vector;
 
 import model.business.Maze;
@@ -29,9 +28,9 @@ public class MazeManager
 	 * @param name:
 	 *            the Maze's name
 	 * @param length:
-	 *            the Maze's length
+	 *            the Maze's length (y)
 	 * @param width:
-	 *            the Maze's width
+	 *            the Maze's width (x)
 	 * @param creator:
 	 *            the Person who created the Maze
 	 * @throws PolymazeException 

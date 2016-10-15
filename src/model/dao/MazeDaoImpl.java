@@ -74,7 +74,7 @@ public class MazeDaoImpl implements MazeDao {
 				statement.setString(1, maze.getName());
 				statement.setInt(2, maze.getLength());
 				statement.setInt(3, maze.getWidth());
-				statement.setString(4, maze.getContent());
+				statement.setString(4, maze.contentToString());
 				statement.setDate(5, maze.getCreationDate());
 				statement.setInt(6, maze.getCreator().getId());
 
