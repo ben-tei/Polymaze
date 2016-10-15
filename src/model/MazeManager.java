@@ -13,13 +13,15 @@ public class MazeManager
 {
 	private Vector<Maze> mazeList_;
 	private MazeFactory mazeFactory_;
+	private UserManager userManager_; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 	
 	/**
 	 * Default constructor
 	 */
-	public MazeManager()
+	public MazeManager(UserManager userManager)
 	{
 		super();
+		userManager_ = userManager;
 	}
 	
 	/**
