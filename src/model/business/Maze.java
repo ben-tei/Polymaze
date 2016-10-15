@@ -16,6 +16,10 @@ public class Maze
 	private String name;
 	private Integer length; // for y
 	private Integer width;	// for x
+	private int startX; // coordinate start
+	private int startY;
+	private int endX; // coordinate end
+	private int endY;
 	private Cell[][] content;  // content[x][y]
 	private Date creationDate;
 	private Person creator;
@@ -53,6 +57,12 @@ public class Maze
 		this.width = width;
 		this.creationDate = creationDate;
 		this.creator = creator;
+		
+		// TODO add start and end point to constructor
+		this.startX = 0;
+		this.startY = 0;
+		this.endX = this.width-1;
+		this.endY = this.length-1;
 	}
 
 	/**
@@ -148,6 +158,21 @@ public class Maze
 	{
 		return creator;
 	}
+	public int getStartX() {
+		return startX;
+	}
+
+	public int getStartY() {
+		return startY;
+	}
+
+	public int getEndX() {
+		return endX;
+	}
+
+	public int getEndY() {
+		return endY;
+	}
 
 	// Setters
 	public void setId(Integer id)
@@ -183,6 +208,22 @@ public class Maze
 	public void setCreator(Person creator)
 	{
 		this.creator = creator;
+	}
+
+	public void setStartX(int startX) {
+		this.startX = startX;
+	}
+
+	public void setEndX(int endX) {
+		this.endX = endX;
+	}
+
+	public void setEndY(int endY) {
+		this.endY = endY;
+	}
+
+	public void setStartY(int startY) {
+		this.startY = startY;
 	}
 	
 	// Methods

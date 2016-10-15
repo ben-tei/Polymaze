@@ -3,6 +3,8 @@ package model.business.cell;
 import model.business.Cell;
 
 public class BacktrackCell extends Cell {
+	private boolean btCellVisited = false;
+	
 	/**
 	 * @param positionX:
 	 * 				int : x coordinate of the cell
