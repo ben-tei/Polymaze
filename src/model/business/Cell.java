@@ -1,5 +1,8 @@
 package model.business;
 
+import exception.model.business.ExceptionSetWallsFromStringNo0or1;
+import exception.model.business.ExceptionSetWallsFromStringNot4Char;
+
 public class Cell {
 	// x and y coordinate of the cell
 	private int positionX;
@@ -126,7 +129,6 @@ public class Cell {
 			strWalls = strWalls + "0";
 		} 
 		
-		
 		return strWalls;
 		
 	}
@@ -138,12 +140,14 @@ public class Cell {
 	 * 		Each characters refer to a wall, if the character is 1, there is a wall.
 	 * 		If the Character is 0, there is no wall.
 	 * 		Characters refer to walls in this order : North East South West
+	 * @throws ExceptionSetWallsFromStringNot4Char 
+	 * @throws ExceptionSetWallsFromStringNo0or1 
 	 * @throws Exception:
 	 * 		If the length of strWalls != 4 or if a wall have a character not equal to 1 or 0
 	 */
-	public void setWallsFromString(String strWalls) throws Exception {
+	public void setWallsFromString(String strWalls) throws ExceptionSetWallsFromStringNot4Char, ExceptionSetWallsFromStringNo0or1 {
 		if (strWalls.length() != 4 ) {
-			throw new Exception("strWalls should be for characters for north east south west");
+			throw new ExceptionSetWallsFromStringNot4Char();
 		} else {
 			
 			if (strWalls.charAt(0) == '1') {
@@ -151,28 +155,28 @@ public class Cell {
 			} else if (strWalls.charAt(0) == '0') {
 				this.setWallNorth(false);
 			} else {
-				throw new Exception("North wall should be 1 (there's a wall) or 0 (there's no wall)");
+				throw new ExceptionSetWallsFromStringNo0or1("North wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 			if (strWalls.charAt(1) == '1') {
 				this.setWallEast(true);
 			} else if (strWalls.charAt(1) == '0') {
 				this.setWallEast(false);
 			} else {
-				throw new Exception("East wall should be 1 (there's a wall) or 0 (there's no wall)");
+				throw new ExceptionSetWallsFromStringNo0or1("East wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 			if (strWalls.charAt(2) == '1') {
 				this.setWallSouth(true);
 			} else if (strWalls.charAt(2) == '0') {
 				this.setWallSouth(false);
 			} else {
-				throw new Exception("South wall should be 1 (there's a wall) or 0 (there's no wall)");
+				throw new ExceptionSetWallsFromStringNo0or1("South wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 			if (strWalls.charAt(3) == '1') {
 				this.setWallWest(true);
 			} else if (strWalls.charAt(3) == '0') {
 				this.setWallWest(false);
 			} else {
-				throw new Exception("West wall should be 1 (there's a wall) or 0 (there's no wall)");
+				throw new ExceptionSetWallsFromStringNo0or1("West wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 		}
 	}
