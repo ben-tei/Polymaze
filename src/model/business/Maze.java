@@ -15,12 +15,12 @@ public class Maze
 	private Integer id;
 	private String name;
 	private Integer length; // for y
-	private Integer width;	// for x
+	private Integer width; // for x
 	private int startX; // coordinate start
 	private int startY;
 	private int endX; // coordinate end
 	private int endY;
-	private Cell[][] content;  // content[x][y]
+	private Cell[][] content; // content[x][y]
 	private Date creationDate;
 	private Person creator;
 
@@ -32,7 +32,7 @@ public class Maze
 	{
 		super();
 	}
-	
+
 	/**
 	 * Constructor using all the attributes except the id
 	 * 
@@ -57,12 +57,12 @@ public class Maze
 		this.width = width;
 		this.creationDate = creationDate;
 		this.creator = creator;
-		
+
 		// TODO add start and end point to constructor
 		this.startX = 0;
 		this.startY = 0;
-		this.endX = this.width-1;
-		this.endY = this.length-1;
+		this.endX = this.width - 1;
+		this.endY = this.length - 1;
 	}
 
 	/**
@@ -110,7 +110,8 @@ public class Maze
 	 * @param creator:
 	 *            the Person who created the Maze
 	 */
-	public Maze(Integer id, String name, Integer length, Integer width, String content, Date creationDate, Person creator)
+	public Maze(Integer id, String name, Integer length, Integer width, String content, Date creationDate,
+			Person creator)
 	{
 		super();
 		this.id = id;
@@ -158,19 +159,24 @@ public class Maze
 	{
 		return creator;
 	}
-	public int getStartX() {
+
+	public int getStartX()
+	{
 		return startX;
 	}
 
-	public int getStartY() {
+	public int getStartY()
+	{
 		return startY;
 	}
 
-	public int getEndX() {
+	public int getEndX()
+	{
 		return endX;
 	}
 
-	public int getEndY() {
+	public int getEndY()
+	{
 		return endY;
 	}
 
@@ -210,71 +216,89 @@ public class Maze
 		this.creator = creator;
 	}
 
-	public void setStartX(int startX) {
+	public void setStartX(int startX)
+	{
 		this.startX = startX;
 	}
 
-	public void setEndX(int endX) {
+	public void setEndX(int endX)
+	{
 		this.endX = endX;
 	}
 
-	public void setEndY(int endY) {
+	public void setEndY(int endY)
+	{
 		this.endY = endY;
 	}
 
-	public void setStartY(int startY) {
+	public void setStartY(int startY)
+	{
 		this.startY = startY;
 	}
-	
+
 	// Methods
 	/**
 	 * Transform the cell array maze into a string.
-	 * @return String of 0 and 1, with a length of 4*width*length organized by line(width).
-	 * 		Corresponding to a maze of size width*length.
-	 * 		each cell are represented by four 0 or 1 which each correspond to a wall.
-	 * 		In order : North East South West.
-	 * 		1 correspond to the presence of a wall. 0 if there's no wall
+	 * 
+	 * @return String of 0 and 1, with a length of 4*width*length organized by
+	 *         line(width). Corresponding to a maze of size width*length. each
+	 *         cell are represented by four 0 or 1 which each correspond to a
+	 *         wall. In order : North East South West. 1 correspond to the
+	 *         presence of a wall. 0 if there's no wall
 	 */
-	public String contentToString() {
+	public String contentToString()
+	{
 		String strContent = "";
-		for (int y = 0; y < this.length; y++) {
-			for (int x = 0; x < this.width; x++) {
+		for(int y = 0; y < this.length; y++)
+		{
+			for(int x = 0; x < this.width; x++)
+			{
 				strContent = strContent + content[x][y].wallToString();
 			}
 		}
 		return strContent;
 	}
-	
+
 	/**
 	 * @param strContent:
-	 * 		String of 0 and 1, with a length of 4*width*length organized by line(width).
-	 * 		Corresponding to a maze of size width*length.   
+	 *            String of 0 and 1, with a length of 4*width*length organized
+	 *            by line(width). Corresponding to a maze of size width*length.
 	 * @param width:
-	 * 		int : width of a maze (correspond to x)
+	 *            int : width of a maze (correspond to x)
 	 * @param length:
-	 * 		int : length of a maze (correspond to y)
+	 *            int : length of a maze (correspond to y)
 	 * @return Cell[width][length] Transformed string into a Cell array.
 	 */
-	public Cell[][] contentFromString(String strContent, int width, int length) {
+	public Cell[][] contentFromString(String strContent, int width, int length)
+	{
 		Cell[][] cellContent = new Cell[width][length];
 		String currentStr = strContent;
-		
-		if (strContent.length() != width * length * 4) {
-			try {
+
+		if(strContent.length() != width * length * 4)
+		{
+			try
+			{
 				throw new Exception("Invalid number of characters in the string. Should be equal to 4*width*length");
-			} catch (Exception e) {
+			}
+			catch(Exception e)
+			{
 				System.err.println(e);
 				e.printStackTrace();
 			}
 		}
-		
-		for (int y = 0; y < length; y++) {
-			for (int x = 0; x < width; x++) {
-				cellContent[x][y] = new Cell(x,y);
-				try {
+
+		for(int y = 0; y < length; y++)
+		{
+			for(int x = 0; x < width; x++)
+			{
+				cellContent[x][y] = new Cell(x, y);
+				try
+				{
 					// to initialize walls
 					cellContent[x][y].setWallsFromString(currentStr.substring(0, 4));
-				} catch (Exception e) {
+				}
+				catch(Exception e)
+				{
 					System.err.println(e);
 					e.printStackTrace();
 				}
@@ -284,6 +308,5 @@ public class Maze
 		}
 		return cellContent;
 	}
-	
-	
+
 }

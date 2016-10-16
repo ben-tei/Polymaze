@@ -2,35 +2,38 @@ package model.business.cell;
 
 import model.business.Cell;
 
-public class PrimCell extends Cell {
+public class PrimCell extends Cell
+{
 
 	/**
 	 * @param positionX:
-	 * 				int : x coordinate of the cell
+	 *            int : x coordinate of the cell
 	 * @param positionY:
-	 * 				int : y coordinate of the cell
+	 *            int : y coordinate of the cell
 	 * @param wallNorth:
-	 * 				boolean : true if  there is a wall to the north
+	 *            boolean : true if there is a wall to the north
 	 * @param wallEast:
-	 * 				boolean : true if  there is a wall to the East
+	 *            boolean : true if there is a wall to the East
 	 * @param wallSouth:
-	 * 				boolean : true if  there is a wall to the South
+	 *            boolean : true if there is a wall to the South
 	 * @param wallWest:
-	 * 				boolean : true if  there is a wall to the West
+	 *            boolean : true if there is a wall to the West
 	 */
 	public PrimCell(int positionX, int positionY, boolean wallNorth, boolean wallEast, boolean wallSouth,
-			boolean wallWest) {
+			boolean wallWest)
+	{
 		super(positionX, positionY, wallNorth, wallEast, wallSouth, wallWest);
 	}
 
 	/**
 	 * @param positionX:
-	 * 				int : x coordinate of the cell
+	 *            int : x coordinate of the cell
 	 * @param positionY:
-	 * 				int : y coordinate of the cell
-	 * Set all walls of this Cell to true. 
+	 *            int : y coordinate of the cell Set all walls of this Cell to
+	 *            true.
 	 */
-	public PrimCell(int positionX, int positionY) {
+	public PrimCell(int positionX, int positionY)
+	{
 		super(positionX, positionY, true, true, true, true);
 	}
 

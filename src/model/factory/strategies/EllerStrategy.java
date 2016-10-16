@@ -5,9 +5,10 @@ import model.business.Person;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
-public class EllerStrategy extends MazeFactoryStrategy {
-	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller; 
-	
+public class EllerStrategy extends MazeFactoryStrategy
+{
+	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller;
+
 	/**
 	 * Method to create a Maze using Euler's algorithm.
 	 * 
@@ -20,7 +21,8 @@ public class EllerStrategy extends MazeFactoryStrategy {
 	 * @param creator:
 	 *            the Person who created the Maze
 	 */
-	public Maze generateMaze(String name, Integer length, Integer width, Person creator) {
+	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
+	{
 		// TODO
 		return null;
 	}

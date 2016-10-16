@@ -3,9 +3,10 @@ package model.factory;
 import model.business.Maze;
 import model.business.Person;
 
-public abstract class MazeFactoryStrategy {
+public abstract class MazeFactoryStrategy
+{
 	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Default;
-	
+
 	/**
 	 * Method to create a Maze. Implementation is in child classes.
 	 * 
@@ -18,7 +19,8 @@ public abstract class MazeFactoryStrategy {
 	 * @param creator:
 	 *            the Person who created the Maze
 	 */
-	public Maze generateMaze(String name, Integer length, Integer width, Person creator) {
+	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
+	{
 		return null;
 	}
 }

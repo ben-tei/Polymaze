@@ -11,8 +11,8 @@ public class UIController
 	public UIController()
 	{
 		myUserManager_ = new UserManager();
-		myMazeManager_ = new MazeManager(myUserManager_);// maze manager needs a reference to the user manager to instanciate mazes and to know current user
-		
+		myMazeManager_ = new MazeManager(myUserManager_); // maze manager needs a reference to the user manager to instanciate mazes and to know current user
+
 	}
 
 	public MazeManager getMazeManager()
