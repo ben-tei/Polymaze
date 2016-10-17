@@ -75,12 +75,15 @@ public class Connect
 		}
 		return connection;
 	}
-	
-	public void closeConnection() {
-		try {
+
+	public void closeConnection()
+	{
+		try
+		{
 			this.getConnection().close();
 		}
-		catch (SQLException e) {
+		catch(SQLException e)
+		{
 			LOGGER.log(Level.SEVERE, "Impossible to close connection to database.", e);
 		}
 	}

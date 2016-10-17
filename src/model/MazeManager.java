@@ -1,3 +1,4 @@
+
 package model;
 
 import java.sql.Date;
@@ -13,8 +14,8 @@ public class MazeManager
 {
 	private Vector<Maze> mazeList_;
 	private MazeFactory mazeFactory_;
-	private UserManager userManager_; // maze manager needs a reference to the userManager to know users
-	
+	private UserManager userManager_; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
+
 	/**
 	 * Default constructor
 	 */
@@ -23,10 +24,11 @@ public class MazeManager
 		super();
 		userManager_ = userManager;
 	}
-	
+
 	/**
-	 * Method to create a Maze. This method creates a maze using the currently selected algorithm,
-	 * add it to the list of existing mazes, and adds it to the DB.
+	 * Method to create a Maze. This method creates a maze using the currently
+	 * selected algorithm, add it to the list of existing mazes, and adds it to
+	 * the DB.
 	 * 
 	 * @param name:
 	 *            the Maze's name
@@ -36,14 +38,18 @@ public class MazeManager
 	 *            the Maze's width
 	 * @param creator:
 	 *            the Person who created the Maze
-	 * @throws PolymazeException 
+	 * @throws PolymazeException
 	 */
-	public void generateMaze(String name, Integer length, Integer width, Person creator) throws PolymazeException {
+	public void generateMaze(String name, Integer length, Integer width, Person creator) throws PolymazeException
+	{
 		Maze tempMaze = mazeFactory_.generateMaze(name, length, width, creator);
-		try {
+		try
+		{
 			DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
 			mazeList_.add(tempMaze);
-		} catch (PolymazeException e) {
+		}
+		catch(PolymazeException e)
+		{
 			// Do not add maze to the list and throw error for ui to handle it.
 			throw e;
 		}

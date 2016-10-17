@@ -49,7 +49,7 @@ public class Person
 	{
 		return name;
 	}
-	
+
 	// Setters
 	public void setId(Integer id)
 	{

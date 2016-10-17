@@ -12,30 +12,37 @@ public class UserManager
 		super();
 		currentUser_ = null;
 	}
-	
-	public boolean tryLogin(String login, String password){
+
+	public boolean tryLogin(String login, String password)
+	{
 		Person tmp = DataBaseFacade.tryLogin(login, password);
-		if(tmp != null){
+		if(tmp != null)
+		{
 			currentUser_ = tmp;
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
-	
-	public boolean createUser(String login, String password){
+
+	public boolean createUser(String login, String password)
+	{
 		Person tmp = DataBaseFacade.createUser(login, password);
-		if(tmp != null){
+		if(tmp != null)
+		{
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
-	
-	public Person getCurrentUser() {
+
+	public Person getCurrentUser()
+	{
 		return currentUser_;
 	}
-	
-	
 
 }

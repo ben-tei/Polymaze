@@ -1,14 +1,16 @@
-package model.factory;
+package model.factory.strategies;
 
 import model.business.Maze;
 import model.business.Person;
+import model.factory.MazeFactoryStrategy;
+import model.factory.MazeFactoryStrategyName;
 
-public abstract class MazeFactoryStrategy
+public class PrimStrategy extends MazeFactoryStrategy
 {
-	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Default;
+	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Prim;
 
 	/**
-	 * Method to create a Maze. Implementation is in child classes.
+	 * Method to create a Maze using Prim's algorithm.
 	 * 
 	 * @param name:
 	 *            the Maze's name
@@ -21,6 +23,7 @@ public abstract class MazeFactoryStrategy
 	 */
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
+		// TODO
 		return null;
 	}
 }
