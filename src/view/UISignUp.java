@@ -142,7 +142,7 @@ public class UISignUp extends JPanel implements KeyListener, ActionListener
 								JOptionPane.INFORMATION_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"User: \"" + this.loginTextField.getText() + "\" already exists!", "Failure",
+								"Username: \"" + this.loginTextField.getText() + "\" already exists!", "Failure",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					
