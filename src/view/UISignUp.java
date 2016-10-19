@@ -45,22 +45,22 @@ public class UISignUp extends JPanel implements KeyListener, ActionListener
 		this.myUIView.setTitle("Polymaze - Register");
 
 		this.connectionLbl = new JLabel("Register");
-		connectionLbl.setBounds(10, 10, 100, 25);
+		this.connectionLbl.setBounds(10, 10, 100, 25);
 		this.connectionLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		this.add(connectionLbl);
 
 		this.loginLbl = new JLabel("Login");
-		loginLbl.setBounds(200, 150, 100, 25);
+		this.loginLbl.setBounds(200, 150, 100, 25);
 		this.loginLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(loginLbl);
 
 		this.passwordLbl = new JLabel("Password");
-		passwordLbl.setBounds(200, 250, 100, 25);
+		this.passwordLbl.setBounds(200, 250, 100, 25);
 		this.passwordLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(passwordLbl);
 
 		this.confirmPasswordLbl = new JLabel("Confirm Password");
-		confirmPasswordLbl.setBounds(200, 350, 150, 25);
+		this.confirmPasswordLbl.setBounds(200, 350, 150, 25);
 		this.confirmPasswordLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(confirmPasswordLbl);
 
