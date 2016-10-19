@@ -1,70 +1,138 @@
 package model.dao;
 
 import model.business.Person;
+import model.util.Connect;
 import util.PolymazeException;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.business.Maze;
 
 public final class DataBaseFacade
 {
+	// Logger
+	private static final Logger LOGGER = Logger.getLogger(Connect.class.getName());
+	
+	// Attributes
 	private static MazeDao mazeDao = new MazeDaoImpl();
-	private static PersonDao userDao = new PersonDaoImpl();
+	private static PersonDao personDao = new PersonDaoImpl();
 
 	// Constructor
 	private DataBaseFacade()
 	{
 		super();
 	}
-
-	public static List<Maze> getMazesByCreator(Person creator)
-	{
-		return mazeDao.getMazesByCreator(creator);
-	}
-
+	
+	// Maze
+	/**
+	 * Gets a Maze by its name
+	 * 
+	 * @param name:
+	 * 			the Maze's name
+	 * @return the retrieved Maze
+	 */
 	public static Maze getMazeByName(String name)
 	{
 		return mazeDao.getMazeByName(name);
 	}
 
-	public static void createMaze(Maze maze) throws PolymazeException
+	/**
+	 * Creates a new Maze
+	 * 
+	 * @param maze:
+	 * 			the Maze to create
+	 * @throws PolymazeException
+	 */
+	public static Maze createMaze(Maze maze) throws PolymazeException
 	{
+		Maze myMaze = null;
 		try
 		{
-			mazeDao.createMaze(maze);
+			myMaze =  mazeDao.createMaze(maze);
 		}
 		catch(PolymazeException e)
 		{
-			throw e;
+			LOGGER.log(Level.SEVERE, "createMaze failed.", e);
 		}
+		return myMaze;
+	}
+		
+	/**
+	 * Deletes a Maze
+	 * 
+	 * @param idMaze:
+	 * 			the id of the Maze to delete
+	 * @return true if the Maze has been deleted, false otherwise
+	 */
+	public static boolean deleteMaze(Integer idMaze) {
+		return mazeDao.deleteMaze(idMaze);
+	}
+	
+	/**
+	 * Gets all Mazes of a Person
+	 * 
+	 * @param creator:
+	 * 				the creator of the Maze
+	 * @return a list of Maze
+	 */
+	public static List<Maze> getMazesByCreator(Person creator)
+	{
+		return mazeDao.getMazesByCreator(creator);
+	}
+	
+	
+	/**
+	 * Gets all the existing Mazes
+	 * 
+	 * @return a list of all the Mazes
+	 */
+	public static List<Maze> getAllMazes() {
+		return mazeDao.getAllMazes();
 	}
 	
 	// Person
-
+	/**
+	 * A Person tries to login
+	 * @param login:
+	 * 			the Person's name
+	 * @param password:
+	 * 			the Person's password
+	 * @return
+	 */
 	public static Person tryLogin(String login, String password)
 	{
+		Person myPerson = null;
 		try
 		{
-			Person tmp = userDao.getPersonByLogin(login, password);
-			return tmp;
+			myPerson = personDao.getPersonByLogin(login, password);
 		}
 		catch(PolymazeException e)
 		{
-			return null; // if the person doesn't exist, return null
+			LOGGER.log(Level.SEVERE, "tryLogin failed.", e);
 		}
+		return myPerson;
 	}
 
+	/**
+	 * @param login:
+	 * 			the Person's name
+	 * @param password:
+	 * 			the Person's password
+	 * @return
+	 */
 	public static Person createUser(String login, String password)
 	{
+		Person myPerson = null;
 		try
 		{
-			Person tmp = userDao.createPerson(login, password);
-			return tmp;
+			myPerson = personDao.createPerson(login, password);
 		}
 		catch(PolymazeException e)
 		{
-			return null; // if the person was not created, return null
+			LOGGER.log(Level.SEVERE, "createUser failed.", e);
 		}
+		return myPerson;
 	}
 }

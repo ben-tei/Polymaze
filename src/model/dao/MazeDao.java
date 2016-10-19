@@ -36,11 +36,11 @@ public interface MazeDao
 	/**
 	 * This method deletes a Maze in the database
 	 * 
-	 * @param id:
+	 * @param idMaze:
 	 *            the id of the Maze to delete
 	 * @return true if the deletion is successful, false otherwise
 	 */
-	public boolean deleteMaze(Integer id);
+	public boolean deleteMaze(Integer idMaze);
 
 	/**
 	 * This method retrieves all mazes of a creator

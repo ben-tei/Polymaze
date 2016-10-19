@@ -42,7 +42,6 @@ public class Maze
 	 *            the Maze's length
 	 * @param width:
 	 *            the Maze's width
-	 *            
 	 * @param date:
 	 *            the Maze's date of creation
 	 * @param creator:
@@ -102,6 +101,14 @@ public class Maze
 	 *            the Maze's length
 	 * @param width:
 	 *            the Maze's width
+	 * @param startX:
+	 *            the Maze's starting point coordinate in X
+	 * @param startY:
+	 *            the Maze's starting point coordinate in Y
+	 * @param endX:
+	 *            the Maze's ending point coordinate in X
+	 * @param endY:
+	 *            the Maze's ending point coordinate in Y
 	 * @param content:
 	 *            representation of the Maze using a String
 	 * @param date:
@@ -109,14 +116,18 @@ public class Maze
 	 * @param creator:
 	 *            the Person who created the Maze
 	 */
-	public Maze(Integer id, String name, Integer length, Integer width, String content, Date creationDate,
-			Person creator)
+	public Maze(Integer id, String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
+			String content, Date creationDate, Person creator)
 	{
 		super();
 		this.id = id;
 		this.name = name;
 		this.length = length;
 		this.width = width;
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
 		this.content = this.contentFromString(content, width, length);
 		this.creationDate = creationDate;
 		this.creator = creator;
