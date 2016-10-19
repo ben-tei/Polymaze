@@ -17,13 +17,13 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	/**
 	 * Method to create a Maze using Backtrack method.
 	 * 
-	 * @param name:
+	 * @param name
 	 *            the Maze's name
-	 * @param length:
+	 * @param length
 	 *            the Maze's length
-	 * @param width:
+	 * @param width
 	 *            the Maze's width
-	 * @param creator:
+	 * @param creator
 	 *            the Person who created the Maze
 	 */
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
@@ -97,22 +97,22 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 		boolean north = true, south = true, east = true, west = true;
 
 		// if we are on the left or the left cell is already visited
-		if(x == 0 || (mazeArray2[x - 1][y]).isVisited())
+		if(x == 0 || (mazeArray2[x - 1][y]).isBtCellVisited())
 		{
 			west = false;
 		}
 		// if we are on the right or the right cell is already visited
-		if(x == this.maze.getWidth() - 1 || (mazeArray2[x + 1][y]).isVisited())
+		if(x == this.maze.getWidth() - 1 || (mazeArray2[x + 1][y]).isBtCellVisited())
 		{
 			east = false;
 		}
 		// if we are on the top or the above cell is already visited
-		if(y == 0 || (mazeArray2[x][y - 1]).isVisited())
+		if(y == 0 || (mazeArray2[x][y - 1]).isBtCellVisited())
 		{
 			north = false;
 		}
 		// if we are on the bottom or the under cell is already visited
-		if(y == this.maze.getLength() - 1 || (mazeArray2[x][y + 1]).isVisited())
+		if(y == this.maze.getLength() - 1 || (mazeArray2[x][y + 1]).isBtCellVisited())
 		{
 			south = false;
 		}

@@ -4,20 +4,28 @@ import model.business.Cell;
 
 public class BacktrackCell extends Cell
 {
-	// private boolean btCellVisited = false;
+	private boolean btCellVisited = false;
+
+	public boolean isBtCellVisited() {
+		return btCellVisited;
+	}
+
+	public void setBtCellVisited(boolean btCellVisited) {
+		this.btCellVisited = btCellVisited;
+	}
 
 	/**
-	 * @param positionX:
+	 * @param positionX
 	 *            int : x coordinate of the cell
-	 * @param positionY:
+	 * @param positionY
 	 *            int : y coordinate of the cell
-	 * @param wallNorth:
+	 * @param wallNorth
 	 *            boolean : true if there is a wall to the north
-	 * @param wallEast:
+	 * @param wallEast
 	 *            boolean : true if there is a wall to the East
-	 * @param wallSouth:
+	 * @param wallSouth
 	 *            boolean : true if there is a wall to the South
-	 * @param wallWest:
+	 * @param wallWest
 	 *            boolean : true if there is a wall to the West
 	 */
 	public BacktrackCell(int positionX, int positionY, boolean wallNorth, boolean wallEast, boolean wallSouth,
@@ -27,9 +35,9 @@ public class BacktrackCell extends Cell
 	}
 
 	/**
-	 * @param positionX:
+	 * @param positionX
 	 *            int : x coordinate of the cell
-	 * @param positionY:
+	 * @param positionY
 	 *            int : y coordinate of the cell Set all walls of this Cell to
 	 *            true.
 	 */

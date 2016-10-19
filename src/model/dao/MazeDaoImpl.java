@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import com.mysql.jdbc.Statement;
 
+import exception.model.business.ExceptionContentToString;
 import model.business.Maze;
 import model.business.Person;
 import model.util.Connect;
@@ -94,7 +95,11 @@ public class MazeDaoImpl implements MazeDao
 				statement.setInt(4, maze.getStartX());
 				statement.setInt(4, maze.getStartY());
 				statement.setInt(4, maze.getEndX());
-				statement.setString(9, maze.contentToString());
+				try {
+					statement.setString(9, maze.contentToString());
+				} catch (ExceptionContentToString e) {
+					e.printStackTrace();
+				}
 				statement.setDate(10, maze.getCreationDate());
 				statement.setInt(11, maze.getCreator().getId());
 

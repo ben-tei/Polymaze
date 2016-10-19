@@ -2,6 +2,8 @@ package model.business;
 
 import java.sql.Date;
 
+import exception.model.business.ExceptionContentToString;
+
 /**
  * Business class for a Maze
  * 
@@ -20,7 +22,7 @@ public class Maze
 	private int startY;
 	private int endX; // coordinate end
 	private int endY;
-	private Cell[][] content; // content[x][y]
+	private Cell[][] content = null; // content[x][y]
 	private Date creationDate;
 	private Person creator;
 
@@ -255,9 +257,15 @@ public class Maze
 	 *         cell are represented by four 0 or 1 which each correspond to a
 	 *         wall. In order : North East South West. 1 correspond to the
 	 *         presence of a wall. 0 if there's no wall
+	 * @throws ExceptionContentToString 
 	 */
-	public String contentToString()
+	public String contentToString() throws ExceptionContentToString
 	{
+		if (content == null ) 
+		{
+			throw new ExceptionContentToString();
+		}
+		
 		String strContent = "";
 		for(int y = 0; y < this.length; y++)
 		{
@@ -270,12 +278,12 @@ public class Maze
 	}
 
 	/**
-	 * @param strContent:
+	 * @param strContent
 	 *            String of 0 and 1, with a length of 4*width*length organized
 	 *            by line(width). Corresponding to a maze of size width*length.
-	 * @param width:
+	 * @param width
 	 *            int : width of a maze (correspond to x)
-	 * @param length:
+	 * @param length
 	 *            int : length of a maze (correspond to y)
 	 * @return Cell[width][length] Transformed string into a Cell array.
 	 */

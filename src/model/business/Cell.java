@@ -17,20 +17,21 @@ public class Cell
 	private boolean visited = false; // true if the cell have been visited, otherwise false
 
 	/**
-	 * @param positionX:
+	 * @param positionX
 	 *            int : x coordinate of the cell
-	 * @param positionY:
+	 * @param positionY
 	 *            int : y coordinate of the cell
-	 * @param wallNorth:
+	 * @param wallNorth
 	 *            boolean : true if there is a wall to the north
-	 * @param wallEast:
+	 * @param wallEast
 	 *            boolean : true if there is a wall to the East
-	 * @param wallSouth:
+	 * @param wallSouth
 	 *            boolean : true if there is a wall to the South
-	 * @param wallWest:
+	 * @param wallWest
 	 *            boolean : true if there is a wall to the West
 	 */
-	public Cell(int positionX, int positionY, boolean wallNorth, boolean wallEast, boolean wallSouth, boolean wallWest)
+	public Cell(int positionX, int positionY, boolean wallNorth, 
+			boolean wallEast, boolean wallSouth, boolean wallWest)
 	{
 		this.positionX = positionX;
 		this.positionY = positionY;
@@ -41,9 +42,9 @@ public class Cell
 	}
 
 	/**
-	 * @param positionX:
+	 * @param positionX
 	 *            int : x coordinate of the cell
-	 * @param positionY:
+	 * @param positionY
 	 *            int : y coordinate of the cell Set all walls of this Cell to
 	 *            true.
 	 */
@@ -176,16 +177,15 @@ public class Cell
 	 * Initialize walls of this cell from a string of 4 characters composed of 0
 	 * and 1.
 	 * 
-	 * @param strWalls:
+	 * @param strWalls
 	 *            String of 4 characters. Each characters refer to a wall, if
 	 *            the character is 1, there is a wall. If the Character is 0,
 	 *            there is no wall. Characters refer to walls in this order :
 	 *            North East South West
 	 * @throws ExceptionSetWallsFromStringNot4Char
+	 *  		If the length of strWalls != 4 
 	 * @throws ExceptionSetWallsFromStringNo0or1
-	 * @throws Exception:
-	 *             If the length of strWalls != 4 or if a wall have a character
-	 *             not equal to 1 or 0
+	 * 			If a wall have a character not equal to 1 or 0
 	 */
 	public void setWallsFromString(String strWalls)
 			throws ExceptionSetWallsFromStringNot4Char, ExceptionSetWallsFromStringNo0or1
