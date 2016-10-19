@@ -12,6 +12,7 @@ public final class DataBaseFacade
 	private static MazeDao mazeDao = new MazeDaoImpl();
 	private static PersonDao userDao = new PersonDaoImpl();
 
+	// Constructor
 	private DataBaseFacade()
 	{
 		super();
@@ -38,6 +39,8 @@ public final class DataBaseFacade
 			throw e;
 		}
 	}
+	
+	// Person
 
 	public static Person tryLogin(String login, String password)
 	{
