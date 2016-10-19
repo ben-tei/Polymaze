@@ -36,6 +36,9 @@ public class UIHome extends JPanel implements KeyListener, ActionListener
 		this.myLabyrinths = new UIMyMazes(uiView, this.tabs);
 		this.allLabyrinths = new UIAllMazes(uiView, this.tabs);
 
+		this.myLabyrinths.setLayout(null);
+		this.allLabyrinths.setLayout(null);
+
 		this.tabs.add("My Labyrinths", this.myLabyrinths);
 		this.tabs.add("All Labyrinths", this.allLabyrinths);
 		this.tabs.setBounds(0, this.homeLbl.getY() + 50, this.myUIView.getWidth(), this.myUIView.getHeight());
