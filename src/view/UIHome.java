@@ -16,6 +16,7 @@ public class UIHome extends JPanel implements KeyListener, ActionListener
 	public UIHome(UIView uiView)
 	{
 		this.myUIView = uiView;
+		this.myUIView.setTitle("Polymaze - Maze Generator");
 	}
 
 	@Override
