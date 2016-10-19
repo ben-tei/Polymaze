@@ -113,7 +113,7 @@ public class MazeDaoImpl implements MazeDao
 		}
 		catch(SQLException e)
 		{
-			LOGGER.log(Level.SEVERE, "Impossible to create Person in database.", e);
+			LOGGER.log(Level.SEVERE, "Impossible to create Maze in database.", e);
 		}
 		finally
 		{

@@ -34,7 +34,7 @@ public class Maze
 	}
 
 	/**
-	 * Constructor using all the attributes except the id
+	 * Constructor using 5 attributes
 	 * 
 	 * @param name:
 	 *            the Maze's name
@@ -42,8 +42,7 @@ public class Maze
 	 *            the Maze's length
 	 * @param width:
 	 *            the Maze's width
-	 * @param content:
-	 *            representation of the Maze using a String
+	 *            
 	 * @param date:
 	 *            the Maze's date of creation
 	 * @param creator:
@@ -66,7 +65,7 @@ public class Maze
 	}
 
 	/**
-	 * Constructor using all the attributes except the id
+	 * Constructor using 6 attributes
 	 * 
 	 * @param name:
 	 *            the Maze's name
@@ -238,7 +237,7 @@ public class Maze
 
 	// Methods
 	/**
-	 * Transform the cell array maze into a string.
+	 * Transforms the cell array maze into a string.
 	 * 
 	 * @return String of 0 and 1, with a length of 4*width*length organized by
 	 *         line(width). Corresponding to a maze of size width*length. each

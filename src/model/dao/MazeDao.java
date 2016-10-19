@@ -20,7 +20,7 @@ public interface MazeDao
 	 * 
 	 * @param name:
 	 *            the Maze's name
-	 * @return the retrieves Maze
+	 * @return the retrieved Maze
 	 */
 	public Maze getMazeByName(String name);
 
