@@ -7,7 +7,7 @@ import model.factory.MazeFactoryStrategyName;
 
 public class PrimStrategy extends MazeFactoryStrategy
 {
-	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Prim;
+	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Prim;
 
 	/**
 	 * Method to create a Maze using Prim's algorithm.

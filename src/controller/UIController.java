@@ -5,35 +5,34 @@ import model.*;
 public class UIController
 {
 
-	private MazeManager myMazeManager_;
-	private UserManager myUserManager_;
+	private MazeManager myMazeManager;
+	private UserManager myUserManager;
 
 	public UIController()
 	{
-		myUserManager_ = new UserManager();
-		myMazeManager_ = new MazeManager(myUserManager_); // maze manager needs a reference to the user manager to instanciate mazes and to know current user
+		this.myUserManager = new UserManager();
+		this.myMazeManager = new MazeManager(myUserManager); // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 
 	}
 
 	public MazeManager getMazeManager()
 	{
-		return myMazeManager_;
+		return this.myMazeManager;
 	}
 
 	public UserManager getUserManager()
 	{
-		return myUserManager_;
+		return this.myUserManager;
 	}
 
 	public boolean signIn(String login, String password)
 	{
-		return myUserManager_.tryLogin(login, password);
+		return this.myUserManager.tryLogin(login, password);
 	}
 
 	public boolean signUp(String login, String password)
 	{
-		return myUserManager_.createUser(login, password);
+		return this.myUserManager.createUser(login, password);
 	}
-	
 
 }

@@ -9,8 +9,8 @@ import model.business.Maze;
 
 public final class DataBaseFacade
 {
-	static private MazeDao mazeDao_ = new MazeDaoImpl();
-	static private PersonDao userDao_ = new PersonDaoImpl();
+	private static MazeDao mazeDao = new MazeDaoImpl();
+	private static PersonDao userDao = new PersonDaoImpl();
 
 	private DataBaseFacade()
 	{
@@ -19,19 +19,19 @@ public final class DataBaseFacade
 
 	public static List<Maze> getMazesByCreator(Person creator)
 	{
-		return mazeDao_.getMazesByCreator(creator);
+		return mazeDao.getMazesByCreator(creator);
 	}
 
 	public static Maze getMazeByName(String name)
 	{
-		return mazeDao_.getMazeByName(name);
+		return mazeDao.getMazeByName(name);
 	}
 
 	public static void createMaze(Maze maze) throws PolymazeException
 	{
 		try
 		{
-			mazeDao_.createMaze(maze);
+			mazeDao.createMaze(maze);
 		}
 		catch(PolymazeException e)
 		{
@@ -43,7 +43,7 @@ public final class DataBaseFacade
 	{
 		try
 		{
-			Person tmp = userDao_.getPersonByLogin(login, password);
+			Person tmp = userDao.getPersonByLogin(login, password);
 			return tmp;
 		}
 		catch(PolymazeException e)
@@ -56,7 +56,7 @@ public final class DataBaseFacade
 	{
 		try
 		{
-			Person tmp = userDao_.createPerson(login, password);
+			Person tmp = userDao.createPerson(login, password);
 			return tmp;
 		}
 		catch(PolymazeException e)

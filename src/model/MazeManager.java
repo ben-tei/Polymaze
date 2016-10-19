@@ -1,7 +1,6 @@
 
 package model;
 
-import java.sql.Date;
 import java.util.Vector;
 
 import model.business.Maze;
@@ -12,9 +11,9 @@ import util.PolymazeException;
 
 public class MazeManager
 {
-	private Vector<Maze> mazeList_;
-	private MazeFactory mazeFactory_;
-	private UserManager userManager_; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
+	private Vector<Maze> mazeList;
+	private MazeFactory mazeFactory;
+	private UserManager myUserManager; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 
 	/**
 	 * Default constructor
@@ -22,7 +21,7 @@ public class MazeManager
 	public MazeManager(UserManager userManager)
 	{
 		super();
-		userManager_ = userManager;
+		this.myUserManager = userManager;
 	}
 
 	/**
@@ -42,11 +41,11 @@ public class MazeManager
 	 */
 	public void generateMaze(String name, Integer length, Integer width, Person creator) throws PolymazeException
 	{
-		Maze tempMaze = mazeFactory_.generateMaze(name, length, width, creator);
+		Maze tempMaze = mazeFactory.generateMaze(name, length, width, creator);
 		try
 		{
 			DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
-			mazeList_.add(tempMaze);
+			mazeList.add(tempMaze);
 		}
 		catch(PolymazeException e)
 		{

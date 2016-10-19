@@ -7,7 +7,7 @@ import model.factory.MazeFactoryStrategyName;
 
 public class KruskalStrategy extends MazeFactoryStrategy
 {
-	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Kruskal;
+	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Kruskal;
 
 	/**
 	 * Method to create a Maze using Kruskal's algorithm.

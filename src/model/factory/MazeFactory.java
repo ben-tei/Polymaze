@@ -9,36 +9,36 @@ import model.factory.strategies.PrimStrategy;
 
 public class MazeFactory
 {
-	private MazeFactoryStrategy currentStrategy_;
+	private MazeFactoryStrategy currentStrategy;
 
 	public void setStrategy(MazeFactoryStrategyName name)
 	{
 		switch(name)
 		{
 			case Backtrack:
-				currentStrategy_ = new BacktrackStrategy();
+				this.currentStrategy = new BacktrackStrategy();
 				break;
 			case Eller:
-				currentStrategy_ = new EllerStrategy();
+				this.currentStrategy = new EllerStrategy();
 				break;
 			case Kruskal:
-				currentStrategy_ = new KruskalStrategy();
+				this.currentStrategy = new KruskalStrategy();
 				break;
 			case Prim:
-				currentStrategy_ = new PrimStrategy();
+				this.currentStrategy = new PrimStrategy();
 				break;
 			default:
-				currentStrategy_ = new BacktrackStrategy(); // in case of bug, use backtrack
+				this.currentStrategy = new BacktrackStrategy(); // in case of bug, use backtrack
 		}
 	}
 
 	public MazeFactoryStrategyName getStrategyName()
 	{
-		return currentStrategy_.NAME;
+		return currentStrategy.NAME;
 	}
 
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
-		return currentStrategy_.generateMaze(name, length, width, creator);
+		return currentStrategy.generateMaze(name, length, width, creator);
 	}
 }

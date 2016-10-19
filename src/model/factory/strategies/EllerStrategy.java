@@ -7,7 +7,7 @@ import model.factory.MazeFactoryStrategyName;
 
 public class EllerStrategy extends MazeFactoryStrategy
 {
-	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller;
+	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller;
 
 	/**
 	 * Method to create a Maze using Euler's algorithm.

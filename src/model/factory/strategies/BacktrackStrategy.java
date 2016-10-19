@@ -8,9 +8,9 @@ import model.factory.MazeFactoryStrategyName;
 
 public class BacktrackStrategy extends MazeFactoryStrategy
 {
-	static MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Backtrack;
+	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Backtrack;
 
-	// attribute
+	// attributes
 	private Maze maze;
 	private BacktrackCell[][] mazeArray; // BacktrackCell[][] used locally to generate the maze.
 

@@ -42,12 +42,12 @@ public class Person
 	// Getters
 	public Integer getId()
 	{
-		return id;
+		return this.id;
 	}
 
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 
 	// Setters

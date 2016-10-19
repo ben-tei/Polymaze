@@ -4,7 +4,7 @@ import model.business.Cell;
 
 public class BacktrackCell extends Cell
 {
-	private boolean btCellVisited = false;
+	// private boolean btCellVisited = false;
 
 	/**
 	 * @param positionX:

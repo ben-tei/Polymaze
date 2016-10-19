@@ -5,12 +5,12 @@ import model.dao.DataBaseFacade;
 
 public class UserManager
 {
-	private Person currentUser_;
+	private Person currentUser;
 
 	public UserManager()
 	{
 		super();
-		currentUser_ = null;
+		this.currentUser = null;
 	}
 
 	public boolean tryLogin(String login, String password)
@@ -18,7 +18,7 @@ public class UserManager
 		Person tmp = DataBaseFacade.tryLogin(login, password);
 		if(tmp != null)
 		{
-			currentUser_ = tmp;
+			this.currentUser = tmp;
 			return true;
 		}
 		else
@@ -42,7 +42,7 @@ public class UserManager
 
 	public Person getCurrentUser()
 	{
-		return currentUser_;
+		return this.currentUser;
 	}
 
 }

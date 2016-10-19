@@ -9,12 +9,12 @@ public class ExceptionSetWallsFromStringNo0or1 extends Exception
 	public ExceptionSetWallsFromStringNo0or1(String errorMessage)
 	{
 		super();
-		ErrorMessage = errorMessage;
+		this.ErrorMessage = errorMessage;
 	}
 
 	@Override
 	public String getMessage()
 	{
-		return ErrorMessage;
+		return this.ErrorMessage;
 	}
 }

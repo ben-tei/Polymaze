@@ -55,7 +55,7 @@ public class Cell
 	// Getters & setters
 	public int getPositionX()
 	{
-		return positionX;
+		return this.positionX;
 	}
 
 	public void setPositionX(int coordX)
@@ -65,7 +65,7 @@ public class Cell
 
 	public int getPositionY()
 	{
-		return positionY;
+		return this.positionY;
 	}
 
 	public void setPositionY(int corrdY)
@@ -75,7 +75,7 @@ public class Cell
 
 	public boolean isWallNorth()
 	{
-		return wallNorth;
+		return this.wallNorth;
 	}
 
 	public void setWallNorth(boolean wallNorth)
@@ -85,7 +85,7 @@ public class Cell
 
 	public boolean isWallSouth()
 	{
-		return wallSouth;
+		return this.wallSouth;
 	}
 
 	public void setWallSouth(boolean wallSouth)
@@ -95,7 +95,7 @@ public class Cell
 
 	public boolean isWallEast()
 	{
-		return wallEast;
+		return this.wallEast;
 	}
 
 	public void setWallEast(boolean wallEast)
@@ -105,7 +105,7 @@ public class Cell
 
 	public boolean isWallWest()
 	{
-		return wallWest;
+		return this.wallWest;
 	}
 
 	public void setWallWest(boolean wallWest)
@@ -115,7 +115,7 @@ public class Cell
 
 	public boolean isVisited()
 	{
-		return visited;
+		return this.visited;
 	}
 
 	public void setVisited(boolean visited)

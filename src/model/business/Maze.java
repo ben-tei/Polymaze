@@ -127,57 +127,57 @@ public class Maze
 	// Getters
 	public Integer getId()
 	{
-		return id;
+		return this.id;
 	}
 
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 
 	public Integer getLength()
 	{
-		return length;
+		return this.length;
 	}
 
 	public Integer getWidth()
 	{
-		return width;
+		return this.width;
 	}
 
 	public Cell[][] getContent()
 	{
-		return content;
+		return this.content;
 	}
 
 	public Date getCreationDate()
 	{
-		return creationDate;
+		return this.creationDate;
 	}
 
 	public Person getCreator()
 	{
-		return creator;
+		return this.creator;
 	}
 
 	public int getStartX()
 	{
-		return startX;
+		return this.startX;
 	}
 
 	public int getStartY()
 	{
-		return startY;
+		return this.startY;
 	}
 
 	public int getEndX()
 	{
-		return endX;
+		return this.endX;
 	}
 
 	public int getEndY()
 	{
-		return endY;
+		return this.endY;
 	}
 
 	// Setters
@@ -253,7 +253,7 @@ public class Maze
 		{
 			for(int x = 0; x < this.width; x++)
 			{
-				strContent = strContent + content[x][y].wallToString();
+				strContent = strContent + this.content[x][y].wallToString();
 			}
 		}
 		return strContent;
