@@ -28,7 +28,7 @@ public class MazeDaoImpl implements MazeDao
 	private static final String queryDeleteMaze = "DELETE FROM Maze WHERE id = ?;";
 	private static final String queryGetMazesByCreator = "SELECT * FROM Maze WHERE idPerson = ?;";
 	private static final String queryGetAllMazes = "SELECT * FROM Maze;";
-	
+
 	@Override
 	public Maze getMazeByName(String name)
 	{
@@ -49,8 +49,9 @@ public class MazeDaoImpl implements MazeDao
 
 			while(rs.next())
 			{
-				maze = new Maze(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7) ,rs.getInt(8), rs.getString(9),
-						rs.getDate(10), personDaoImpl.getPersonById(rs.getInt(11)));
+				maze = new Maze(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6),
+						rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getDate(10),
+						personDaoImpl.getPersonById(rs.getInt(11)));
 			}
 
 			connection.close();
@@ -136,23 +137,25 @@ public class MazeDaoImpl implements MazeDao
 	{
 		// Boolean to return
 		boolean isDeleted = false;
-		
+
 		// Connection to database
 		Connection connection = Connect.getInstance().getConnection();
 
-		try {
+		try
+		{
 			PreparedStatement statement = connection.prepareStatement(queryDeleteMaze);
 			statement.setInt(1, idMaze);
-			
+
 			// Delete Maze from database
 			int affectedRows = statement.executeUpdate();
-			
-			if (affectedRows == 0) {
+
+			if(affectedRows == 0)
+			{
 				throw new SQLException("Deleting maze failed, no row affected.");
 			}
-			
+
 			isDeleted = true;
-			
+
 			connection.close();
 		}
 		catch(SQLException e)
@@ -163,7 +166,7 @@ public class MazeDaoImpl implements MazeDao
 		{
 			Connect.getInstance().closeConnection();
 		}
-		
+
 		return isDeleted;
 	}
 
@@ -172,20 +175,22 @@ public class MazeDaoImpl implements MazeDao
 	{
 		// List of mazes to return
 		List<Maze> listMazes = new ArrayList<Maze>();
-		
+
 		// Connection to database
 		Connection connection = Connect.getInstance().getConnection();
-		
-		try {
+
+		try
+		{
 			PreparedStatement statement = connection.prepareCall(queryGetMazesByCreator);
 			statement.setInt(1, person.getId());
 			ResultSet rs = statement.executeQuery();
-			
-			while (rs.next()) {
-				listMazes.add(new Maze(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7) ,rs.getInt(8), rs.getString(9),
-						rs.getDate(10), person));
+
+			while(rs.next())
+			{
+				listMazes.add(new Maze(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5),
+						rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getDate(10), person));
 			}
-			
+
 			connection.close();
 		}
 		catch(SQLException e)
@@ -196,36 +201,42 @@ public class MazeDaoImpl implements MazeDao
 		{
 			Connect.getInstance().closeConnection();
 		}
-		
+
 		return listMazes;
 	}
 
 	@Override
-	public List<Maze> getAllMazes() {
+	public List<Maze> getAllMazes()
+	{
 		// List of mazes to return
 		List<Maze> listMazes = new ArrayList<Maze>();
-		
+
 		// To retrieve the creator thanks to the Person's id
 		PersonDaoImpl personDaoImpl = new PersonDaoImpl();
 
 		// Connection to database
 		Connection connection = Connect.getInstance().getConnection();
 
-		try {
+		try
+		{
 			PreparedStatement statement = connection.prepareCall(queryGetAllMazes);
 			ResultSet rs = statement.executeQuery();
 
-			while (rs.next()) {
+			while(rs.next())
+			{
 				listMazes.add(new Maze(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5),
-						rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getDate(10), personDaoImpl.getPersonById(rs.getInt(11))));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getDate(10),
+						personDaoImpl.getPersonById(rs.getInt(11))));
 			}
 
 			connection.close();
 		}
-		catch (SQLException e) {
+		catch(SQLException e)
+		{
 			LOGGER.log(Level.SEVERE, "Impossible to get Mazes from database.", e);
 		}
-		finally {
+		finally
+		{
 			Connect.getInstance().closeConnection();
 		}
 

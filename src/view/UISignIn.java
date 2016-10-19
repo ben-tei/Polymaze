@@ -37,7 +37,7 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 	public UISignIn(UIView uiView)
 	{
 		this.myUIView = uiView;
-		this.myUIView.setTitle("Polymaze - Login");
+		this.myUIView.setTitle("Polymaze - Sign In");
 
 		this.connectionLbl = new JLabel("Connection");
 		this.connectionLbl.setBounds(10, 10, 100, 25);

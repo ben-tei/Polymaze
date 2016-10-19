@@ -5,16 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class UIMazeDrawer extends JPanel implements ActionListener
+public class UIGenerateMaze extends JPanel implements ActionListener
 {
+
 	private static final long serialVersionUID = 1L;
 
 	private UIView myUIView;
+	private MyTabbedPane myTabs;
 
-	public UIMazeDrawer(UIView uiView)
+	public UIGenerateMaze(UIView uiView, MyTabbedPane tabs)
 	{
 		this.myUIView = uiView;
-		this.myUIView.setTitle("Polymaze - Maze Drawer");
+		this.myTabs = tabs;
+		this.myUIView.setTitle("Polymaze - Generate Maze");
+
 	}
 
 	@Override

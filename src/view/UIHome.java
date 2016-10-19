@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 
 public class UIHome extends JPanel implements KeyListener, ActionListener
 {
@@ -18,29 +17,28 @@ public class UIHome extends JPanel implements KeyListener, ActionListener
 
 	private JLabel homeLbl;
 
-	private JTabbedPane tabs;
+	private MyTabbedPane tabs;
 
-	private UIMyLabyrinths myLabyrinths;
+	private UIMyMazes myLabyrinths;
 
-	private UIAllLabyrinths allLabyrinths;
+	private UIAllMazes allLabyrinths;
 
 	public UIHome(UIView uiView)
 	{
 		this.myUIView = uiView;
-		this.myUIView.setTitle("Polymaze - Maze Generator");
 
 		this.homeLbl = new JLabel("Polymaze");
 		this.homeLbl.setBounds(350, 10, 100, 25);
 		this.homeLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		this.add(homeLbl);
 
-		this.myLabyrinths = new UIMyLabyrinths();
-		this.allLabyrinths = new UIAllLabyrinths();
-		this.tabs = new JTabbedPane();
+		this.tabs = new MyTabbedPane();
+		this.myLabyrinths = new UIMyMazes(uiView, this.tabs);
+		this.allLabyrinths = new UIAllMazes(uiView, this.tabs);
 
 		this.tabs.add("My Labyrinths", this.myLabyrinths);
 		this.tabs.add("All Labyrinths", this.allLabyrinths);
-		this.tabs.setBounds(0, 50, this.myUIView.getWidth(), this.myUIView.getHeight());
+		this.tabs.setBounds(0, this.homeLbl.getY() + 50, this.myUIView.getWidth(), this.myUIView.getHeight());
 
 		this.add(this.tabs);
 	}

@@ -42,7 +42,7 @@ public class UISignUp extends JPanel implements KeyListener, ActionListener
 	public UISignUp(UIView uiView)
 	{
 		this.myUIView = uiView;
-		this.myUIView.setTitle("Polymaze - Register");
+		this.myUIView.setTitle("Polymaze - Sign Up");
 
 		this.connectionLbl = new JLabel("Register");
 		this.connectionLbl.setBounds(10, 10, 100, 25);
