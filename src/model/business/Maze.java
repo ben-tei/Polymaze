@@ -2,7 +2,7 @@ package model.business;
 
 import java.sql.Date;
 
-import exception.model.business.ExceptionContentToString;
+import util.exception.model.business.ExceptionContentToString;
 
 /**
  * Business class for a Maze
@@ -38,15 +38,15 @@ public class Maze
 	/**
 	 * Constructor using 5 attributes
 	 * 
-	 * @param name:
+	 * @param name
 	 *            the Maze's name
-	 * @param length:
+	 * @param length
 	 *            the Maze's length
-	 * @param width:
+	 * @param width
 	 *            the Maze's width
-	 * @param date:
+	 * @param date
 	 *            the Maze's date of creation
-	 * @param creator:
+	 * @param creator
 	 *            the Person who created the Maze
 	 */
 	public Maze(String name, Integer length, Integer width, Date creationDate, Person creator)
@@ -65,36 +65,7 @@ public class Maze
 		this.endY = this.length - 1;
 	}
 
-	/**
-	 * Constructor using 6 attributes
-	 * 
-	 * @param name:
-	 *            the Maze's name
-	 * @param length:
-	 *            the Maze's length
-	 * @param width:
-	 *            the Maze's width
-	 * @param content:
-	 *            representation of the Maze using a String
-	 * @param date:
-	 *            the Maze's date of creation
-	 * @param creator:
-	 *            the Person who created the Maze
-	 */
-	public Maze(String name, Integer length, Integer width, String content, Date creationDate, Person creator)
-	{
-		super();
-		this.name = name;
-		this.length = length;
-		this.width = width;
-		try {
-			this.content = this.contentFromString(content, width, length);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		this.creationDate = creationDate;
-		this.creator = creator;
-	}
+
 
 	/**
 	 * Constructor using all the attributes

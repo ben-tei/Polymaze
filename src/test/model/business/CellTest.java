@@ -6,9 +6,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import exception.model.business.ExceptionSetWallsFromStringNo0or1;
-import exception.model.business.ExceptionSetWallsFromStringNot4Char;
 import model.business.Cell;
+import util.exception.model.business.ExceptionSetWallsFromStringNo0or1;
+import util.exception.model.business.ExceptionSetWallsFromStringNot4Char;
 
 public class CellTest
 {

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import model.business.Person;
 import model.util.Connect;
 import util.Passwords;
-import util.PolymazeException;
+import util.exception.PolymazeException;
 
 /**
  * This class manages links Person objects in the application with table Person

@@ -1,4 +1,4 @@
-package util;
+package util.exception;
 
 /**
  * This class handles the application errors

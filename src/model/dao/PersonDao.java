@@ -1,7 +1,7 @@
 package model.dao;
 
 import model.business.Person;
-import util.PolymazeException;
+import util.exception.PolymazeException;
 
 /**
  * Interface for a Person Data Access Object

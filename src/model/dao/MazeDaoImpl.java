@@ -11,17 +11,17 @@ import java.util.logging.Logger;
 
 import com.mysql.jdbc.Statement;
 
-import exception.model.business.ExceptionContentToString;
 import model.business.Maze;
 import model.business.Person;
 import model.util.Connect;
-import util.PolymazeException;
+import util.exception.PolymazeException;
+import util.exception.model.business.ExceptionContentToString;
 
 public class MazeDaoImpl implements MazeDao
 {
 
 	// Logger
-	private static final Logger LOGGER = Logger.getLogger(Connect.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(MazeDaoImpl.class.getName());
 
 	// Queries
 	private static final String queryGetMazeByname = "SELECT * FROM Maze WHERE name = ?;";

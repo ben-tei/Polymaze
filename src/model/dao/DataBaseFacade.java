@@ -2,7 +2,7 @@ package model.dao;
 
 import model.business.Person;
 import model.util.Connect;
-import util.PolymazeException;
+import util.exception.PolymazeException;
 
 import java.util.List;
 import java.util.logging.Level;

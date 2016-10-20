@@ -6,10 +6,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import exception.model.business.ExceptionContentToString;
 import model.business.Cell;
 import model.business.Maze;
 import model.business.Person;
+import util.exception.model.business.ExceptionContentToString;
 
 public class MazeTest {
 	

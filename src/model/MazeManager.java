@@ -7,7 +7,7 @@ import model.business.Maze;
 import model.business.Person;
 import model.dao.DataBaseFacade;
 import model.factory.MazeFactory;
-import util.PolymazeException;
+import util.exception.PolymazeException;
 
 public class MazeManager
 {

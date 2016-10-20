@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.business.Maze;
 import model.business.Person;
-import util.PolymazeException;
+import util.exception.PolymazeException;
 
 /**
  * Interface for a Maze Data Access Object

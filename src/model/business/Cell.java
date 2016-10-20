@@ -1,7 +1,7 @@
 package model.business;
 
-import exception.model.business.ExceptionSetWallsFromStringNo0or1;
-import exception.model.business.ExceptionSetWallsFromStringNot4Char;
+import util.exception.model.business.ExceptionSetWallsFromStringNo0or1;
+import util.exception.model.business.ExceptionSetWallsFromStringNot4Char;
 
 public class Cell
 {

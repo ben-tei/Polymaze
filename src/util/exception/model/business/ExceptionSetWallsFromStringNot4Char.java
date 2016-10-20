@@ -1,4 +1,4 @@
-package exception.model.business;
+package util.exception.model.business;
 
 public class ExceptionSetWallsFromStringNot4Char extends Exception
 {
