@@ -15,7 +15,7 @@ import model.business.Maze;
 import model.business.Person;
 import model.util.Connect;
 import util.exception.PolymazeException;
-import util.exception.model.business.ExceptionContentToString;
+import util.exception.model.business.ContentToStringException;
 
 public class MazeDaoImpl implements MazeDao
 {
@@ -97,7 +97,7 @@ public class MazeDaoImpl implements MazeDao
 				statement.setInt(4, maze.getEndX());
 				try {
 					statement.setString(9, maze.contentToString());
-				} catch (ExceptionContentToString e) {
+				} catch (ContentToStringException e) {
 					e.printStackTrace();
 				}
 				statement.setDate(10, maze.getCreationDate());

@@ -1,6 +1,6 @@
 package util.exception.model.business;
 
-public class ExceptionSetWallsFromStringNot4Char extends Exception
+public class SetWallsFromStringNot4CharException extends Exception
 {
 	private static final long serialVersionUID = 1L;
 

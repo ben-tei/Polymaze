@@ -1,12 +1,12 @@
 package util.exception.model.business;
 
-public class ExceptionSetWallsFromStringNo0or1 extends Exception
+public class SetWallsFromStringNo0or1Exception extends Exception
 {
 	private static final long serialVersionUID = 1L;
 
 	private String ErrorMessage;
 
-	public ExceptionSetWallsFromStringNo0or1(String errorMessage)
+	public SetWallsFromStringNo0or1Exception(String errorMessage)
 	{
 		super();
 		this.ErrorMessage = errorMessage;
