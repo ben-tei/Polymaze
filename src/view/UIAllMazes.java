@@ -19,7 +19,6 @@ public class UIAllMazes extends JPanel implements KeyListener, ActionListener
 	{
 		this.myUIView = uiView;
 		this.myTabs = tabs;
-		this.myUIView.setTitle("Polymaze - All Mazes");
 	}
 
 	@Override
