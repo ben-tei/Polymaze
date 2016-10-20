@@ -92,7 +92,7 @@ public class MazeDaoImpl implements MazeDao
 		try {
 			strContent = maze.contentToString();
 		}
-		catch (ExceptionContentToString e) {
+		catch (ContentToStringException e) {
 			LOGGER.log(Level.SEVERE, "Maze's content is null.", e);
 		}
 		
