@@ -42,6 +42,6 @@ public abstract class MazeFactoryStrategy
 	 * @param creator
 	 *            the Person who created the Maze
 	 */
-	public abstract Maze generateMaze(String name, Integer length, Integer width, int startX, int startY, 
+	public abstract Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, 
 			int endX, int endY, Person creator)	;
 }

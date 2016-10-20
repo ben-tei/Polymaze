@@ -65,7 +65,7 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	 *            the Person who created the Maze
 	 */
 	@Override
-	public Maze generateMaze(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
+	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
 			Person creator)
 	{
 		this.maze = new Maze(name, length, width, startX, startY, endX, endY, null, creator);

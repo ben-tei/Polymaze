@@ -48,7 +48,7 @@ public class KruskalStrategy extends MazeFactoryStrategy
 	 *            the Person who created the Maze
 	 */
 	@Override
-	public Maze generateMaze(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
+	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
 			Person creator) {
 		// TODO KruskalStrategy Auto-generated method stub
 		return null;
