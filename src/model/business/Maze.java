@@ -87,7 +87,11 @@ public class Maze
 		this.name = name;
 		this.length = length;
 		this.width = width;
-		this.content = this.contentFromString(content, width, length);
+		try {
+			this.content = this.contentFromString(content, width, length);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.creationDate = creationDate;
 		this.creator = creator;
 	}
@@ -130,7 +134,11 @@ public class Maze
 		this.startY = startY;
 		this.endX = endX;
 		this.endY = endY;
-		this.content = this.contentFromString(content, width, length);
+		try {
+			this.content = this.contentFromString(content, width, length);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.creationDate = creationDate;
 		this.creator = creator;
 	}
@@ -278,6 +286,9 @@ public class Maze
 	}
 
 	/**
+	 * Return a Cell[][] created from a String of 0 and 1.
+	 * Be careful, this method do not check if the maze generated is a perfect maze.
+	 * Or if walls are valid.
 	 * @param strContent
 	 *            String of 0 and 1, with a length of 4*width*length organized
 	 *            by line(width). Corresponding to a maze of size width*length.
@@ -285,24 +296,23 @@ public class Maze
 	 *            int : width of a maze (correspond to x)
 	 * @param length
 	 *            int : length of a maze (correspond to y)
-	 * @return Cell[width][length] Transformed string into a Cell array.
+	 * @return Cell[width][length] Transform a string into a Cell array.
+	 * @throws Exception 
+	 * 			
 	 */
-	public Cell[][] contentFromString(String strContent, int width, int length)
+	public Cell[][] contentFromString(String strContent, int width, int length) throws Exception
 	{
 		Cell[][] cellContent = new Cell[width][length];
 		String currentStr = strContent;
-
-		if(strContent.length() != width * length * 4)
+				
+		if(strContent.length() != width * length * 4 )
 		{
-			try
-			{
-				throw new Exception("Invalid number of characters in the string. Should be equal to 4*width*length");
-			}
-			catch(Exception e)
-			{
-				System.err.println(e);
-				e.printStackTrace();
-			}
+			throw new Exception("Invalid number of characters in the string. Should be equal to 4*width*length");
+		}
+		if((width == 0 || length == 0) && strContent.length() != 0 )
+		{
+			throw new Exception("Invalid number of characters in the string. Should be equal to 0 as "
+					+ " one dimension equal 0");
 		}
 
 		for(int y = 0; y < length; y++)

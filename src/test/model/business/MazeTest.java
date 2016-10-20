@@ -2,8 +2,6 @@ package test.model.business;
 
 import static org.junit.Assert.*;
 
-import java.sql.Date;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -100,6 +98,102 @@ public class MazeTest {
 		content[0][0] = new StubCell(0,0,true,true,true,true);
 		maze.setContent(content);
 		assertEquals("1111", maze.contentToString());
+	}
+	
+	
+	// test contentFromString
+
+	@Test
+	public void contentFromStringTest_00() throws Exception  
+	{   //Maze of size 0 0 
+		int width = 0;
+		int length = 0;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		maze.setContent(maze.contentFromString("", width, length));	
+	}
+	
+	@Test
+	public void contentFromStringTest_01() throws Exception  
+	{	// maze with one side equal 0, but string valid (also equal 0)
+		int width = 0;
+		int length = 1;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		maze.setContent(maze.contentFromString("", width, length));	
+	}
+	
+	@Test
+	public void contentFromStringTest_02() throws Exception  
+	{	// invalid string size for a maze with one side equal 0
+		int width = 0;
+		int length = 1;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		exception.expect(Exception.class);
+		maze.setContent(maze.contentFromString("1", width, length));	
+	}
+	
+	@Test
+	public void contentFromStringTest_03() throws Exception  
+	{	// invalid string size for a maze
+		int width = 2;
+		int length = 1;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		exception.expect(Exception.class);
+		maze.setContent(maze.contentFromString("111100001", width, length));	
+	}
+	
+	@Test
+	public void contentFromStringTest_04() throws Exception  
+	{	// invalid string size for a maze
+		int width = 2;
+		int length = 2;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		exception.expect(Exception.class);
+		maze.setContent(maze.contentFromString("111100001", width, length));	
+	}
+	
+	@Test
+	public void contentFromStringTest_05() throws Exception  
+	{
+		int width = 2;
+		int length = 1;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		maze.setContent(maze.contentFromString("10111110", width, length));	
+		assertEquals(true, maze.getContent()[0][0].isWallNorth());	
+		assertEquals(false, maze.getContent()[0][0].isWallEast());	
+		assertEquals(true, maze.getContent()[0][0].isWallSouth());	
+		assertEquals(true, maze.getContent()[0][0].isWallWest());
+		assertEquals(true, maze.getContent()[1][0].isWallNorth());	
+		assertEquals(true, maze.getContent()[1][0].isWallEast());	
+		assertEquals(true, maze.getContent()[1][0].isWallSouth());	
+		assertEquals(false, maze.getContent()[1][0].isWallWest());
+	}
+	
+	@Test
+	public void contentFromStringTest_06() throws Exception  
+	{	
+		int width = 2;
+		int length = 2;
+		Maze maze = new Maze("test", length, width, null , new Person());
+		maze.setContent(maze.contentFromString("1001111000111110", width, length));	
+		assertEquals(true, maze.getContent()[0][0].isWallNorth());	
+		assertEquals(false, maze.getContent()[0][0].isWallEast());	
+		assertEquals(false, maze.getContent()[0][0].isWallSouth());	
+		assertEquals(true, maze.getContent()[0][0].isWallWest());
+		
+		assertEquals(true, maze.getContent()[1][0].isWallNorth());	
+		assertEquals(true, maze.getContent()[1][0].isWallEast());	
+		assertEquals(true, maze.getContent()[1][0].isWallSouth());	
+		assertEquals(false, maze.getContent()[1][0].isWallWest());
+		
+		assertEquals(false, maze.getContent()[0][1].isWallNorth());	
+		assertEquals(false, maze.getContent()[0][1].isWallEast());	
+		assertEquals(true, maze.getContent()[0][1].isWallSouth());	
+		assertEquals(true, maze.getContent()[0][1].isWallWest());
+		
+		assertEquals(true, maze.getContent()[1][1].isWallNorth());	
+		assertEquals(true, maze.getContent()[1][1].isWallEast());	
+		assertEquals(true, maze.getContent()[1][1].isWallSouth());	
+		assertEquals(false, maze.getContent()[1][1].isWallWest());
 	}
 
 }
