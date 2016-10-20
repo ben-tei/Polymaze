@@ -29,7 +29,7 @@ public class UserManager
 
 	public boolean createUser(String login, String password)
 	{
-		Person tmp = DataBaseFacade.createUser(login, password);
+		Person tmp = DataBaseFacade.createPerson(login, password);
 		if(tmp != null)
 		{
 			return true;

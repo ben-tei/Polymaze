@@ -116,6 +116,28 @@ public final class DataBaseFacade
 		}
 		return myPerson;
 	}
+	
+	/**
+	 * Get a person thanks to its name
+	 * 
+	 * @param name
+	 * 			the Person's name
+	 * @return the retrieved Person
+	 */
+	public static Person getPersonByName(String name) {
+		return personDao.getPersonByName(name);
+	}
+	
+	/**
+	 * Get a person thanks to its id
+	 * 
+	 * @param id
+	 * 			the Person's id
+	 * @return the retrieved Person
+	 */
+	public static Person getPersonById(Integer id) {
+		return personDao.getPersonById(id);
+	}
 
 	/**
 	 * @param login
@@ -124,7 +146,7 @@ public final class DataBaseFacade
 	 *            the Person's password
 	 * @return
 	 */
-	public static Person createUser(String login, String password)
+	public static Person createPerson(String login, String password)
 	{
 		Person myPerson = null;
 		try
@@ -137,4 +159,6 @@ public final class DataBaseFacade
 		}
 		return myPerson;
 	}
+	
+	
 }

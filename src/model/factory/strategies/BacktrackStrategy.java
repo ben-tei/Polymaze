@@ -1,5 +1,8 @@
 package model.factory.strategies;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import model.business.Maze;
 import model.business.Person;
 import model.business.cell.BacktrackCell;
@@ -34,7 +37,11 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	@Override
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
-		this.maze = new Maze(name, length, width, null, creator);
+		//TODO Loic
+		// Get current date with format YYYY-MM-DD
+		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		
+		this.maze = new Maze(name, length, width, timeNow, creator);
 
 		this.initializeMazeArray();
 		this.exploreMaze(this.maze.getStartX(), this.maze.getStartY());
