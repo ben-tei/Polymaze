@@ -26,4 +26,11 @@ public class PrimStrategy extends MazeFactoryStrategy
 		// TODO
 		return null;
 	}
+
+	@Override
+	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
+			int endY, Person creator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
