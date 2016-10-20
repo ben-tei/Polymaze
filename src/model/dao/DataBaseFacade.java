@@ -29,7 +29,7 @@ public final class DataBaseFacade
 	/**
 	 * Gets a Maze by its name
 	 * 
-	 * @param name:
+	 * @param name
 	 *            the Maze's name
 	 * @return the retrieved Maze
 	 */
@@ -41,7 +41,7 @@ public final class DataBaseFacade
 	/**
 	 * Creates a new Maze
 	 * 
-	 * @param maze:
+	 * @param maze
 	 *            the Maze to create
 	 * @throws PolymazeException
 	 */
@@ -62,7 +62,7 @@ public final class DataBaseFacade
 	/**
 	 * Deletes a Maze
 	 * 
-	 * @param idMaze:
+	 * @param idMaze
 	 *            the id of the Maze to delete
 	 * @return true if the Maze has been deleted, false otherwise
 	 */
@@ -74,7 +74,7 @@ public final class DataBaseFacade
 	/**
 	 * Gets all Mazes of a Person
 	 * 
-	 * @param creator:
+	 * @param creator
 	 *            the creator of the Maze
 	 * @return a list of Maze
 	 */
@@ -97,9 +97,9 @@ public final class DataBaseFacade
 	/**
 	 * A Person tries to login
 	 * 
-	 * @param login:
+	 * @param login
 	 *            the Person's name
-	 * @param password:
+	 * @param password
 	 *            the Person's password
 	 * @return
 	 */
@@ -118,9 +118,9 @@ public final class DataBaseFacade
 	}
 
 	/**
-	 * @param login:
+	 * @param login
 	 *            the Person's name
-	 * @param password:
+	 * @param password
 	 *            the Person's password
 	 * @return
 	 */

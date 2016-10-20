@@ -25,10 +25,8 @@ public class Person
 	/**
 	 * Constructor using all the attributes
 	 * 
-	 * @param id:
-	 *            the Person's id
-	 * @param name:
-	 *            the Person's name
+	 * @param id	the Person's id
+	 * @param name	the Person's name
 	 *
 	 */
 	public Person(Integer id, String name)
