@@ -17,6 +17,12 @@ import model.util.Connect;
 import util.exception.PolymazeException;
 import util.exception.model.business.ContentToStringException;
 
+/**
+ * This class implements all the methods from MazeDao
+ * 
+ * @author Gaetan FRANCOIS
+ *
+ */
 public class MazeDaoImpl implements MazeDao
 {
 
@@ -25,7 +31,7 @@ public class MazeDaoImpl implements MazeDao
 
 	// Queries
 	private static final String queryGetMazeByname = "SELECT * FROM Maze WHERE name = ?;";
-	private static final String queryCreateMaze = "INSERT INTO Maze (name, length, width, content, startX, startY, endX, endY, creationDate, idPerson) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	private static final String queryCreateMaze = "INSERT INTO Maze (name, length, width, startX, startY, endX, endY, content, creationDate, idPerson) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	private static final String queryDeleteMaze = "DELETE FROM Maze WHERE id = ?;";
 	private static final String queryGetMazesByCreator = "SELECT * FROM Maze WHERE idPerson = ?;";
 	private static final String queryGetAllMazes = "SELECT * FROM Maze;";
@@ -72,8 +78,24 @@ public class MazeDaoImpl implements MazeDao
 	@Override
 	public Maze createMaze(Maze maze) throws PolymazeException
 	{
+		// Maze to return
+		Maze myMaze = null;
+		
+		// Id of the created maze
+		Integer id = null;
+		
 		// A MazeDaoImpl
 		MazeDaoImpl mazeDaoImpl = new MazeDaoImpl();
+		
+		// Content of the maze parsed into String
+		String strContent = null;
+		try {
+			strContent = maze.contentToString();
+		}
+		catch (ContentToStringException e) {
+			LOGGER.log(Level.SEVERE, "Maze's content is null.", e);
+		}
+		
 
 		// Connection
 		Connection connection = Connect.getInstance().getConnection();
@@ -93,6 +115,12 @@ public class MazeDaoImpl implements MazeDao
 				statement.setInt(2, maze.getLength());
 				statement.setInt(3, maze.getWidth());
 				statement.setInt(4, maze.getStartX());
+				statement.setInt(5, maze.getStartY());
+				statement.setInt(6, maze.getEndX());
+				statement.setInt(7, maze.getEndY());
+				statement.setString(8, strContent);
+				statement.setDate(9, maze.getCreationDate());
+				statement.setInt(10, maze.getCreator().getId());
 				statement.setInt(4, maze.getStartY());
 				statement.setInt(4, maze.getEndX());
 				try {
@@ -115,14 +143,19 @@ public class MazeDaoImpl implements MazeDao
 				{
 					if(generatedKeys.next())
 					{
-						generatedKeys.getInt(1);
+						id = generatedKeys.getInt(1);
 					}
 					else
 					{
 						throw new SQLException("Creating maze failed, no ID obtained.");
 					}
 				}
+				
+				myMaze = new Maze(id, maze.getName(), maze.getLength(), maze.getWidth(), maze.getStartX(), maze.getStartY(),
+						maze.getEndX(), maze.getEndY(), strContent, maze.getCreationDate(),
+						maze.getCreator());
 			}
+			
 			connection.close();
 		}
 		catch(SQLException e)
@@ -134,7 +167,7 @@ public class MazeDaoImpl implements MazeDao
 			Connect.getInstance().closeConnection();
 		}
 
-		return maze;
+		return myMaze;
 	}
 
 	@Override

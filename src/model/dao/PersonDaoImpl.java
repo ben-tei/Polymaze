@@ -26,7 +26,7 @@ public class PersonDaoImpl implements PersonDao
 {
 
 	// Logger
-	private static final Logger LOGGER = Logger.getLogger(Connect.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(PersonDaoImpl.class.getName());
 
 	// Queries
 	private static final String queryGetPersonByName = "SELECT * FROM Person WHERE name = ?;";

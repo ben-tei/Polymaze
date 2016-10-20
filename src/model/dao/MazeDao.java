@@ -18,7 +18,7 @@ public interface MazeDao
 	/**
 	 * This method retrieves a Maze in the database thanks to its name
 	 * 
-	 * @param name:
+	 * @param name
 	 *            the Maze's name
 	 * @return the retrieved Maze
 	 */
@@ -27,7 +27,7 @@ public interface MazeDao
 	/**
 	 * This method creates a Maze in the database
 	 * 
-	 * @param maze:
+	 * @param maze
 	 *            the Maze to create
 	 * @return the created Maze
 	 */
@@ -36,7 +36,7 @@ public interface MazeDao
 	/**
 	 * This method deletes a Maze in the database
 	 * 
-	 * @param idMaze:
+	 * @param idMaze
 	 *            the id of the Maze to delete
 	 * @return true if the deletion is successful, false otherwise
 	 */
@@ -45,7 +45,7 @@ public interface MazeDao
 	/**
 	 * This method retrieves all mazes of a creator
 	 * 
-	 * @param person:
+	 * @param person
 	 *            the creator
 	 * @return the list of retrieved mazes
 	 */
@@ -54,7 +54,7 @@ public interface MazeDao
 	/**
 	 * This method retrieves all mazes on the DB
 	 * 
-	 * @param person:
+	 * @param person
 	 *            the creator
 	 * @return the list of retrieved mazes
 	 */

@@ -46,6 +46,7 @@ public class Maze
 	/**
 	 * Constructor using 5 attributes
 	 * To generate a Maze, when the user don't choose start and end point.
+	 * Used to init a maze during its creation
 	 * 
 	 * @param name
 	 *            the Maze's name
@@ -116,28 +117,29 @@ public class Maze
 
 	/**
 	 * Constructor using all the attributes
+	 * Used to create a maze retrieved from database
 	 * 
-	 * @param id:
+	 * @param id
 	 *            the Maze's id
-	 * @param name:
+	 * @param name
 	 *            the Maze's name
-	 * @param length:
+	 * @param length
 	 *            the Maze's length
-	 * @param width:
+	 * @param width
 	 *            the Maze's width
-	 * @param startX:
+	 * @param startX
 	 *            the Maze's starting point coordinate in X
-	 * @param startY:
+	 * @param startY
 	 *            the Maze's starting point coordinate in Y
-	 * @param endX:
+	 * @param endX
 	 *            the Maze's ending point coordinate in X
-	 * @param endY:
+	 * @param endY
 	 *            the Maze's ending point coordinate in Y
-	 * @param content:
+	 * @param content
 	 *            representation of the Maze using a String
-	 * @param date:
+	 * @param date
 	 *            the Maze's date of creation
-	 * @param creator:
+	 * @param creator
 	 *            the Person who created the Maze
 	 */
 	public Maze(Integer id, String name, Integer length, Integer width, int startX, int startY, int endX, int endY,

@@ -29,13 +29,13 @@ public class MazeManager
 	 * selected algorithm, add it to the list of existing mazes, and adds it to
 	 * the DB.
 	 * 
-	 * @param name:
+	 * @param name
 	 *            the Maze's name
-	 * @param length:
+	 * @param length
 	 *            the Maze's length
-	 * @param width:
+	 * @param width
 	 *            the Maze's width
-	 * @param creator:
+	 * @param creator
 	 *            the Person who created the Maze
 	 * @throws PolymazeException
 	 */
