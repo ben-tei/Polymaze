@@ -12,6 +12,7 @@ import util.exception.model.business.SetWallsFromStringNot4CharException;
  * Business class for a Maze
  * 
  * @author Gaetan FRANCOIS
+ * @author Loic DULAS
  *
  */
 public class Maze
@@ -44,6 +45,7 @@ public class Maze
 
 	/**
 	 * Constructor using 5 attributes
+	 * To generate a Maze, when the user don't choose start and end point.
 	 * 
 	 * @param name
 	 *            the Maze's name
@@ -65,11 +67,49 @@ public class Maze
 		this.creationDate = creationDate;
 		this.creator = creator;
 
-		// TODO add start and end point to constructor
+		// To initialize start and end point as they are not identified.
 		this.startX = 0;
 		this.startY = 0;
 		this.endX = this.width - 1;
 		this.endY = this.length - 1;
+	}
+
+	/**
+	 * Constructor using 9 attributes
+	 * To generate a Maze, when the user choose start and end point.
+	 * 
+	 * @param name
+	 *            the Maze's name
+	 * @param length
+	 *            the Maze's length
+	 * @param width
+	 *            the Maze's width
+	 * @param startX
+	 *            the Maze's starting point coordinate in X
+	 * @param startY
+	 *            the Maze's starting point coordinate in Y
+	 * @param endX
+	 *            the Maze's ending point coordinate in X
+	 * @param endY
+	 *            the Maze's ending point coordinate in Y
+	 * @param date
+	 *            the Maze's date of creation
+	 * @param creator
+	 *            the Person who created the Maze
+	 */
+	public Maze(String name, Integer length, Integer width, int startX, int startY, 
+				int endX, int endY, Date creationDate, Person creator)
+	{
+		super();
+		this.name = name;
+		this.length = length;
+		this.width = width;
+		this.creationDate = creationDate;
+		this.creator = creator;
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
 	}
 
 

@@ -6,13 +6,18 @@ import model.business.cell.BacktrackCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
+/**
+ * @author Loic
+ *	This class generate a Maze by using the recursive backtrack Strategy.
+ *	@see <a href="http://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking"> Recursive BAcktracking</>
+ */
 public class BacktrackStrategy extends MazeFactoryStrategy
 {
 	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Backtrack;
 
 	// attributes
 	private Maze maze;
-	private BacktrackCell[][] mazeArray; // BacktrackCell[][] used locally to generate the maze.
+	private BacktrackCell[][] mazeArray; // BacktrackCell[x][y] used locally to generate the maze.
 
 	/**
 	 * Method to create a Maze using Backtrack method.
@@ -26,9 +31,44 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	 * @param creator
 	 *            the Person who created the Maze
 	 */
+	@Override
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
 		this.maze = new Maze(name, length, width, null, creator);
+
+		this.initializeMazeArray();
+		this.exploreMaze(this.maze.getStartX(), this.maze.getStartY());
+		this.maze.setContent(this.mazeArray);
+
+		return this.maze;
+	}
+	
+
+	/**
+	 * Method to create a Maze using Backtrack method.
+	 * 
+	 * @param name
+	 *            the Maze's name
+	 * @param length
+	 *            the Maze's length
+	 * @param width
+	 *            the Maze's width
+	 * @param startX
+	 *            the Maze's starting point coordinate in X
+	 * @param startY
+	 *            the Maze's starting point coordinate in Y
+	 * @param endX
+	 *            the Maze's ending point coordinate in X
+	 * @param endY
+	 *            the Maze's ending point coordinate in Y
+	 * @param creator
+	 *            the Person who created the Maze
+	 */
+	@Override
+	public Maze generateMaze(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
+			Person creator)
+	{
+		this.maze = new Maze(name, length, width, startX, startY, endX, endY, null, creator);
 
 		this.initializeMazeArray();
 		this.exploreMaze(this.maze.getStartX(), this.maze.getStartY());
