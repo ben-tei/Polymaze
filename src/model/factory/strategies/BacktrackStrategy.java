@@ -95,7 +95,7 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	 */
 	public void exploreMaze(int x, int y)
 	{
-		this.mazeArray[x][y].setVisited(true);
+		this.mazeArray[x][y].setBtCellVisited(true);
 
 		while(this.getNonVisitedNeighbour(this.mazeArray, x, y).length() > 0)
 		{
