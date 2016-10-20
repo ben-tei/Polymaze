@@ -23,7 +23,6 @@ public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 	{
 		this.myUIView = uiView;
 		this.myTabs = tabs;
-		this.myUIView.setTitle("Polymaze - My Mazes");
 
 		this.generateBtn = new JButton("Generate new maze");
 		this.generateBtn.setBounds(325, 450, 150, 25);
