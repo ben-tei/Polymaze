@@ -4,7 +4,7 @@ package util.exception.model.business;
  * @author Loic
  * This exception is thrown when the content of a maze is not initialized.
  */
-public class ExceptionContentToString extends Exception {
+public class ContentToStringException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 

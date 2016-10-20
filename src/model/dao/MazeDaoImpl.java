@@ -15,7 +15,7 @@ import model.business.Maze;
 import model.business.Person;
 import model.util.Connect;
 import util.exception.PolymazeException;
-import util.exception.model.business.ExceptionContentToString;
+import util.exception.model.business.ContentToStringException;
 
 /**
  * This class implements all the methods from MazeDao
@@ -121,6 +121,15 @@ public class MazeDaoImpl implements MazeDao
 				statement.setString(8, strContent);
 				statement.setDate(9, maze.getCreationDate());
 				statement.setInt(10, maze.getCreator().getId());
+				statement.setInt(4, maze.getStartY());
+				statement.setInt(4, maze.getEndX());
+				try {
+					statement.setString(9, maze.contentToString());
+				} catch (ContentToStringException e) {
+					e.printStackTrace();
+				}
+				statement.setDate(10, maze.getCreationDate());
+				statement.setInt(11, maze.getCreator().getId());
 
 				// Insert Maze in database
 				int affectedRows = statement.executeUpdate();

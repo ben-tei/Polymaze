@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import model.business.Cell;
-import util.exception.model.business.ExceptionSetWallsFromStringNo0or1;
-import util.exception.model.business.ExceptionSetWallsFromStringNot4Char;
+import util.exception.model.business.SetWallsFromStringNo0or1Exception;
+import util.exception.model.business.SetWallsFromStringNot4CharException;
 
 public class CellTest
 {
@@ -132,10 +132,10 @@ public class CellTest
 
 	@Test
 	public void setWallsFromStringTest_00()
-			throws ExceptionSetWallsFromStringNot4Char, ExceptionSetWallsFromStringNo0or1
+			throws SetWallsFromStringNot4CharException, SetWallsFromStringNo0or1Exception
 	{
 		Cell cell = new Cell(1, 1);
-		exception.expect(ExceptionSetWallsFromStringNot4Char.class);
+		exception.expect(SetWallsFromStringNot4CharException.class);
 		cell.setWallsFromString("");
 	}
 
@@ -143,7 +143,7 @@ public class CellTest
 	public void setWallsFromStringTest_01() throws Exception
 	{
 		Cell cell = new Cell(1, 1);
-		exception.expect(ExceptionSetWallsFromStringNo0or1.class);
+		exception.expect(SetWallsFromStringNo0or1Exception.class);
 		cell.setWallsFromString("a111");
 	}
 
@@ -151,7 +151,7 @@ public class CellTest
 	public void setWallsFromStringTest_02() throws Exception
 	{
 		Cell cell = new Cell(1, 1);
-		exception.expect(ExceptionSetWallsFromStringNo0or1.class);
+		exception.expect(SetWallsFromStringNo0or1Exception.class);
 		cell.setWallsFromString("1211");
 	}
 
@@ -159,7 +159,7 @@ public class CellTest
 	public void setWallsFromStringTest_03() throws Exception
 	{
 		Cell cell = new Cell(1, 1);
-		exception.expect(ExceptionSetWallsFromStringNo0or1.class);
+		exception.expect(SetWallsFromStringNo0or1Exception.class);
 		cell.setWallsFromString("11+5");
 	}
 
@@ -167,7 +167,7 @@ public class CellTest
 	public void setWallsFromStringTest_04() throws Exception
 	{
 		Cell cell = new Cell(1, 1);
-		exception.expect(ExceptionSetWallsFromStringNo0or1.class);
+		exception.expect(SetWallsFromStringNo0or1Exception.class);
 		cell.setWallsFromString("111p");
 	}
 

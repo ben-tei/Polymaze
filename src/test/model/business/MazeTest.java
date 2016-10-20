@@ -9,7 +9,7 @@ import org.junit.rules.ExpectedException;
 import model.business.Cell;
 import model.business.Maze;
 import model.business.Person;
-import util.exception.model.business.ExceptionContentToString;
+import util.exception.model.business.ContentToStringException;
 
 public class MazeTest {
 	
@@ -17,14 +17,14 @@ public class MazeTest {
 	public final ExpectedException exception = ExpectedException.none();
 
 	@Test
-	public void contentToStringTest_00() throws ExceptionContentToString {
+	public void contentToStringTest_00() throws ContentToStringException {
 		Maze maze = new Maze();
-		exception.expect(ExceptionContentToString.class);
+		exception.expect(ContentToStringException.class);
 		maze.contentToString();
 	}
 
 	@Test
-	public void contentToStringTest_01() throws ExceptionContentToString {
+	public void contentToStringTest_01() throws ContentToStringException {
 		Integer width = 1;
 		Integer length = 1;
 		Maze maze = new Maze("test", length, width, null , new Person());
@@ -35,7 +35,7 @@ public class MazeTest {
 	}
 
 	@Test
-	public void contentToStringTest_02() throws ExceptionContentToString {
+	public void contentToStringTest_02() throws ContentToStringException {
 		Integer width = 2;
 		Integer length = 1;
 		Maze maze = new Maze("test", length, width, null , new Person());
@@ -47,7 +47,7 @@ public class MazeTest {
 	}
 
 	@Test
-	public void contentToStringTest_03() throws ExceptionContentToString {
+	public void contentToStringTest_03() throws ContentToStringException {
 		Integer width = 1;
 		Integer length = 2;
 		Maze maze = new Maze("test",  length, width, null , new Person());
@@ -59,7 +59,7 @@ public class MazeTest {
 	}
 
 	@Test
-	public void contentToStringTest_04() throws ExceptionContentToString {
+	public void contentToStringTest_04() throws ContentToStringException {
 		Integer width = 3;
 		Integer length = 2;
 		Maze maze = new Maze("test",  length, width, null , new Person());
@@ -75,7 +75,7 @@ public class MazeTest {
 	}
 
 	@Test
-	public void contentToStringTest_05() throws ExceptionContentToString {
+	public void contentToStringTest_05() throws ContentToStringException {
 		class StubCell extends Cell {
 			StubCell(int x, int y, boolean wallNorth, boolean wallEast, boolean wallSouth, boolean wallWest){
 				super(x,y, wallNorth, wallEast, wallSouth, wallWest);

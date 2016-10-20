@@ -1,8 +1,12 @@
 package model.business;
 
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import util.exception.model.business.ExceptionContentToString;
+import util.exception.model.business.ContentToStringException;
+import util.exception.model.business.SetWallsFromStringNo0or1Exception;
+import util.exception.model.business.SetWallsFromStringNot4CharException;
 
 /**
  * Business class for a Maze
@@ -12,6 +16,9 @@ import util.exception.model.business.ExceptionContentToString;
  */
 public class Maze
 {
+	
+	// Logger
+	private static final Logger LOGGER = Logger.getLogger(Maze.class.getName());
 
 	// Attributes
 	private Integer id;
@@ -238,13 +245,13 @@ public class Maze
 	 *         cell are represented by four 0 or 1 which each correspond to a
 	 *         wall. In order : North East South West. 1 correspond to the
 	 *         presence of a wall. 0 if there's no wall
-	 * @throws ExceptionContentToString 
+	 * @throws ContentToStringException 
 	 */
-	public String contentToString() throws ExceptionContentToString
+	public String contentToString() throws ContentToStringException
 	{
 		if (content == null ) 
 		{
-			throw new ExceptionContentToString();
+			throw new ContentToStringException();
 		}
 		
 		String strContent = "";
@@ -298,10 +305,13 @@ public class Maze
 					// to initialize walls
 					cellContent[x][y].setWallsFromString(currentStr.substring(0, 4));
 				}
-				catch(Exception e)
+				catch(SetWallsFromStringNot4CharException e)
 				{
-					System.err.println(e);
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, "The length of strWalls != 4 ", e);
+				}
+				catch(SetWallsFromStringNo0or1Exception e)
+				{
+					LOGGER.log(Level.SEVERE, "A wall have a character not equal to 1 or 0", e);
 				}
 				//remove 4 first characters corresponding of the current cell.
 				currentStr = currentStr.substring(4);

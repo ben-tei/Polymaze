@@ -1,7 +1,7 @@
 package model.business;
 
-import util.exception.model.business.ExceptionSetWallsFromStringNo0or1;
-import util.exception.model.business.ExceptionSetWallsFromStringNot4Char;
+import util.exception.model.business.SetWallsFromStringNo0or1Exception;
+import util.exception.model.business.SetWallsFromStringNot4CharException;
 
 public class Cell
 {
@@ -182,17 +182,17 @@ public class Cell
 	 *            the character is 1, there is a wall. If the Character is 0,
 	 *            there is no wall. Characters refer to walls in this order :
 	 *            North East South West
-	 * @throws ExceptionSetWallsFromStringNot4Char
+	 * @throws SetWallsFromStringNot4CharException
 	 *  		If the length of strWalls != 4 
-	 * @throws ExceptionSetWallsFromStringNo0or1
+	 * @throws SetWallsFromStringNo0or1Exception
 	 * 			If a wall have a character not equal to 1 or 0
 	 */
 	public void setWallsFromString(String strWalls)
-			throws ExceptionSetWallsFromStringNot4Char, ExceptionSetWallsFromStringNo0or1
+			throws SetWallsFromStringNot4CharException, SetWallsFromStringNo0or1Exception
 	{
 		if(strWalls.length() != 4)
 		{
-			throw new ExceptionSetWallsFromStringNot4Char();
+			throw new SetWallsFromStringNot4CharException();
 		}
 		else
 		{
@@ -207,7 +207,7 @@ public class Cell
 			}
 			else
 			{
-				throw new ExceptionSetWallsFromStringNo0or1(
+				throw new SetWallsFromStringNo0or1Exception(
 						"North wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 			if(strWalls.charAt(1) == '1')
@@ -220,7 +220,7 @@ public class Cell
 			}
 			else
 			{
-				throw new ExceptionSetWallsFromStringNo0or1(
+				throw new SetWallsFromStringNo0or1Exception(
 						"East wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 			if(strWalls.charAt(2) == '1')
@@ -233,7 +233,7 @@ public class Cell
 			}
 			else
 			{
-				throw new ExceptionSetWallsFromStringNo0or1(
+				throw new SetWallsFromStringNo0or1Exception(
 						"South wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 			if(strWalls.charAt(3) == '1')
@@ -246,7 +246,7 @@ public class Cell
 			}
 			else
 			{
-				throw new ExceptionSetWallsFromStringNo0or1(
+				throw new SetWallsFromStringNo0or1Exception(
 						"West wall should be 1 (there's a wall) or 0 (there's no wall)");
 			}
 		}

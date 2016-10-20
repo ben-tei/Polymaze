@@ -26,6 +26,7 @@ public class UIHome extends JPanel implements KeyListener, ActionListener
 	public UIHome(UIView uiView)
 	{
 		this.myUIView = uiView;
+		this.myUIView.setTitle("Polymaze");
 
 		this.homeLbl = new JLabel("Polymaze");
 		this.homeLbl.setBounds(350, 10, 100, 25);
