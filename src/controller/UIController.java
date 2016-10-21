@@ -6,11 +6,11 @@ public class UIController
 {
 
 	private MazeManager myMazeManager;
-	private UserManager myUserManager;
+	private PersonManager myUserManager;
 
 	public UIController()
 	{
-		this.myUserManager = new UserManager();
+		this.myUserManager = new PersonManager();
 		this.myMazeManager = new MazeManager(myUserManager); // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 
 	}
@@ -20,7 +20,7 @@ public class UIController
 		return this.myMazeManager;
 	}
 
-	public UserManager getUserManager()
+	public PersonManager getUserManager()
 	{
 		return this.myUserManager;
 	}
@@ -32,7 +32,7 @@ public class UIController
 
 	public boolean signUp(String login, String password)
 	{
-		return this.myUserManager.createUser(login, password);
+		return this.myUserManager.createPerson(login, password);
 	}
 
 }

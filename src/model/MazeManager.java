@@ -2,6 +2,8 @@
 package model;
 
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.business.Maze;
 import model.business.Person;
@@ -9,19 +11,28 @@ import model.dao.DataBaseFacade;
 import model.factory.MazeFactory;
 import util.exception.PolymazeException;
 
+/**
+ * This class manages a Maze
+ * Each method communicates with DataBaseFacade which makes the link with the Database
+ *
+ */
 public class MazeManager
 {
+	// Logger
+	private static final Logger LOGGER = Logger.getLogger(MazeManager.class.getName());
+	
+	private Maze maze;
 	private Vector<Maze> mazeList;
 	private MazeFactory mazeFactory;
-	private UserManager myUserManager; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
+	//private PersonManager personManager; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 
 	/**
 	 * Default constructor
 	 */
-	public MazeManager(UserManager userManager)
+	public MazeManager(PersonManager personManager)
 	{
 		super();
-		this.myUserManager = userManager;
+		//this.personManager = personManager;
 	}
 
 	/**
@@ -49,9 +60,115 @@ public class MazeManager
 		}
 		catch(PolymazeException e)
 		{
-			// Do not add maze to the list and throw error for ui to handle it.
-			throw e;
+			LOGGER.log(Level.SEVERE, "generateMaze failed.", e);
 		}
 	}
+	
+	/**
+	 * This method gets a Maze by its id
+	 * 
+	 * @param id
+	 * 			the Maze's id
+	 * @return true if a Maze with this id exists, false otherwise
+	 */
+	public boolean getMazeById(Integer id) {
+		boolean bool = false;
+		Maze myMaze = DataBaseFacade.getMazeById(id);
+		
+		if(myMaze != null)
+		{
+			this.setMaze(myMaze);
+			bool = true;
+		}
+		else
+		{
+			bool = false;
+		}
+		
+		return bool;
+	}
+		
+	/**
+	 * This method gets a Maze by its name
+	 * 
+	 * @param name
+	 * 			the Maze's name
+	 * @return true if a Maze with this name exists, false otherwise
+	 */
+	public boolean getMazeByname(String name) {
+		boolean bool = false;
+		Maze myMaze = DataBaseFacade.getMazeByName(name);
+		
+		if(myMaze != null)
+		{
+			this.setMaze(myMaze);
+			bool = true;
+		}
+		else
+		{
+			bool = false;
+		}
+		
+		return bool;
+	}
+	
+	/**
+	 * Deletes a Maze
+	 * @param id
+	 * 			the Maze's id
+	 * @return true if the Maze has been deleted, false otherwise
+	 */
+	public boolean deleteMaze(Integer id) {
+		return DataBaseFacade.deleteMaze(id);
+	}
+	
+	/**
+	 * Gets the List of Mazes of a Person
+	 * @param creator
+	 */
+	public void getMazesByCreator(Person creator) {
+		this.setMazeList((Vector<Maze>) DataBaseFacade.getMazesByCreator(creator));
+	}
+	
+	/**
+	 * Gets the List of all Mazes
+	 */
+	public void getAllMazes() {
+		this.setMazeList((Vector<Maze>) DataBaseFacade.getAllMazes());
+	}
+
+	// Getters
+	public Maze getMaze() {
+		return maze;
+	}
+	
+	public Vector<Maze> getMazeList() {
+		return mazeList;
+	}
+
+	public MazeFactory getMazeFactory() {
+		return mazeFactory;
+	}
+
+	/*public PersonManager getPersonManager() {
+		return personManager;
+	}*/
+
+	// Setters
+	public void setMaze(Maze maze) {
+		this.maze = maze;
+	}
+	
+	public void setMazeList(Vector<Maze> mazeList) {
+		this.mazeList = mazeList;
+	}
+
+	public void setMazeFactory(MazeFactory mazeFactory) {
+		this.mazeFactory = mazeFactory;
+	}
+
+	/*public void setPersonManager(PersonManager personManager) {
+		this.personManager = personManager;
+	}*/
 
 }

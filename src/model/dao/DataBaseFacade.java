@@ -13,7 +13,7 @@ import model.business.Maze;
 public final class DataBaseFacade
 {
 	// Logger
-	private static final Logger LOGGER = Logger.getLogger(Connect.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(DataBaseFacade.class.getName());
 
 	// Attributes
 	private static MazeDao mazeDao = new MazeDaoImpl();

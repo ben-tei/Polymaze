@@ -207,10 +207,6 @@ public class MazeDaoImpl implements MazeDao
 		// Boolean to return
 		boolean isDeleted = false;
 		
-		// A MazeDaoImpl
-		MazeDaoImpl mazeDaoImpl = new MazeDaoImpl();
-		//TODO boolean isExisting
-
 		// Connection to database
 		Connection connection = Connect.getInstance().getConnection();
 
