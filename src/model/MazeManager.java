@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,14 +23,15 @@ public class MazeManager
 	private static final Logger LOGGER = Logger.getLogger(MazeManager.class.getName());
 	
 	private Maze maze;
-	private Vector<Maze> mazeList;
+	private List<Maze> mazeList;
 	private MazeFactory mazeFactory;
+	// TODO: What to do with the attribute personManager?
 	//private PersonManager personManager; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
 
 	/**
 	 * Default constructor
 	 */
-	public MazeManager(PersonManager personManager)
+	public MazeManager()
 	{
 		super();
 		//this.personManager = personManager;
@@ -95,7 +97,7 @@ public class MazeManager
 	 * 			the Maze's name
 	 * @return true if a Maze with this name exists, false otherwise
 	 */
-	public boolean getMazeByname(String name) {
+	public boolean getMazeByName(String name) {
 		boolean bool = false;
 		Maze myMaze = DataBaseFacade.getMazeByName(name);
 		
@@ -127,14 +129,14 @@ public class MazeManager
 	 * @param creator
 	 */
 	public void getMazesByCreator(Person creator) {
-		this.setMazeList((Vector<Maze>) DataBaseFacade.getMazesByCreator(creator));
+		this.setMazeList(DataBaseFacade.getMazesByCreator(creator));
 	}
 	
 	/**
 	 * Gets the List of all Mazes
 	 */
 	public void getAllMazes() {
-		this.setMazeList((Vector<Maze>) DataBaseFacade.getAllMazes());
+		this.setMazeList(DataBaseFacade.getAllMazes());
 	}
 
 	// Getters
@@ -142,7 +144,7 @@ public class MazeManager
 		return maze;
 	}
 	
-	public Vector<Maze> getMazeList() {
+	public List<Maze> getMazeList() {
 		return mazeList;
 	}
 
@@ -159,8 +161,8 @@ public class MazeManager
 		this.maze = maze;
 	}
 	
-	public void setMazeList(Vector<Maze> mazeList) {
-		this.mazeList = mazeList;
+	public void setMazeList(List<Maze> list) {
+		this.mazeList = list;
 	}
 
 	public void setMazeFactory(MazeFactory mazeFactory) {

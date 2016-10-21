@@ -1,14 +1,12 @@
 package model.dao;
 
-import model.business.Person;
-import model.util.Connect;
-import util.exception.PolymazeException;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.business.Maze;
+import model.business.Person;
+import util.exception.PolymazeException;
 
 public final class DataBaseFacade
 {
