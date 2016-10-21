@@ -65,20 +65,20 @@ public class UISignUp extends JPanel implements KeyListener, ActionListener
 		this.add(confirmPasswordLbl);
 
 		this.loginTextField = new JTextField();
-		this.loginTextField.setBounds(this.loginLbl.getX() + 200, this.loginLbl.getY(), 210, 30);
+		this.loginTextField.setBounds(this.loginLbl.getX() + 200, this.loginLbl.getY(), 210, 25);
 		this.add(this.loginTextField);
 		this.loginTextField.addKeyListener(this);
 		this.loginTextField.setColumns(10);
 
 		this.passwordTextField = new JPasswordField();
-		this.passwordTextField.setBounds(this.passwordLbl.getX() + 200, this.passwordLbl.getY(), 210, 30);
+		this.passwordTextField.setBounds(this.passwordLbl.getX() + 200, this.passwordLbl.getY(), 210, 25);
 		this.passwordTextField.addKeyListener(this);
 		this.add(this.passwordTextField);
 		this.passwordTextField.setColumns(10);
 
 		this.confirmPasswordTextField = new JPasswordField();
 		this.confirmPasswordTextField.setBounds(this.confirmPasswordLbl.getX() + 200, this.confirmPasswordLbl.getY(),
-				210, 30);
+				210, 25);
 		this.confirmPasswordTextField.addKeyListener(this);
 		this.add(this.confirmPasswordTextField);
 		this.confirmPasswordTextField.setColumns(10);
