@@ -49,13 +49,13 @@ public class PersonManager
 	}
 	
 	/**
-	 * This method gets a Person by its name
+	 * This method sets a Person by its name
 	 * 
 	 * @param name
 	 * 			the Person's name
 	 * @return true if a Person with the name exists, false otherwise
 	 */
-	public boolean getPersonByName(String name) {
+	public boolean setPersonByName(String name) {
 		boolean bool = false;
 		Person myPerson = DataBaseFacade.getPersonByName(name);
 		
@@ -73,12 +73,12 @@ public class PersonManager
 	}
 	
 	/**
-	 * This method gets a Person by its id
+	 * This method sets a Person by its id
 	 * @param id
 	 * 			the Person's id
 	 * @return true if a Person with the id exists, false otherwise
 	 */
-	public boolean getPersonById(Integer id) {
+	public boolean setPersonById(Integer id) {
 		boolean bool = false;
 		Person myPerson = DataBaseFacade.getPersonById(id);
 		

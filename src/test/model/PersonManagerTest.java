@@ -34,7 +34,7 @@ public class PersonManagerTest {
 	public void getPersonByNameTest_00() {
 		String name = "test";
 		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.getPersonByName(name);
+		boolean bool = personManager.setPersonByName(name);
 		
 		assertEquals(bool, true);
 		assertEquals(personManager.getCurrentPerson().getId(), Integer.valueOf(4));
@@ -45,7 +45,7 @@ public class PersonManagerTest {
 	public void getPersonByNameTest_01() {
 		String name = "bonjour";
 		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.getPersonByName(name);
+		boolean bool = personManager.setPersonByName(name);
 		
 		assertEquals(bool, false);
 	}
@@ -54,7 +54,7 @@ public class PersonManagerTest {
 	public void getPersonByIdTest_00() {
 		Integer id = 4;
 		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.getPersonById(id);
+		boolean bool = personManager.setPersonById(id);
 		
 		assertEquals(bool, true);
 		assertEquals(personManager.getCurrentPerson().getId(), Integer.valueOf(4));
@@ -65,7 +65,7 @@ public class PersonManagerTest {
 	public void getPersonByIdTest_01() {
 		Integer id = 120;
 		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.getPersonById(id);
+		boolean bool = personManager.setPersonById(id);
 		
 		assertEquals(bool, false);
 	}

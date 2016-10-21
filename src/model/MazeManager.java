@@ -2,7 +2,6 @@
 package model;
 
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,13 +66,13 @@ public class MazeManager
 	}
 	
 	/**
-	 * This method gets a Maze by its id
+	 * This method sets a Maze by its id
 	 * 
 	 * @param id
 	 * 			the Maze's id
 	 * @return true if a Maze with this id exists, false otherwise
 	 */
-	public boolean getMazeById(Integer id) {
+	public boolean setMazeById(Integer id) {
 		boolean bool = false;
 		Maze myMaze = DataBaseFacade.getMazeById(id);
 		
@@ -91,13 +90,13 @@ public class MazeManager
 	}
 		
 	/**
-	 * This method gets a Maze by its name
+	 * This method sets a Maze by its name
 	 * 
 	 * @param name
 	 * 			the Maze's name
 	 * @return true if a Maze with this name exists, false otherwise
 	 */
-	public boolean getMazeByName(String name) {
+	public boolean setMazeByName(String name) {
 		boolean bool = false;
 		Maze myMaze = DataBaseFacade.getMazeByName(name);
 		
@@ -125,17 +124,17 @@ public class MazeManager
 	}
 	
 	/**
-	 * Gets the List of Mazes of a Person
+	 * Sets the List of Mazes of a Person
 	 * @param creator
 	 */
-	public void getMazesByCreator(Person creator) {
+	public void setMazesByCreator(Person creator) {
 		this.setMazeList(DataBaseFacade.getMazesByCreator(creator));
 	}
 	
 	/**
-	 * Gets the List of all Mazes
+	 * Sets the List of all Mazes
 	 */
-	public void getAllMazes() {
+	public void setAllMazes() {
 		this.setMazeList(DataBaseFacade.getAllMazes());
 	}
 

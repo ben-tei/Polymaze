@@ -14,7 +14,7 @@ public class MazeManagerTest
 	public void getMazeById_00() {
 		Integer id = 1;
 		MazeManager mazeManager = new MazeManager();
-		boolean bool = mazeManager.getMazeById(id);
+		boolean bool = mazeManager.setMazeById(id);
 		
 		assertEquals(bool, true);
 		assertEquals(mazeManager.getMaze().getId(), Integer.valueOf(1));
@@ -26,7 +26,7 @@ public class MazeManagerTest
 	public void getMazeById_01() {
 		Integer id = 156;
 		MazeManager mazeManager = new MazeManager();
-		boolean bool = mazeManager.getMazeById(id);
+		boolean bool = mazeManager.setMazeById(id);
 		
 		assertEquals(bool, false);
 	}
@@ -35,7 +35,7 @@ public class MazeManagerTest
 	public void getMazeByName_00() {
 		String name = "TestMaze";
 		MazeManager mazeManager = new MazeManager();
-		boolean bool = mazeManager.getMazeByName(name);
+		boolean bool = mazeManager.setMazeByName(name);
 		
 		assertEquals(bool, true);
 		assertEquals(mazeManager.getMaze().getId(), Integer.valueOf(1));
@@ -47,7 +47,7 @@ public class MazeManagerTest
 	public void getMazeByName_01() {
 		String name = "hellomaze";
 		MazeManager mazeManager = new MazeManager();
-		boolean bool = mazeManager.getMazeByName(name);
+		boolean bool = mazeManager.setMazeByName(name);
 		
 		assertEquals(bool, false);
 	}
@@ -55,13 +55,13 @@ public class MazeManagerTest
 	@Test
 	public void getMazesByCreator() {
 		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.getPersonByName("test");
+		boolean bool = personManager.setPersonByName("test");
 		Person person = null;
 		if (bool) {
 			person = personManager.getCurrentPerson();
 		}
 		MazeManager mazeManager = new MazeManager();
-		mazeManager.getMazesByCreator(person);
+		mazeManager.setMazesByCreator(person);
 		assertEquals(mazeManager.getMazeList().size(), 2);
 		assertEquals(mazeManager.getMazeList().get(0).getName(), "TestMaze");
 		assertEquals(mazeManager.getMazeList().get(1).getName(), "MySecondMaze");
@@ -71,7 +71,7 @@ public class MazeManagerTest
 	
 	public void getAllMazes() {
 		MazeManager mazeManager = new MazeManager();
-		mazeManager.getAllMazes();
+		mazeManager.setAllMazes();
 		assertEquals(mazeManager.getMazeList().size(), 3);
 		assertEquals(mazeManager.getMazeList().get(0).getName(), "TestMaze");
 		assertEquals(mazeManager.getMazeList().get(1).getName(), "MySecondMaze");
