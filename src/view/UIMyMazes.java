@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import model.business.Maze;
 
 public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 {
@@ -31,10 +35,20 @@ public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 		this.myTabs = tabs;
 
 		String[] titles = { "Name", "", "" };
-		Object[][] data = { { "Cysboy", "28 ans", "1.80 m" }, { "BZHHydde", "28 ans", "1.80 m" },
-				{ "IamBow", "24 ans", "1.90 m" }, { "FunMan", "32 ans", "1.85 m" } };
 
-		TableModel model = new DefaultTableModel(data, titles)
+		this.myUIView.getUIController().getMazeManager()
+				.setMazesByCreator(this.myUIView.getUIController().getUserManager().getCurrentPerson());
+
+		List<Maze> myMazes = this.myUIView.getUIController().getMazeManager().getMazeList();
+
+		List<String[]> data = new ArrayList<String[]>();
+
+		for(int i = 0; i < myMazes.size(); i++)
+		{
+			data.add(new String[] { myMazes.get(i).getName() });
+		}
+
+		TableModel model = new DefaultTableModel(data.toArray(new Object[][] {}), titles)
 		{
 
 			private static final long serialVersionUID = 1L;

@@ -6,78 +6,83 @@ import org.junit.Test;
 
 import model.PersonManager;
 
-public class PersonManagerTest {
+public class PersonManagerTest
+{
 
 	@Test
-	public void tryLoginTest_00() {
+	public void tryLoginTest_00()
+	{
 		String name = "test";
 		String password = "test";
 		PersonManager personManager = new PersonManager();
 		boolean login = personManager.tryLogin(name, password);
-		
+
 		assertEquals(login, true);
 		assertEquals(personManager.getCurrentPerson().getId(), Integer.valueOf(4));
 		assertEquals(personManager.getCurrentPerson().getName(), "test");
 	}
-	
+
 	@Test
-	public void tryLoginTest_01() {
+	public void tryLoginTest_01()
+	{
 		String name = "test";
 		String password = "TEST";
 		PersonManager personManager = new PersonManager();
 		boolean login = personManager.tryLogin(name, password);
-		
+
 		assertEquals(login, false);
 	}
-	
+
 	@Test
-	public void getPersonByNameTest_00() {
+	public void getPersonByNameTest_00()
+	{
 		String name = "test";
 		PersonManager personManager = new PersonManager();
 		boolean bool = personManager.setPersonByName(name);
-		
-		assertEquals(bool, true);
-		assertEquals(personManager.getCurrentPerson().getId(), Integer.valueOf(4));
-		assertEquals(personManager.getCurrentPerson().getName(), "test");
-	}
-	
-	@Test
-	public void getPersonByNameTest_01() {
-		String name = "bonjour";
-		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.setPersonByName(name);
-		
-		assertEquals(bool, false);
-	}
-	
-	@Test
-	public void getPersonByIdTest_00() {
-		Integer id = 4;
-		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.setPersonById(id);
-		
+
 		assertEquals(bool, true);
 		assertEquals(personManager.getCurrentPerson().getId(), Integer.valueOf(4));
 		assertEquals(personManager.getCurrentPerson().getName(), "test");
 	}
 
 	@Test
-	public void getPersonByIdTest_01() {
+	public void getPersonByNameTest_01()
+	{
+		String name = "bonjour";
+		PersonManager personManager = new PersonManager();
+		boolean bool = personManager.setPersonByName(name);
+
+		assertEquals(bool, false);
+	}
+
+	@Test
+	public void getPersonByIdTest_00()
+	{
+		Integer id = 4;
+		PersonManager personManager = new PersonManager();
+		boolean bool = personManager.setPersonById(id);
+
+		assertEquals(bool, true);
+		assertEquals(personManager.getCurrentPerson().getId(), Integer.valueOf(4));
+		assertEquals(personManager.getCurrentPerson().getName(), "test");
+	}
+
+	@Test
+	public void getPersonByIdTest_01()
+	{
 		Integer id = 120;
 		PersonManager personManager = new PersonManager();
 		boolean bool = personManager.setPersonById(id);
-		
+
 		assertEquals(bool, false);
 	}
-	
-	/*@Test
-	public void createPersonTest() {
-		String login = "Gaet";
-		String password = "swag";
-		PersonManager personManager = new PersonManager();
-		boolean bool = personManager.createPerson(login, password);
-		
-		assertEquals(bool, true);
-	}*/
+
+	/*
+	 * @Test public void createPersonTest() { String login = "Gaet"; String
+	 * password = "swag"; PersonManager personManager = new PersonManager();
+	 * boolean bool = personManager.createPerson(login, password);
+	 * 
+	 * assertEquals(bool, true); }
+	 */
 
 }

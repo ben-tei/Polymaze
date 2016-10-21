@@ -35,7 +35,7 @@ public final class DataBaseFacade
 	{
 		return mazeDao.getMazeById(id);
 	}
-	
+
 	/**
 	 * Gets a Maze by its name
 	 * 
@@ -126,26 +126,28 @@ public final class DataBaseFacade
 		}
 		return myPerson;
 	}
-	
+
 	/**
 	 * Get a person thanks to its name
 	 * 
 	 * @param name
-	 * 			the Person's name
+	 *            the Person's name
 	 * @return the retrieved Person
 	 */
-	public static Person getPersonByName(String name) {
+	public static Person getPersonByName(String name)
+	{
 		return personDao.getPersonByName(name);
 	}
-	
+
 	/**
 	 * Get a person thanks to its id
 	 * 
 	 * @param id
-	 * 			the Person's id
+	 *            the Person's id
 	 * @return the retrieved Person
 	 */
-	public static Person getPersonById(Integer id) {
+	public static Person getPersonById(Integer id)
+	{
 		return personDao.getPersonById(id);
 	}
 
@@ -169,6 +171,5 @@ public final class DataBaseFacade
 		}
 		return myPerson;
 	}
-	
-	
+
 }

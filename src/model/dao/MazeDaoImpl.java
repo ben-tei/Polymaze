@@ -75,7 +75,7 @@ public class MazeDaoImpl implements MazeDao
 
 		return maze;
 	}
-	
+
 	@Override
 	public Maze getMazeByName(String name)
 	{
@@ -120,22 +120,23 @@ public class MazeDaoImpl implements MazeDao
 	{
 		// Maze to return
 		Maze myMaze = null;
-		
+
 		// Id of the created maze
 		Integer id = null;
-		
+
 		// A MazeDaoImpl
 		MazeDaoImpl mazeDaoImpl = new MazeDaoImpl();
-		
+
 		// Content of the maze parsed into String
 		String strContent = null;
-		try {
+		try
+		{
 			strContent = maze.contentToString();
 		}
-		catch (ContentToStringException e) {
+		catch(ContentToStringException e)
+		{
 			LOGGER.log(Level.SEVERE, "Maze's content is null.", e);
 		}
-		
 
 		// Connection
 		Connection connection = Connect.getInstance().getConnection();
@@ -181,12 +182,12 @@ public class MazeDaoImpl implements MazeDao
 						throw new SQLException("Creating maze failed, no ID obtained.");
 					}
 				}
-				
-				myMaze = new Maze(id, maze.getName(), maze.getLength(), maze.getWidth(), maze.getStartX(), maze.getStartY(),
-						maze.getEndX(), maze.getEndY(), strContent, maze.getCreationDate(),
+
+				myMaze = new Maze(id, maze.getName(), maze.getLength(), maze.getWidth(), maze.getStartX(),
+						maze.getStartY(), maze.getEndX(), maze.getEndY(), strContent, maze.getCreationDate(),
 						maze.getCreator());
 			}
-			
+
 			connection.close();
 		}
 		catch(SQLException e)
@@ -206,13 +207,13 @@ public class MazeDaoImpl implements MazeDao
 	{
 		// Boolean to return
 		boolean isDeleted = false;
-		
+
 		// Connection to database
 		Connection connection = Connect.getInstance().getConnection();
 
 		try
 		{
-			
+
 			PreparedStatement statement = connection.prepareStatement(queryDeleteMaze);
 			statement.setInt(1, idMaze);
 
