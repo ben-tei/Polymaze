@@ -9,9 +9,9 @@ import org.junit.Test;
 import model.business.Maze;
 import model.business.Person;
 import model.dao.DataBaseFacade;
-import model.factory.MazeFactory;
+/*import model.factory.MazeFactory;
 import model.factory.MazeFactoryStrategyName;
-import util.exception.PolymazeException;
+import util.exception.PolymazeException;*/
 
 public class MazeDaoImplTest {
 	
