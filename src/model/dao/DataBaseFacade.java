@@ -27,6 +27,18 @@ public final class DataBaseFacade
 
 	// Maze
 	/**
+	 * Gets a Maze by its id
+	 * 
+	 * @param id
+	 *            the Maze's id
+	 * @return the retrieved Maze
+	 */
+	public static Maze getMazeById(Integer id)
+	{
+		return mazeDao.getMazeById(id);
+	}
+	
+	/**
 	 * Gets a Maze by its name
 	 * 
 	 * @param name

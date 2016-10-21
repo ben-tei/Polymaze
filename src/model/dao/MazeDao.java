@@ -14,6 +14,14 @@ import util.exception.PolymazeException;
  */
 public interface MazeDao
 {
+	/**
+	 * This method retrieves a Maze in the database thanks to its id
+	 * 
+	 * @param id
+	 *            the Maze's id
+	 * @return the retrieved Maze
+	 */
+	public Maze getMazeById(Integer id);
 
 	/**
 	 * This method retrieves a Maze in the database thanks to its name
