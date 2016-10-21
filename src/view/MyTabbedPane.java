@@ -16,6 +16,7 @@ public class MyTabbedPane extends JTabbedPane
 	public void updateTab(int index, JPanel jpanel)
 	{
 		jpanel.setLayout(null);
+		this.remove(this.getTabComponentAt(index));
 		this.setComponentAt(index, jpanel);
 
 		this.revalidate();
