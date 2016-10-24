@@ -68,7 +68,7 @@ public class MazeDaoImplTest
 	{
 		List<Maze> mazes = DataBaseFacade.getAllMazes();
 
-		assertEquals(mazes.size(), 3);
+		assertEquals(mazes.size(), 5);
 		assertEquals(mazes.get(0).getId(), Integer.valueOf(1));
 		assertEquals(mazes.get(0).getName(), "TestMaze");
 		assertEquals(mazes.get(0).getCreator().getName(), "test");

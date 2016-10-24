@@ -11,6 +11,14 @@ import model.business.Maze;
 import model.business.Person;
 import util.exception.model.business.ContentToStringException;
 
+/**
+ * test class for class Maze
+ * methods tested:
+ * 	- contentToString()
+ *  - contentFromstring()
+ * @author Loic
+ *
+ */
 public class MazeTest
 {
 
