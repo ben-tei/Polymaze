@@ -57,7 +57,7 @@ public class UITheMaze extends JPanel implements ActionListener
 	{
 		String cmd = arg0.getActionCommand();
 
-		if(cmd.equals("generate"))
+		if(cmd.equals("resolve"))
 		{
 
 		}
