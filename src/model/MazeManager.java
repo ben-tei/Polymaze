@@ -33,6 +33,7 @@ public class MazeManager
 	public MazeManager()
 	{
 		super();
+		this.mazeFactory = new MazeFactory();
 		//this.personManager = personManager;
 	}
 

@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+import model.business.Person;
+import model.factory.MazeFactoryStrategyName;
+import util.exception.PolymazeException;
+
 public class UIGenerateMaze extends JPanel implements ActionListener
 {
 
@@ -119,7 +123,25 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 
 		if(cmd.equals("generate"))
 		{
+			Person creator = this.myUIView.getUIController().getUserManager().getCurrentPerson();
+			String name = this.nameTextField.getText();
+			int length = (int) this.lengthSpinner.getValue();
+			int width = (int) this.widthSpinner.getValue();
+			String strategy = this.comboBox.getSelectedItem().toString().replaceAll("'s Algorithm", "");
 
+			try
+			{
+				this.myUIView.getUIController().getMazeManager().getMazeFactory()
+						.setStrategy(MazeFactoryStrategyName.valueOf(strategy));
+				this.myUIView.getUIController().getMazeManager().generateMaze(name, length, width, creator);
+
+				this.myTabs.updateTab(0, new UIMyMazes(this.myUIView, this.myTabs));
+			}
+			catch(PolymazeException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		else if(cmd.equals("back"))
 		{

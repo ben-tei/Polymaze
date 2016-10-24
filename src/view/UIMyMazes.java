@@ -4,10 +4,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,7 +18,7 @@ import javax.swing.table.TableModel;
 
 import model.business.Maze;
 
-public class UIMyMazes extends JPanel implements KeyListener, ActionListener
+public class UIMyMazes extends JPanel implements ActionListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +30,8 @@ public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 	private JTable table;
 	private JScrollPane scrollPane;
 
+	private List<Maze> myMazes;
+
 	public UIMyMazes(UIView uiView, MyTabbedPane tabs)
 	{
 		this.myUIView = uiView;
@@ -39,25 +42,16 @@ public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 		this.myUIView.getUIController().getMazeManager()
 				.setMazesByCreator(this.myUIView.getUIController().getUserManager().getCurrentPerson());
 
-		List<Maze> myMazes = this.myUIView.getUIController().getMazeManager().getMazeList();
+		this.myMazes = this.myUIView.getUIController().getMazeManager().getMazeList();
 
 		List<String[]> data = new ArrayList<String[]>();
 
 		for(int i = 0; i < myMazes.size(); i++)
 		{
-			data.add(new String[] { myMazes.get(i).getName() });
+			data.add(new String[] { myMazes.get(i).getName(), "See", "Delete" });
 		}
 
-		TableModel model = new DefaultTableModel(data.toArray(new Object[][] {}), titles)
-		{
-
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column)
-			{
-				return false;
-			}
-		};
+		TableModel model = new DefaultTableModel(data.toArray(new Object[][] {}), titles);
 
 		this.table = new JTable(model);
 		this.table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -78,6 +72,40 @@ public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 		this.generateBtn.setActionCommand("generate");
 		this.generateBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.generateBtn);
+
+		Action delete = new AbstractAction()
+		{
+
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e)
+			{
+				JTable table = (JTable) e.getSource();
+				int modelRow = Integer.valueOf(e.getActionCommand());
+				((DefaultTableModel) table.getModel()).removeRow(modelRow);
+				myUIView.getUIController().getMazeManager().deleteMaze(myMazes.get(modelRow).getId());
+			}
+		};
+
+		Action see = new AbstractAction()
+		{
+
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e)
+			{
+				int modelRow = Integer.valueOf(e.getActionCommand());
+
+				myTabs.updateTab(0, new UITheMaze(myUIView, myTabs, myMazes.get(modelRow)));
+			}
+		};
+
+		ButtonColumn seeButton = new ButtonColumn(this.table, see, 1);
+		seeButton.setMnemonic(KeyEvent.VK_D);
+
+		ButtonColumn deleteButton = new ButtonColumn(this.table, delete, 2);
+		deleteButton.setMnemonic(KeyEvent.VK_D);
+
 	}
 
 	@Override
@@ -90,27 +118,6 @@ public class UIMyMazes extends JPanel implements KeyListener, ActionListener
 			this.myTabs.updateTab(0, new UIGenerateMaze(this.myUIView, this.myTabs));
 
 		}
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0)
-	{
-		// TODO Auto-generated method stub
 
 	}
 
