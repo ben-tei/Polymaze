@@ -7,14 +7,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import model.business.Cell;
 import model.business.Maze;
 import model.business.Person;
-import model.business.cell.BacktrackCell;
 import model.business.cell.EllerCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
-import util.exception.model.business.ContentToStringException;
 
 public class EllerStrategy extends MazeFactoryStrategy
 {
@@ -55,14 +52,16 @@ public class EllerStrategy extends MazeFactoryStrategy
 		initMazeContent(length, width);
 		for(int x = 0 ; x < width; ++x){
 			Map<Integer,ArrayList<EllerCell>> setToCell = new HashMap<Integer,ArrayList<EllerCell>>(); // create the set
-			mazfiyColumn(mazeArray_[x], setToCell);
 			if(x < width - 1){
+				mazfiyColumn(mazeArray_[x], setToCell);
 				joinCellsHorizontally(mazeArray_[x], mazeArray_[x+1], setToCell);
 			} else {
 				joinDisjointSetsCells(mazeArray_[x]);
 			}
 		}
 		maze_.setContent(mazeArray_);
+		
+		//drawMaze();
 		
 		return maze_;
 	}
@@ -100,7 +99,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 		for(int i = 0 ; i < column.length ; ++i){
 			startIndex = i;
 			cellsToJoinSets.add(column[i].getSetID());
-			while(trueOrFalse() && i < column.length - 1){
+			while(shouldMakeVerticalOpening() && i < column.length - 1){
 				i++;
 				if(getSmallestNumber(cellsToJoinSets) == column[i].getSetID()){
 					i--;
@@ -136,19 +135,20 @@ public class EllerStrategy extends MazeFactoryStrategy
 	
 	private void joinCellsHorizontally(EllerCell[] column1,EllerCell[] column2,  Map<Integer,ArrayList<EllerCell>> setToCell){
 		Iterator it = setToCell.entrySet().iterator();
+		if(column1[0].getPositionX() == 1){
+			System.out.println("");
+		}
 	    while (it.hasNext()) {
 	        Map.Entry pair = (Map.Entry)it.next();
 	        
 	        ArrayList<EllerCell> cells = ((ArrayList<EllerCell>)pair.getValue());
+	        boolean hasAtLeastOneOpening = false;
 	        for(int i = 0 ; i < cells.size() ; ++i) {
-	        	boolean hasAtLeastOneOpening = false;
-	        	for(int j = 0 ; j < cells.size() ; ++j) {
-		        	if(trueOrFalse() || (!hasAtLeastOneOpening && j == cells.size() - 1)){
-		        		hasAtLeastOneOpening = true;
-		        		column1[cells.get(j).getPositionY()].setWallEast(false);
-		        		column2[cells.get(j).getPositionY()].setWallWest(false);
-		        		column2[cells.get(j).getPositionY()].setSetID(cells.get(j).getSetID());
-		        	}
+		        if(shouldMakeHorizontalOpening() || (!hasAtLeastOneOpening && i == cells.size() - 1)){
+		        	hasAtLeastOneOpening = true;
+		        	column1[cells.get(i).getPositionY()].setWallEast(false);
+		        	column2[cells.get(i).getPositionY()].setWallWest(false);
+		        	column2[cells.get(i).getPositionY()].setSetID(column1[cells.get(i).getPositionY()].getSetID());
 		        }
 	        }
 	    }
@@ -159,13 +159,30 @@ public class EllerStrategy extends MazeFactoryStrategy
 			if(i < column.length - 1 && column[i].getSetID() != column[i+1].getSetID()){
 				column[i].setWallSouth(false);
 				column[i + 1].setWallNorth(false);
+				
+				ArrayList<Integer> tmpArray = new ArrayList();
+				tmpArray.add(column[i].getSetID());
+				tmpArray.add(column[i + 1].getSetID());
+				int tmpSet = getSmallestNumber(tmpArray);
+				
+				column[i].setSetID(tmpSet);
+				column[i + 1].setSetID(tmpSet);
 			}
 		}
 	}
 	
-	private Boolean trueOrFalse() {
+	private Boolean shouldMakeVerticalOpening() {
 		Double tmp = Math.random();
-		if(tmp < 0.5) {
+		if(tmp < 0.2) {
+			return false;
+		} else{
+			return true;
+		} 
+	}
+	
+	private Boolean shouldMakeHorizontalOpening() {
+		Double tmp = Math.random();
+		if(tmp < 0.8) {
 			return false;
 		} else{
 			return true;
@@ -181,4 +198,52 @@ public class EllerStrategy extends MazeFactoryStrategy
 		}
 		return smallest;
 	}
+	
+		public void drawMaze() {
+			int outputHeight = 2 * this.maze_.getLength() + 1;
+			int outputWidth = 2 * this.maze_.getWidth() + 1;
+	
+			char[][] outputMaze = new char[outputWidth][outputHeight];
+	
+			for (int y = 0; y < outputHeight; y++) {
+				for (int x = 0; x < outputWidth; x++) {
+	
+					if (y == 0 || y == outputHeight - 1 || x == 0
+							|| x == outputWidth - 1) {
+						// border wall
+						outputMaze[x][y] = 'M';
+					} else if (y % 2 == 0 && x % 2 == 0) {
+						// intern wall
+						outputMaze[x][y] = 'M';
+					}
+	
+					if (y % 2 == 1 && x % 2 == 1) {
+						outputMaze[x][y] = ' ';
+						if (this.mazeArray_[(x - 1) / 2][(y - 1) / 2].isWallEast()) {
+							outputMaze[x + 1][y] = 'M';
+						} else {
+							outputMaze[x + 1][y] = ' ';
+						}
+	
+						if (this.mazeArray_[(x - 1) / 2][(y - 1) / 2].isWallSouth()) {
+							outputMaze[x][y + 1] = 'M';
+						} else {
+							outputMaze[x][y + 1] = ' ';
+						}
+					}
+				}
+			}
+	
+			outputMaze[this.maze_.getStartX() * 2 + 1][this.maze_.getStartY() * 2 + 1] = 'S';
+			outputMaze[this.maze_.getEndX() * 2 + 1][this.maze_.getEndY() * 2 + 1] = 'E';
+	
+			// now we can print it.
+			for (int y = 0; y < outputHeight; y++) {
+				for (int x = 0; x < outputWidth; x++) {
+					System.out.print(outputMaze[x][y]);
+				}
+				System.out.println("");
+			}
+	
+		}
 }
