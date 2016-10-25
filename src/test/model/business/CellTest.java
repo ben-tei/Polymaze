@@ -10,6 +10,14 @@ import model.business.Cell;
 import util.exception.model.business.SetWallsFromStringNo0or1Exception;
 import util.exception.model.business.SetWallsFromStringNot4CharException;
 
+/**
+ * test class for class Cell
+ * methods tested:
+ * 	- callToString()
+ *  - setWallsFromString()
+ * @author Loic
+ *
+ */
 public class CellTest
 {
 

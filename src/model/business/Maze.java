@@ -24,8 +24,8 @@ public class Maze
 	// Attributes
 	private Integer id;
 	private String name;
-	private Integer length; // for y
-	private Integer width; // for x
+	private Integer length = 0; // for y
+	private Integer width = 0; // for x
 	private int startX; // coordinate start
 	private int startY;
 	private int endX; // coordinate end
@@ -358,6 +358,15 @@ public class Maze
 			}
 		}
 		return cellContent;
+	}
+	
+	public void setAllCellToNotVisited() {
+		for (int y = 0; y < this.getLength(); y++) {
+			for (int x = 0; x < this.getWidth(); x++) {
+				this.content[x][y].setVisited(false);
+			}
+			
+		}
 	}
 
 }
