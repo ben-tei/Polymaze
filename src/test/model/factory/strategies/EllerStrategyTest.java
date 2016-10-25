@@ -20,9 +20,12 @@ public class EllerStrategyTest
 		EllerStrategy eller = new EllerStrategy();
 		MazeSolver solver = new MazeSolver();
 		Maze mazeToSolve = eller.generateMaze("Test Eller1", 100, 100, new Person(999, "rb"));
-		try {
+		try
+		{
 			solver.solveMaze(mazeToSolve);
-		} catch (PolymazeException e) {
+		}
+		catch(PolymazeException e)
+		{
 			// test failed!
 		}
 	}

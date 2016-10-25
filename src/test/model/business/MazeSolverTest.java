@@ -16,24 +16,22 @@ import model.business.MazeSolver;
 import model.business.Person;
 import model.factory.strategies.BacktrackStrategy;
 import util.exception.PolymazeException;
-import util.exception.model.business.SetWallsFromStringNot4CharException;
 
 /**
- * @author Loic
- *	Class for testing MazeSolver
- *	Method tested : 
- *  - mazeSolver()
+ * @author Loic Class for testing MazeSolver Method tested : - mazeSolver()
  */
-public class MazeSolverTest {
+public class MazeSolverTest
+{
 
 	@Test
-	public void solveMazetest_00() throws PolymazeException {
+	public void solveMazetest_00() throws PolymazeException
+	{
 		BacktrackStrategy backtrackStrategy = new BacktrackStrategy();
 		Maze maze = backtrackStrategy.generateMaze("Test", 15, 15, new Person(15, "Lama"));
 		ArrayList<Point> pathSolution = MazeSolver.solveMaze(maze);
 		Iterator<Point> iterator = pathSolution.iterator();
 		iterator.hasNext();
-		assertEquals(new Point(0,0), iterator.next() );
+		assertEquals(new Point(0, 0), iterator.next());
 	}
 
 	@Test
@@ -54,17 +52,17 @@ public class MazeSolverTest {
 		content[1][1] = new Cell(1, 1, false, false, true, false);
 		content[2][1] = new Cell(2, 1, true, true, true, false);
 		maze.setContent(content);
-		
+
 		ArrayList<Point> pathSolution = MazeSolver.solveMaze(maze);
 		Iterator<Point> iterator = pathSolution.iterator();
 		iterator.hasNext();
-		assertEquals(new Point(0,0), iterator.next() );
+		assertEquals(new Point(0, 0), iterator.next());
 		iterator.hasNext();
-		assertEquals(new Point(1,0), iterator.next() );
+		assertEquals(new Point(1, 0), iterator.next());
 		iterator.hasNext();
-		assertEquals(new Point(1,1), iterator.next() );
+		assertEquals(new Point(1, 1), iterator.next());
 		iterator.hasNext();
-		assertEquals(new Point(2,1), iterator.next() );	
+		assertEquals(new Point(2, 1), iterator.next());
 	}
 
 	@Test
@@ -85,20 +83,20 @@ public class MazeSolverTest {
 		content[1][1] = new Cell(1, 1, false, false, true, false);
 		content[2][1] = new Cell(2, 1, true, true, true, false);
 		maze.setContent(content);
-		
+
 		ArrayList<Point> pathSolution = MazeSolver.solveMaze(maze);
 		Iterator<Point> iterator = pathSolution.iterator();
 		iterator.hasNext();
-		assertEquals(new Point(1,0), iterator.next() );
+		assertEquals(new Point(1, 0), iterator.next());
 		iterator.hasNext();
-		assertEquals(new Point(1,1), iterator.next() );
+		assertEquals(new Point(1, 1), iterator.next());
 		iterator.hasNext();
-		assertEquals(new Point(0,1), iterator.next() );	
+		assertEquals(new Point(0, 1), iterator.next());
 	}
-	
+
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
-	
+
 	@Test
 	public void solveMazetest_03() throws PolymazeException
 	{
@@ -117,11 +115,11 @@ public class MazeSolverTest {
 		content[1][1] = new Cell(1, 1, false, true, true, false);
 		content[2][1] = new Cell(2, 1, true, true, true, true);
 		maze.setContent(content);
-		
+
 		exception.expect(PolymazeException.class);
-		
+
 		ArrayList<Point> pathSolution = MazeSolver.solveMaze(maze);
-		
+
 	}
-	
+
 }

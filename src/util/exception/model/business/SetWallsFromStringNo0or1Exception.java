@@ -17,4 +17,5 @@ public class SetWallsFromStringNo0or1Exception extends Exception
 	{
 		return this.ErrorMessage;
 	}
+
 }

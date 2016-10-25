@@ -4,16 +4,17 @@ import model.business.Cell;
 
 public class EllerCell extends Cell
 {
-	private Integer setID_;
+	private Integer setID;
 
-	public void setSetID(Integer value){
-		setID_ = value;
-	}
-	
-	public Integer getSetID(){
-		return setID_;
+	public void setSetID(Integer value)
+	{
+		this.setID = value;
 	}
 
+	public Integer getSetID()
+	{
+		return this.setID;
+	}
 
 	/**
 	 * @param positionX:
@@ -23,11 +24,11 @@ public class EllerCell extends Cell
 	 *            true.
 	 * @param setID:
 	 *            int : the set which this cell belongs currently to
-	 *            
+	 * 
 	 */
 	public EllerCell(int positionX, int positionY, int setID)
 	{
 		super(positionX, positionY, true, true, true, true);
-		setID_ = setID;
+		this.setID = setID;
 	}
 }

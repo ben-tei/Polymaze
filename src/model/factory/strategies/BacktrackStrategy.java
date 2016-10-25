@@ -10,9 +10,11 @@ import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
 /**
- * @author Loic
- *	This class generate a Maze by using the recursive backtrack Strategy.
- *	@see <a href="http://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking"> Recursive BAcktracking</>
+ * @author Loic This class generate a Maze by using the recursive backtrack
+ *         Strategy.
+ * @see <a href=
+ *      "http://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking">
+ *      Recursive BAcktracking</>
  */
 public class BacktrackStrategy extends MazeFactoryStrategy
 {
@@ -40,7 +42,7 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 		//TODO Loic
 		// Get current date with format YYYY-MM-DD
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-		
+
 		this.maze = new Maze(name, length, width, timeNow, creator);
 
 		this.initializeMazeArray();
@@ -49,7 +51,6 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 
 		return this.maze;
 	}
-	
 
 	/**
 	 * Method to create a Maze using Backtrack method.
@@ -72,8 +73,8 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	 *            the Person who created the Maze
 	 */
 	@Override
-	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
-			Person creator)
+	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
+			int endY, Person creator)
 	{
 		this.maze = new Maze(name, length, width, startX, startY, endX, endY, null, creator);
 

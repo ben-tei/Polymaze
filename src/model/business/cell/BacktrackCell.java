@@ -3,18 +3,20 @@ package model.business.cell;
 import model.business.Cell;
 
 /**
- * @author Loic
- *	A backtrack Cell is used to generate a maze by the Backtrack Strategy.
+ * @author Loic A backtrack Cell is used to generate a maze by the Backtrack
+ *         Strategy.
  */
 public class BacktrackCell extends Cell
 {
 	private boolean btCellVisited = false;
 
-	public boolean isBtCellVisited() {
+	public boolean isBtCellVisited()
+	{
 		return btCellVisited;
 	}
 
-	public void setBtCellVisited(boolean btCellVisited) {
+	public void setBtCellVisited(boolean btCellVisited)
+	{
 		this.btCellVisited = btCellVisited;
 	}
 

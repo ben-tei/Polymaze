@@ -30,8 +30,7 @@ public class Cell
 	 * @param wallWest
 	 *            boolean : true if there is a wall to the West
 	 */
-	public Cell(int positionX, int positionY, boolean wallNorth, 
-			boolean wallEast, boolean wallSouth, boolean wallWest)
+	public Cell(int positionX, int positionY, boolean wallNorth, boolean wallEast, boolean wallSouth, boolean wallWest)
 	{
 		this.positionX = positionX;
 		this.positionY = positionY;
@@ -183,9 +182,9 @@ public class Cell
 	 *            there is no wall. Characters refer to walls in this order :
 	 *            North East South West
 	 * @throws SetWallsFromStringNot4CharException
-	 *  		If the length of strWalls != 4 
+	 *             If the length of strWalls != 4
 	 * @throws SetWallsFromStringNo0or1Exception
-	 * 			If a wall have a character not equal to 1 or 0
+	 *             If a wall have a character not equal to 1 or 0
 	 */
 	public void setWallsFromString(String strWalls)
 			throws SetWallsFromStringNot4CharException, SetWallsFromStringNo0or1Exception

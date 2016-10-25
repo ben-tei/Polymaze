@@ -9,4 +9,5 @@ public class SetWallsFromStringNot4CharException extends Exception
 	{
 		return "strWalls should be 4 characters for north east south west";
 	}
+
 }

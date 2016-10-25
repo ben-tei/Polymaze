@@ -1,6 +1,6 @@
 package test.model.business;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,10 +12,9 @@ import model.business.Person;
 import util.exception.model.business.ContentToStringException;
 
 /**
- * test class for class Maze
- * methods tested:
- * 	- contentToString()
- *  - contentFromstring()
+ * test class for class Maze methods tested: - contentToString() -
+ * contentFromstring()
+ * 
  * @author Loic
  *
  */
