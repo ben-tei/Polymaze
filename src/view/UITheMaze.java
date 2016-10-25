@@ -38,14 +38,14 @@ public class UITheMaze extends JPanel implements ActionListener
 		this.add(nameLbl);
 
 		this.resolveBtn = new JButton("Resolve");
-		this.resolveBtn.setBounds(400, 300, 100, 25);
+		this.resolveBtn.setBounds(510, 425, 100, 25);
 		this.resolveBtn.addActionListener(this);
 		this.resolveBtn.setActionCommand("resolve");
 		this.resolveBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.resolveBtn);
 
 		this.backBtn = new JButton("Back");
-		this.backBtn.setBounds(100, 300, 100, 25);
+		this.backBtn.setBounds(200, 425, 100, 25);
 		this.backBtn.addActionListener(this);
 		this.backBtn.setActionCommand("back");
 		this.backBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
