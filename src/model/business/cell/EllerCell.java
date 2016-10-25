@@ -4,26 +4,16 @@ import model.business.Cell;
 
 public class EllerCell extends Cell
 {
+	private Integer setID_;
 
-	/**
-	 * @param positionX:
-	 *            int : x coordinate of the cell
-	 * @param positionY:
-	 *            int : y coordinate of the cell
-	 * @param wallNorth:
-	 *            boolean : true if there is a wall to the north
-	 * @param wallEast:
-	 *            boolean : true if there is a wall to the East
-	 * @param wallSouth:
-	 *            boolean : true if there is a wall to the South
-	 * @param wallWest:
-	 *            boolean : true if there is a wall to the West
-	 */
-	public EllerCell(int positionX, int positionY, boolean wallNorth, boolean wallEast, boolean wallSouth,
-			boolean wallWest)
-	{
-		super(positionX, positionY, wallNorth, wallEast, wallSouth, wallWest);
+	public void setSetID(Integer value){
+		setID_ = value;
 	}
+	
+	public Integer getSetID(){
+		return setID_;
+	}
+
 
 	/**
 	 * @param positionX:
@@ -31,9 +21,13 @@ public class EllerCell extends Cell
 	 * @param positionY:
 	 *            int : y coordinate of the cell Set all walls of this Cell to
 	 *            true.
+	 * @param setID:
+	 *            int : the set which this cell belongs currently to
+	 *            
 	 */
-	public EllerCell(int positionX, int positionY)
+	public EllerCell(int positionX, int positionY, int setID)
 	{
 		super(positionX, positionY, true, true, true, true);
+		setID_ = setID;
 	}
 }
