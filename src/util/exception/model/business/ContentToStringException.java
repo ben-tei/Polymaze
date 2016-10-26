@@ -14,4 +14,5 @@ public class ContentToStringException extends Exception
 	{
 		return "Impossible to convert the content of a maze, when content = null";
 	}
+
 }

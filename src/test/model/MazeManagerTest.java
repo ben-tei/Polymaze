@@ -87,4 +87,5 @@ public class MazeManagerTest
 		assertEquals(mazeManager.getMazeList().get(0).getCreator().getName(), "test");
 		assertEquals(mazeManager.getMazeList().get(2).getCreator().getName(), "Benji");
 	}
+
 }

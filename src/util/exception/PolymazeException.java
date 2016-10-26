@@ -21,4 +21,5 @@ public class PolymazeException extends Exception
 	{
 		return super.getMessage();
 	}
+
 }

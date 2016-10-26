@@ -17,7 +17,7 @@ import util.exception.model.business.SetWallsFromStringNot4CharException;
  */
 public class Maze
 {
-	
+
 	// Logger
 	private static final Logger LOGGER = Logger.getLogger(Maze.class.getName());
 
@@ -44,9 +44,8 @@ public class Maze
 	}
 
 	/**
-	 * Constructor using 5 attributes
-	 * To generate a Maze, when the user don't choose start and end point.
-	 * Used to init a maze during its creation
+	 * Constructor using 5 attributes To generate a Maze, when the user don't
+	 * choose start and end point. Used to init a maze during its creation
 	 * 
 	 * @param name
 	 *            the Maze's name
@@ -76,8 +75,8 @@ public class Maze
 	}
 
 	/**
-	 * Constructor using 9 attributes
-	 * To generate a Maze, when the user choose start and end point.
+	 * Constructor using 9 attributes To generate a Maze, when the user choose
+	 * start and end point.
 	 * 
 	 * @param name
 	 *            the Maze's name
@@ -98,8 +97,8 @@ public class Maze
 	 * @param creator
 	 *            the Person who created the Maze
 	 */
-	public Maze(String name, Integer length, Integer width, int startX, int startY, 
-				int endX, int endY, Date creationDate, Person creator)
+	public Maze(String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
+			Date creationDate, Person creator)
 	{
 		super();
 		this.name = name;
@@ -113,11 +112,9 @@ public class Maze
 		this.endY = endY;
 	}
 
-
-
 	/**
-	 * Constructor using all the attributes
-	 * Used to create a maze retrieved from database
+	 * Constructor using all the attributes Used to create a maze retrieved from
+	 * database
 	 * 
 	 * @param id
 	 *            the Maze's id
@@ -154,9 +151,12 @@ public class Maze
 		this.startY = startY;
 		this.endX = endX;
 		this.endY = endY;
-		try {
+		try
+		{
 			this.content = this.contentFromString(content, width, length);
-		} catch (Exception e) {
+		}
+		catch(Exception e)
+		{
 			e.printStackTrace();
 		}
 		this.creationDate = creationDate;
@@ -285,15 +285,15 @@ public class Maze
 	 *         cell are represented by four 0 or 1 which each correspond to a
 	 *         wall. In order : North East South West. 1 correspond to the
 	 *         presence of a wall. 0 if there's no wall
-	 * @throws ContentToStringException 
+	 * @throws ContentToStringException
 	 */
 	public String contentToString() throws ContentToStringException
 	{
-		if (content == null ) 
+		if(content == null)
 		{
 			throw new ContentToStringException();
 		}
-		
+
 		String strContent = "";
 		for(int y = 0; y < this.length; y++)
 		{
@@ -306,9 +306,10 @@ public class Maze
 	}
 
 	/**
-	 * Return a Cell[][] created from a String of 0 and 1.
-	 * Be careful, this method do not check if the maze generated is a perfect maze.
-	 * Or if walls are valid.
+	 * Return a Cell[][] created from a String of 0 and 1. Be careful, this
+	 * method do not check if the maze generated is a perfect maze. Or if walls
+	 * are valid.
+	 * 
 	 * @param strContent
 	 *            String of 0 and 1, with a length of 4*width*length organized
 	 *            by line(width). Corresponding to a maze of size width*length.
@@ -317,22 +318,22 @@ public class Maze
 	 * @param length
 	 *            int : length of a maze (correspond to y)
 	 * @return Cell[width][length] Transform a string into a Cell array.
-	 * @throws Exception 
-	 * 			
+	 * @throws Exception
+	 * 
 	 */
 	public Cell[][] contentFromString(String strContent, int width, int length) throws Exception
 	{
 		Cell[][] cellContent = new Cell[width][length];
 		String currentStr = strContent;
-				
-		if(strContent.length() != width * length * 4 )
+
+		if(strContent.length() != width * length * 4)
 		{
 			throw new Exception("Invalid number of characters in the string. Should be equal to 4*width*length");
 		}
-		if((width == 0 || length == 0) && strContent.length() != 0 )
+		if((width == 0 || length == 0) && strContent.length() != 0)
 		{
-			throw new Exception("Invalid number of characters in the string. Should be equal to 0 as "
-					+ " one dimension equal 0");
+			throw new Exception(
+					"Invalid number of characters in the string. Should be equal to 0 as " + " one dimension equal 0");
 		}
 
 		for(int y = 0; y < length; y++)
@@ -359,13 +360,16 @@ public class Maze
 		}
 		return cellContent;
 	}
-	
-	public void setAllCellToNotVisited() {
-		for (int y = 0; y < this.getLength(); y++) {
-			for (int x = 0; x < this.getWidth(); x++) {
+
+	public void setAllCellToNotVisited()
+	{
+		for(int y = 0; y < this.getLength(); y++)
+		{
+			for(int x = 0; x < this.getWidth(); x++)
+			{
 				this.content[x][y].setVisited(false);
 			}
-			
+
 		}
 	}
 

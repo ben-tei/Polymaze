@@ -1,6 +1,8 @@
 package test.model.business;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -11,10 +13,9 @@ import util.exception.model.business.SetWallsFromStringNo0or1Exception;
 import util.exception.model.business.SetWallsFromStringNot4CharException;
 
 /**
- * test class for class Cell
- * methods tested:
- * 	- callToString()
- *  - setWallsFromString()
+ * test class for class Cell methods tested: - callToString() -
+ * setWallsFromString()
+ * 
  * @author Loic
  *
  */
