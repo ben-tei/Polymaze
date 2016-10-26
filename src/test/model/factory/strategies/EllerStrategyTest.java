@@ -18,11 +18,11 @@ public class EllerStrategyTest
 	public void testEllerStrategy1()
 	{
 		EllerStrategy eller = new EllerStrategy();
-		MazeSolver solver = new MazeSolver();
+		//MazeSolver solver = new MazeSolver();
 		Maze mazeToSolve = eller.generateMaze("Test Eller1", 100, 100, new Person(999, "rb"));
 		try
 		{
-			solver.solveMaze(mazeToSolve);
+			MazeSolver.solveMaze(mazeToSolve);
 		}
 		catch(PolymazeException e)
 		{

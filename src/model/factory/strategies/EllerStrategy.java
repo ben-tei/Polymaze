@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import model.business.Maze;
 import model.business.Person;
@@ -155,16 +156,16 @@ public class EllerStrategy extends MazeFactoryStrategy
 	private void joinCellsHorizontally(EllerCell[] column1, EllerCell[] column2,
 			Map<Integer, ArrayList<EllerCell>> setToCell)
 	{
-		Iterator it = setToCell.entrySet().iterator();
+		Iterator<Entry<Integer, ArrayList<EllerCell>>> it = setToCell.entrySet().iterator();
 		if(column1[0].getPositionX() == 1)
 		{
 			System.out.println("");
 		}
 		while(it.hasNext())
 		{
-			Map.Entry pair = (Map.Entry) it.next();
+			Entry<Integer, ArrayList<EllerCell>> pair = it.next();
 
-			ArrayList<EllerCell> cells = ((ArrayList<EllerCell>) pair.getValue());
+			ArrayList<EllerCell> cells = pair.getValue();
 			boolean hasAtLeastOneOpening = false;
 			for(int i = 0; i < cells.size(); ++i)
 			{

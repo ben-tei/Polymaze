@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -10,6 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -78,9 +78,10 @@ public class UITheMaze extends JPanel implements ActionListener
 			{
 
 				BufferedImage img = hm.get(this.myMaze.getContent()[j][i].wallToString() + ".png");
-				BufferedImage bi = new BufferedImage(img.getWidth(), img.getWidth(), BufferedImage.TYPE_INT_ARGB);
-				Graphics g = bi.getGraphics();
-				g.drawImage(img, 100 + (j * img.getWidth()), 100 + (i * img.getWidth()), null);
+				JLabel jl = new JLabel(new ImageIcon(img));
+				jl.setBounds(((this.myUIView.getWidth() - this.myMaze.getWidth() * img.getWidth()) / 2)
+						+ (j * img.getWidth()), 100 + (i * img.getHeight()), img.getWidth(), img.getHeight());
+				this.add(jl);
 			}
 		}
 
