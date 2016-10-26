@@ -62,6 +62,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 		maze_.setContent(mazeArray_);
 		
 		//drawMaze();
+		System.out.println("done");
 		
 		return maze_;
 	}
