@@ -52,7 +52,9 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 		this.myUIView = uiView;
 		this.myTabs = tabs;
 		this.myUIView.setTitle("Polymaze - Generate Maze");
-
+		
+		// Labels
+		
 		this.generateLbl = new JLabel("Generate New Maze");
 		this.generateLbl.setBounds(300, 10, 200, 25);
 		this.generateLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -77,28 +79,38 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 		this.strategyLbl.setBounds(200, 325, 100, 25);
 		this.strategyLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		this.add(strategyLbl);
-
+		
+		// Textfield - Maze's name
+		
 		this.nameTextField = new JTextField();
 		this.nameTextField.setBounds(this.nameLbl.getX() + 200, this.nameLbl.getY(), 210, 25);
 		this.add(this.nameTextField);
 		this.nameTextField.setColumns(10);
-
+		
+		// Spinner - Width and Heigth
+		
 		SpinnerModel spinnerModel = new SpinnerNumberModel(3, 3, 100, 1);
+		SpinnerModel spinnerModel2 = new SpinnerNumberModel(3, 3, 100, 1); 
+		// I add a new spinner to avoid edition of both fields.
 
 		this.lengthSpinner = new JSpinner(spinnerModel);
 		this.lengthSpinner.setBounds(this.lengthLbl.getX() + 200, this.lengthLbl.getY(), 210, 25);
 		this.add(this.lengthSpinner);
 
-		this.widthSpinner = new JSpinner(spinnerModel);
+		this.widthSpinner = new JSpinner(spinnerModel2);
 		this.widthSpinner.setBounds(this.witdhLbl.getX() + 200, this.witdhLbl.getY(), 210, 25);
 		this.add(this.widthSpinner);
-
-		String[] elements = { "Backtrack", "Eller's Algorithm", "Kruskal's Algorithm", "Prim's Algorithm" };
-
+		
+		// ComboBox - algorithm box
+		
+		String[] elements = { "Backtrack", "Eller's Algorithm", "Kruskal's Algorithm", "Prim's Algorithm" };		
+		
 		this.comboBox = new JComboBox<String>(elements);
 		this.comboBox.setBounds(this.strategyLbl.getX() + 200, this.strategyLbl.getY(), 210, 25);
 		this.add(this.comboBox);
-
+		
+		// Button - Generate and Back
+		
 		this.generateBtn = new JButton("Generate");
 		this.generateBtn.setBounds(this.nameTextField.getX() + this.nameTextField.getWidth() - 100,
 				this.strategyLbl.getY() + 100, 100, 25);
