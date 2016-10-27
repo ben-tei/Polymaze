@@ -1,13 +1,22 @@
 package model.factory.strategies;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
+
 import model.business.Maze;
 import model.business.Person;
+import model.business.cell.BacktrackCell;
+import model.business.cell.PrimCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
 public class PrimStrategy extends MazeFactoryStrategy
 {
 	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Prim;
+	private Maze maze;
+	private PrimCell[][] mazeArray;
 
 	/**
 	 * Method to create a Maze using Prim's algorithm.
@@ -23,6 +32,13 @@ public class PrimStrategy extends MazeFactoryStrategy
 	 */
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
+		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		
+		this.maze = new Maze(name, length, width, timeNow, creator);
+		this.initializeMazeArray();
+		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
+		
+
 		// TODO
 		return null;
 	}
@@ -33,5 +49,89 @@ public class PrimStrategy extends MazeFactoryStrategy
 	{
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private void launchPrim(Integer StartX, Integer StartY){
+		
+		ArrayList<PrimCell> frontier = new ArrayList<PrimCell>();
+		ArrayList<PrimCell> neighbors = new ArrayList<PrimCell>();
+		
+		Random rand = new Random();
+		PrimCell selectedFrontier;
+		PrimCell selectedNeighbor;
+		
+		this.markCell(StartX,StartY,this.mazeArray,frontier);
+		
+		while (!frontier.isEmpty()){
+			int randomNum = rand.nextInt(((frontier.size()-1)) + 1);
+			
+			selectedFrontier = frontier.get(randomNum);
+			frontier.remove(randomNum);
+			
+			neighbors = this.neighbors(selectedFrontier,this.mazeArray);
+			randomNum = rand.nextInt(((neighbors.size()-1)) + 1);
+			selectedNeighbor = neighbors.get(randomNum);
+			
+			
+		}
+		
+		
+		
+	}
+	
+	private void markCell(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier){
+		mazeArray[x][y].setVisited(true);
+		this.add_frontier(x-1, y, mazeArray, frontier);
+		this.add_frontier(x+1, y, mazeArray, frontier);
+		this.add_frontier(x, y-1, mazeArray, frontier);
+		this.add_frontier(x, y+1, mazeArray, frontier);
+		
+	}
+	
+	private void add_frontier(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier){
+		if (x >= 0 && y >= 0 && x < mazeArray.length && y < mazeArray[0].length && mazeArray[x][y].isVisited() == false){
+			frontier.add(mazeArray[x][y]);
+		}
+	}
+	
+	private ArrayList<PrimCell> neighbors(PrimCell cell, PrimCell[][] mazeArray){
+		ArrayList<PrimCell> neighbors = new ArrayList<PrimCell>();
+		int x = cell.getPositionX();
+		int y = cell.getPositionY();
+		
+		if (x > 0 && mazeArray[x-1][y].isVisited() == true){
+			neighbors.add(mazeArray[x-1][y]);
+		}
+		
+		if (x+1 < mazeArray.length && mazeArray[x+1][y].isVisited() == true){
+			neighbors.add(mazeArray[x+1][y]);
+		}
+		
+		if (y > 0 && mazeArray[x][y-1].isVisited() == true){
+			neighbors.add(mazeArray[x][y-1]);
+		}
+		
+		if (y+1 < mazeArray[0].length && mazeArray[x][y+1].isVisited() == true){
+			neighbors.add(mazeArray[x][y+1]);
+		}
+		
+		return neighbors;
+	}
+	
+	private String direction() {
+		return "temp";
+	}
+	
+	private void initializeMazeArray()
+	{
+		this.mazeArray = new PrimCell[this.maze.getWidth()][this.maze.getLength()];
+
+		for(int y = 0; y < this.maze.getLength(); y++)
+		{
+			for(int x = 0; x < this.maze.getWidth(); x++)
+			{
+				this.mazeArray[x][y] = new PrimCell(x, y);
+			}
+		}
 	}
 }
