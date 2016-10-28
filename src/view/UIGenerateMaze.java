@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+import model.MazeManager;
 import model.business.Person;
 import model.factory.MazeFactoryStrategyName;
 import util.exception.PolymazeException;
@@ -143,9 +144,15 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 
 			try
 			{
-				this.myUIView.getUIController().getMazeManager().getMazeFactory()
-						.setStrategy(MazeFactoryStrategyName.valueOf(strategy));
-				this.myUIView.getUIController().getMazeManager().generateMaze(name, length, width, creator);
+				MazeManager mm = this.myUIView.getUIController().getMazeManager();
+
+				mm.getMazeFactory().setStrategy(MazeFactoryStrategyName.valueOf(strategy));
+
+				mm.generateMaze(name, length, width, creator);
+
+				mm.setMazesByCreator(creator);
+
+				mm.setAllMazes();
 
 				this.myTabs.updateTab(0, new UIMyMazes(this.myUIView, this.myTabs));
 			}

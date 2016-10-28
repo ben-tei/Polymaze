@@ -36,6 +36,7 @@ public class MazeSolver
 	 */
 	public static ArrayList<Point> solveMaze(Maze maze) throws PolymazeException
 	{
+		pathSolution.clear();
 		maze.setAllCellToNotVisited();
 		mazeArray = maze.getContent();
 		endX = maze.getEndX();

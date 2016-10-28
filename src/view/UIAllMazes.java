@@ -36,9 +36,7 @@ public class UIAllMazes extends JPanel implements ActionListener
 
 		String[] titles = { "Name", "Creator", "" };
 
-		this.myUIView.getUIController().getMazeManager().setAllMazes();
-
-		this.myMazes = this.myUIView.getUIController().getMazeManager().getMazeList();
+		this.myMazes = this.myUIView.getUIController().getMazeManager().getAllMazesList();
 
 		List<String[]> data = new ArrayList<String[]>();
 
@@ -59,7 +57,7 @@ public class UIAllMazes extends JPanel implements ActionListener
 
 		this.scrollPane = new JScrollPane(this.table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		this.scrollPane.setBounds(50, 50, 700, 250);
+		this.scrollPane.setBounds(30, 50, 720, 400);
 		this.add(this.scrollPane);
 
 		Action see = new AbstractAction()
