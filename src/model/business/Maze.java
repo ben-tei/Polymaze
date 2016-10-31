@@ -12,7 +12,7 @@ import util.exception.model.business.SetWallsFromStringNot4CharException;
  * Business class for a Maze
  * 
  * @author Gaetan FRANCOIS
- * @author Loic DULAS
+ * @author Loic DUMAS
  *
  */
 public class Maze
@@ -30,6 +30,7 @@ public class Maze
 	private int startY;
 	private int endX; // coordinate end
 	private int endY;
+	private String strContent = null;
 	private Cell[][] content = null; // content[x][y]
 	private Date creationDate;
 	private Person creator;
@@ -132,7 +133,7 @@ public class Maze
 	 *            the Maze's ending point coordinate in X
 	 * @param endY
 	 *            the Maze's ending point coordinate in Y
-	 * @param content
+	 * @param strContent
 	 *            representation of the Maze using a String
 	 * @param date
 	 *            the Maze's date of creation
@@ -140,7 +141,7 @@ public class Maze
 	 *            the Person who created the Maze
 	 */
 	public Maze(Integer id, String name, Integer length, Integer width, int startX, int startY, int endX, int endY,
-			String content, Date creationDate, Person creator)
+			String strContent, Date creationDate, Person creator)
 	{
 		super();
 		this.id = id;
@@ -151,14 +152,7 @@ public class Maze
 		this.startY = startY;
 		this.endX = endX;
 		this.endY = endY;
-		try
-		{
-			this.content = this.contentFromString(content, width, length);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		this.strContent = strContent;
 		this.creationDate = creationDate;
 		this.creator = creator;
 	}
@@ -185,8 +179,28 @@ public class Maze
 		return this.width;
 	}
 
+	public String getStrContent() {
+		if (this.strContent == null) {
+			try {
+				this.setStrContent(this.contentToString());
+			}
+			catch (ContentToStringException e) {
+				LOGGER.log(Level.SEVERE, "strContent null and impossible to generate strContent because content is null.", e);
+			}
+		}
+		return this.strContent;
+	}
+
 	public Cell[][] getContent()
 	{
+		if (this.content == null) {
+			try {
+				this.setContent(this.contentFromString(this.getStrContent(), this.getWidth(), this.getLength()));
+			}
+			catch (Exception e) {
+				LOGGER.log(Level.SEVERE, "Content null and impossible to generate content from strContent.", e);
+			}
+		}
 		return this.content;
 	}
 
@@ -241,6 +255,11 @@ public class Maze
 		this.width = width;
 	}
 
+	public void setStrContent(String strContent)
+	{
+		this.strContent = strContent;
+	}
+	
 	public void setContent(Cell[][] content)
 	{
 		this.content = content;

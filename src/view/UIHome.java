@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +33,11 @@ public class UIHome extends JPanel implements ActionListener
 		this.homeLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		this.add(homeLbl);
 
+		this.myUIView.getUIController().getMazeManager()
+				.setMazesByCreator(this.myUIView.getUIController().getUserManager().getCurrentPerson());
+
+		this.myUIView.getUIController().getMazeManager().setAllMazes();
+
 		this.tabs = new MyTabbedPane();
 		this.myLabyrinths = new UIMyMazes(uiView, this.tabs);
 		this.allLabyrinths = new UIAllMazes(uiView, this.tabs);
@@ -40,7 +47,10 @@ public class UIHome extends JPanel implements ActionListener
 
 		this.tabs.add("My Mazes", this.myLabyrinths);
 		this.tabs.add("All Mazes", this.allLabyrinths);
-		this.tabs.setBounds(0, this.homeLbl.getY() + 50, this.myUIView.getWidth(), this.myUIView.getHeight());
+
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		this.tabs.setBounds(0, this.homeLbl.getY() + 50, (int) screenSize.getWidth(), (int) screenSize.getHeight());
 
 		this.add(this.tabs);
 	}

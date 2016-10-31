@@ -68,24 +68,24 @@ public class MazeManagerTest
 		}
 		MazeManager mazeManager = new MazeManager();
 		mazeManager.setMazesByCreator(person);
-		assertEquals(mazeManager.getMazeList().size(), 2);
-		assertEquals(mazeManager.getMazeList().get(0).getName(), "TestMaze");
-		assertEquals(mazeManager.getMazeList().get(1).getName(), "MySecondMaze");
+		assertEquals(mazeManager.getCreatorMazesList().size(), 2);
+		assertEquals(mazeManager.getCreatorMazesList().get(0).getName(), "TestMaze");
+		assertEquals(mazeManager.getCreatorMazesList().get(1).getName(), "MySecondMaze");
 		// Verifying the two Mazes have the same creator
-		assertEquals(mazeManager.getMazeList().get(0).getCreator().getName(),
-				mazeManager.getMazeList().get(1).getCreator().getName());
+		assertEquals(mazeManager.getCreatorMazesList().get(0).getCreator().getName(),
+				mazeManager.getCreatorMazesList().get(1).getCreator().getName());
 	}
 
 	public void getAllMazes()
 	{
 		MazeManager mazeManager = new MazeManager();
 		mazeManager.setAllMazes();
-		assertEquals(mazeManager.getMazeList().size(), 3);
-		assertEquals(mazeManager.getMazeList().get(0).getName(), "TestMaze");
-		assertEquals(mazeManager.getMazeList().get(1).getName(), "MySecondMaze");
-		assertEquals(mazeManager.getMazeList().get(2).getName(), "MuscuMaze");
-		assertEquals(mazeManager.getMazeList().get(0).getCreator().getName(), "test");
-		assertEquals(mazeManager.getMazeList().get(2).getCreator().getName(), "Benji");
+		assertEquals(mazeManager.getAllMazesList().size(), 3);
+		assertEquals(mazeManager.getAllMazesList().get(0).getName(), "TestMaze");
+		assertEquals(mazeManager.getAllMazesList().get(1).getName(), "MySecondMaze");
+		assertEquals(mazeManager.getAllMazesList().get(2).getName(), "MuscuMaze");
+		assertEquals(mazeManager.getAllMazesList().get(0).getCreator().getName(), "test");
+		assertEquals(mazeManager.getAllMazesList().get(2).getCreator().getName(), "Benji");
 	}
 
 }

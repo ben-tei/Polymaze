@@ -22,7 +22,8 @@ public class MazeManager
 	private static final Logger LOGGER = Logger.getLogger(MazeManager.class.getName());
 
 	private Maze maze;
-	private List<Maze> mazeList;
+	private List<Maze> allMazesList;
+	private List<Maze> creatorMazesList;
 	private MazeFactory mazeFactory;
 	// TODO: What to do with the attribute personManager?
 	//private PersonManager personManager; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
@@ -58,7 +59,8 @@ public class MazeManager
 		try
 		{
 			DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
-			mazeList.add(tempMaze);
+			this.allMazesList.add(tempMaze);
+			this.creatorMazesList.add(tempMaze);
 		}
 		catch(PolymazeException e)
 		{
@@ -125,6 +127,30 @@ public class MazeManager
 	 */
 	public boolean deleteMaze(Integer id)
 	{
+		int i = 0;
+		boolean find = false;
+		while(i < this.creatorMazesList.size() && !find)
+		{
+			if(this.creatorMazesList.get(i).getId() == id)
+			{
+				this.creatorMazesList.remove(i);
+				find = true;
+			}
+			i++;
+		}
+
+		i = 0;
+		find = false;
+		while(i < this.allMazesList.size() && !find)
+		{
+			if(this.allMazesList.get(i).getId() == id)
+			{
+				this.allMazesList.remove(i);
+				find = true;
+			}
+			i++;
+		}
+
 		return DataBaseFacade.deleteMaze(id);
 	}
 
@@ -135,7 +161,7 @@ public class MazeManager
 	 */
 	public void setMazesByCreator(Person creator)
 	{
-		this.setMazeList(DataBaseFacade.getMazesByCreator(creator));
+		this.setCreatorMazesList(DataBaseFacade.getMazesByCreator(creator));
 	}
 
 	/**
@@ -143,7 +169,7 @@ public class MazeManager
 	 */
 	public void setAllMazes()
 	{
-		this.setMazeList(DataBaseFacade.getAllMazes());
+		this.setAllMazesList(DataBaseFacade.getAllMazes());
 	}
 
 	// Getters
@@ -152,9 +178,14 @@ public class MazeManager
 		return this.maze;
 	}
 
-	public List<Maze> getMazeList()
+	public List<Maze> getAllMazesList()
 	{
-		return this.mazeList;
+		return this.allMazesList;
+	}
+
+	public List<Maze> getCreatorMazesList()
+	{
+		return this.creatorMazesList;
 	}
 
 	public MazeFactory getMazeFactory()
@@ -172,9 +203,14 @@ public class MazeManager
 		this.maze = maze;
 	}
 
-	public void setMazeList(List<Maze> list)
+	public void setAllMazesList(List<Maze> list)
 	{
-		this.mazeList = list;
+		this.allMazesList = list;
+	}
+
+	public void setCreatorMazesList(List<Maze> list)
+	{
+		this.creatorMazesList = list;
 	}
 
 	public void setMazeFactory(MazeFactory mazeFactory)

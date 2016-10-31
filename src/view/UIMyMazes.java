@@ -39,10 +39,7 @@ public class UIMyMazes extends JPanel implements ActionListener
 
 		String[] titles = { "Name", "", "" };
 
-		this.myUIView.getUIController().getMazeManager()
-				.setMazesByCreator(this.myUIView.getUIController().getUserManager().getCurrentPerson());
-
-		this.myMazes = this.myUIView.getUIController().getMazeManager().getMazeList();
+		this.myMazes = this.myUIView.getUIController().getMazeManager().getCreatorMazesList();
 
 		List<String[]> data = new ArrayList<String[]>();
 
@@ -63,7 +60,7 @@ public class UIMyMazes extends JPanel implements ActionListener
 
 		this.scrollPane = new JScrollPane(this.table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		this.scrollPane.setBounds(50, 50, 700, 250);
+		this.scrollPane.setBounds(30, 50, 720, 300);
 		this.add(this.scrollPane);
 
 		this.generateBtn = new JButton("Generate new maze");
@@ -84,6 +81,7 @@ public class UIMyMazes extends JPanel implements ActionListener
 				int modelRow = Integer.valueOf(e.getActionCommand());
 				((DefaultTableModel) table.getModel()).removeRow(modelRow);
 				myUIView.getUIController().getMazeManager().deleteMaze(myMazes.get(modelRow).getId());
+				myTabs.updateTab(1, new UIAllMazes(myUIView, myTabs));
 			}
 		};
 
