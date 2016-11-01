@@ -18,12 +18,19 @@ import model.factory.MazeFactoryStrategyName;
  */
 public class BacktrackStrategy extends MazeFactoryStrategy
 {
-	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Backtrack;
 
 	// attributes
 	private Maze maze;
 	private BacktrackCell[][] mazeArray; // BacktrackCell[x][y] used locally to generate the maze.
 
+	/**
+	 * Default constructor
+	 */
+	public BacktrackStrategy(){
+		super();
+		NAME = MazeFactoryStrategyName.Backtrack;
+	}
+	
 	/**
 	 * Method to create a Maze using Backtrack method.
 	 * 

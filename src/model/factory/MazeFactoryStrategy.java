@@ -5,8 +5,15 @@ import model.business.Person;
 
 public abstract class MazeFactoryStrategy
 {
-	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Default;
+	protected MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Default;
 
+	/**
+	 * Method to get the name of the strategy, different for each concrete strategies
+	 */
+	public MazeFactoryStrategyName getName(){
+		return NAME;
+	}
+	
 	/**
 	 * Method to create a Maze. Implementation is in child classes.
 	 * 

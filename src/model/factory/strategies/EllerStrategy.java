@@ -16,8 +16,15 @@ import model.factory.MazeFactoryStrategyName;
 
 public class EllerStrategy extends MazeFactoryStrategy
 {
-	public MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller;
 	private EllerCell[][] mazeArray;
+	
+	/**
+	 * Default constructor
+	 */
+	public EllerStrategy(){
+		super();
+		NAME = MazeFactoryStrategyName.Eller;
+	}
 
 	/**
 	 * Method to create a Maze using Eller's algorithm.

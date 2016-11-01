@@ -34,7 +34,7 @@ public class MazeFactory
 
 	public MazeFactoryStrategyName getStrategyName()
 	{
-		return currentStrategy.NAME;
+		return currentStrategy.getName();
 	}
 
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)

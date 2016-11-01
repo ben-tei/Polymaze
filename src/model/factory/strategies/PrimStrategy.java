@@ -14,9 +14,16 @@ import model.factory.MazeFactoryStrategyName;
 
 public class PrimStrategy extends MazeFactoryStrategy
 {
-	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Prim;
 	private Maze maze;
 	private PrimCell[][] mazeArray;
+	
+	/**
+	 * Default constructor
+	 */
+	public PrimStrategy(){
+		super();
+		NAME = MazeFactoryStrategyName.Prim;
+	}
 
 	/**
 	 * Method to create a Maze using Prim's algorithm.
