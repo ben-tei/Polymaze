@@ -16,24 +16,8 @@ import model.factory.MazeFactoryStrategyName;
 
 public class EllerStrategy extends MazeFactoryStrategy
 {
-	MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller;
-	private Maze maze;
+	public MazeFactoryStrategyName NAME = MazeFactoryStrategyName.Eller;
 	private EllerCell[][] mazeArray;
-
-	private void initMazeContent(Integer length, Integer width)
-	{
-		mazeArray = new EllerCell[width][length];
-		Integer setID = 0;
-		for(int y = 0; y < length; ++y)
-		{
-			for(int x = 0; x < width; ++x)
-			{
-				mazeArray[x][y] = new EllerCell(x, y, setID);
-				mazeArray[x][y].setSetID(setID);
-				setID++;
-			}
-		}
-	}
 
 	/**
 	 * Method to create a Maze using Eller's algorithm.
@@ -51,27 +35,25 @@ public class EllerStrategy extends MazeFactoryStrategy
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-		maze = new Maze(name, length, width, timeNow, creator);
-		initMazeContent(length, width);
+		Maze maze = new Maze(name, length, width, timeNow, creator);
+		
+		initMazeArrayContent(length, width);
 		for(int x = 0; x < width; ++x)
 		{
-			Map<Integer, ArrayList<EllerCell>> setToCell = new HashMap<Integer, ArrayList<EllerCell>>(); // create the set
+			Map<Integer, ArrayList<EllerCell>> setsOfCells = new HashMap<Integer, ArrayList<EllerCell>>(); // create the sets map
 			if(x < width - 1)
 			{
-				mazfiyColumn(mazeArray[x], setToCell);
-				joinCellsHorizontally(mazeArray[x], mazeArray[x + 1], setToCell);
+				randomizeSetsOfCellsInColumn(mazeArray[x], setsOfCells);
+				randomizeAdjacentColumnCellsLinks(mazeArray[x], mazeArray[x + 1], setsOfCells);
 			}
 			else
 			{
-				joinDisjointSetsCells(mazeArray[x]);
+				joinDisjointSetsInColumn(mazeArray[x]);
 			}
 		}
 		maze.setContent(mazeArray);
 
-		//drawMaze();
-
 		return maze;
-
 	}
 
 	/**
@@ -97,42 +79,63 @@ public class EllerStrategy extends MazeFactoryStrategy
 	@Override
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
+	{	
+		Maze maze = generateMaze(name, length, width, creator);
+		maze.setStartX(startX);
+		maze.setStartY(startY);
+		maze.setEndX(endX);
+		maze.setEndY(endY);
+		
+		return maze;
+	}
+	
+	private void initMazeArrayContent(Integer length, Integer width)
 	{
-		// TODO EllerStrategy Auto-generated method stub
-		return null;
+		mazeArray = new EllerCell[width][length];
+		Integer setID = 0;
+		for(int y = 0; y < length; ++y)
+		{
+			for(int x = 0; x < width; ++x)
+			{
+				mazeArray[x][y] = new EllerCell(x, y, setID);
+				mazeArray[x][y].setSetID(setID);
+				setID++;
+			}
+		}
 	}
 
-	private void mazfiyColumn(EllerCell[] column, Map<Integer, ArrayList<EllerCell>> setToCell)
+	private void randomizeSetsOfCellsInColumn(EllerCell[] column, Map<Integer, ArrayList<EllerCell>> setsOfCells)
 	{
-		int startIndex = -2;
-		ArrayList<Integer> cellsToJoinSets = new ArrayList<Integer>();
+		int startIndex;
+		ArrayList<Integer> cellsSetsIDBeforeJoin = new ArrayList<Integer>();
 		for(int i = 0; i < column.length; ++i)
 		{
 			startIndex = i;
-			cellsToJoinSets.add(column[i].getSetID());
+			cellsSetsIDBeforeJoin.add(column[i].getSetID());
 			while(shouldMakeVerticalOpening() && i < column.length - 1)
 			{
 				i++;
-				if(getSmallestNumber(cellsToJoinSets) == column[i].getSetID())
+				if(getSmallestNumber(cellsSetsIDBeforeJoin) == column[i].getSetID())
 				{
 					i--;
 					break;
 				}
-				cellsToJoinSets.add(column[i].getSetID());
+				cellsSetsIDBeforeJoin.add(column[i].getSetID());
 			}
-			joinCellsVertically(startIndex, i, column, getSmallestNumber(cellsToJoinSets), setToCell);
-			cellsToJoinSets.clear();
+			// join the cells with smallest set ID.
+			createCellsSetInColumn(startIndex, i, column, getSmallestNumber(cellsSetsIDBeforeJoin), setsOfCells);
+			cellsSetsIDBeforeJoin.clear();
 		}
 	}
 
-	private void joinCellsVertically(int startIndex, int endIndex, EllerCell[] column, Integer setNumber,
-			Map<Integer, ArrayList<EllerCell>> setToCell)
+	private void createCellsSetInColumn(int startIndex, int endIndex, EllerCell[] column, Integer setNumber,
+			Map<Integer, ArrayList<EllerCell>> setsToCells)
 	{
-		if(!setToCell.containsKey(setNumber))
+		if(!setsToCells.containsKey(setNumber))
 		{
-			setToCell.put(setNumber, new ArrayList<EllerCell>());
+			setsToCells.put(setNumber, new ArrayList<EllerCell>());
 		}
-		ArrayList<EllerCell> currentSet = setToCell.get(setNumber);
+		ArrayList<EllerCell> currentSet = setsToCells.get(setNumber);
 		if(startIndex < endIndex)
 		{
 			for(int i = startIndex; i < endIndex; ++i)
@@ -154,10 +157,10 @@ public class EllerStrategy extends MazeFactoryStrategy
 		}
 	}
 
-	private void joinCellsHorizontally(EllerCell[] column1, EllerCell[] column2,
-			Map<Integer, ArrayList<EllerCell>> setToCell)
+	private void randomizeAdjacentColumnCellsLinks(EllerCell[] column1, EllerCell[] column2,
+			Map<Integer, ArrayList<EllerCell>> setsToCells)
 	{
-		Iterator<Entry<Integer, ArrayList<EllerCell>>> it = setToCell.entrySet().iterator();
+		Iterator<Entry<Integer, ArrayList<EllerCell>>> it = setsToCells.entrySet().iterator();
 		if(column1[0].getPositionX() == 1)
 		{
 			System.out.println("");
@@ -181,7 +184,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 		}
 	}
 
-	private void joinDisjointSetsCells(EllerCell[] column)
+	private void joinDisjointSetsInColumn(EllerCell[] column)
 	{
 		for(int i = 0; i < column.length; ++i)
 		{
@@ -203,8 +206,8 @@ public class EllerStrategy extends MazeFactoryStrategy
 
 	private Boolean shouldMakeVerticalOpening()
 	{
-		Double tmp = Math.random();
-		if(tmp < 0.2)
+		Double randomDoubleValueBetweenZeroAndOne = Math.random();
+		if(randomDoubleValueBetweenZeroAndOne < 0.2)
 		{
 			return false;
 		}
@@ -216,8 +219,8 @@ public class EllerStrategy extends MazeFactoryStrategy
 
 	private Boolean shouldMakeHorizontalOpening()
 	{
-		Double tmp = Math.random();
-		if(tmp < 0.8)
+		Double randomDoubleValueBetweenZeroAndOne = Math.random();
+		if(randomDoubleValueBetweenZeroAndOne < 0.8)
 		{
 			return false;
 		}
@@ -227,6 +230,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 		}
 	}
 
+	// utility method to get the smallest Integer in an Integer list
 	private int getSmallestNumber(ArrayList<Integer> list)
 	{
 		Integer smallest = Integer.MAX_VALUE;
@@ -240,6 +244,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 		return smallest;
 	}
 
+	/*
 	public void drawMaze()
 	{
 		int outputHeight = 2 * this.maze.getLength() + 1;
@@ -301,4 +306,5 @@ public class EllerStrategy extends MazeFactoryStrategy
 		}
 
 	}
+	*/
 }
