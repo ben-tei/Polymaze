@@ -52,7 +52,7 @@ public class EllerStrategyTest
 	public void testEllerStrategy3()
 	{
 		EllerStrategy eller = new EllerStrategy();
-		Maze mazeToSolve = eller.generateMaze("Test Eller3", 500, 500, new Person(999, "rb"));
+		Maze mazeToSolve = eller.generateMaze("Test Eller3", 400, 400, new Person(999, "rb"));
 		try
 		{
 			MazeSolver.solveMaze(mazeToSolve);
