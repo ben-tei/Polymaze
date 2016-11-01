@@ -97,8 +97,34 @@ public class UITheMaze extends JPanel implements ActionListener
 				jl.setBounds(this.startX + j * img.getWidth(), this.startY + i * img.getHeight(), img.getWidth(),
 						img.getHeight());
 				this.add(jl);
-				this.setComponentZOrder(jl, 0);
+
 			}
+		}
+
+		File file = new File("sprites/" + this.px + "px/green.png");
+		BufferedImage img;
+
+		try
+		{
+			img = ImageIO.read(file);
+
+			JLabel start = new JLabel(new ImageIcon(img));
+			start.setBounds(this.startX + this.myMaze.getStartX() * img.getWidth(),
+					this.startY + this.myMaze.getStartY() * img.getHeight(), img.getWidth(), img.getHeight());
+			this.add(start);
+			this.setComponentZOrder(start, 1);
+
+			JLabel end = new JLabel(new ImageIcon(img));
+			end.setBounds(this.startX + this.myMaze.getEndX() * img.getWidth(),
+					this.startY + this.myMaze.getEndY() * img.getHeight(), img.getWidth(), img.getHeight());
+			this.add(end);
+			this.setComponentZOrder(end, 1);
+
+		}
+		catch(IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		this.resolveBtn = new JButton("Resolve");
@@ -128,27 +154,19 @@ public class UITheMaze extends JPanel implements ActionListener
 			{
 				ArrayList<Point> sol = MazeSolver.solveMaze(this.myMaze);
 
-				int i = 0;
+				int i = 1;
 
-				while(i < sol.size())
+				File file = new File("sprites/" + this.px + "px/red.png");
+				BufferedImage img = ImageIO.read(file);
+
+				while(i < sol.size() - 1)
 				{
-					File file = new File("sprites/" + this.px + "px/sol.png");
-					BufferedImage img;
-					try
-					{
-						img = ImageIO.read(file);
-						JLabel jl = new JLabel(new ImageIcon(img));
-						jl.setBounds(this.startX + (int) sol.get(i).getX() * img.getWidth(),
-								this.startY + (int) sol.get(i).getY() * img.getHeight(), img.getWidth(),
-								img.getHeight());
-						this.add(jl);
-						this.setComponentZOrder(jl, 1);
-					}
-					catch(IOException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+
+					JLabel jl = new JLabel(new ImageIcon(img));
+					jl.setBounds(this.startX + (int) sol.get(i).getX() * img.getWidth(),
+							this.startY + (int) sol.get(i).getY() * img.getHeight(), img.getWidth(), img.getHeight());
+					this.add(jl);
+					this.setComponentZOrder(jl, 1);
 
 					i++;
 				}
@@ -157,7 +175,7 @@ public class UITheMaze extends JPanel implements ActionListener
 				this.repaint();
 
 			}
-			catch(PolymazeException e)
+			catch(PolymazeException | IOException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
