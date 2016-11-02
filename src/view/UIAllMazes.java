@@ -45,7 +45,17 @@ public class UIAllMazes extends JPanel implements ActionListener
 			data.add(new String[] { myMazes.get(i).getName(), myMazes.get(i).getCreator().getName(), "See" });
 		}
 
-		TableModel model = new DefaultTableModel(data.toArray(new Object[][] {}), titles);
+		TableModel model = new DefaultTableModel(data.toArray(new Object[][] {}), titles)
+		{
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column)
+			{
+				return column > 1;
+			}
+		};
 
 		this.table = new JTable(model);
 		this.table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
