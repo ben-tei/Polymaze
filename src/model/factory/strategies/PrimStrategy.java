@@ -7,7 +7,6 @@ import java.util.Random;
 
 import model.business.Maze;
 import model.business.Person;
-import model.business.cell.BacktrackCell;
 import model.business.cell.PrimCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
@@ -44,10 +43,9 @@ public class PrimStrategy extends MazeFactoryStrategy
 		this.maze = new Maze(name, length, width, timeNow, creator);
 		this.initializeMazeArray();
 		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
-		
-
+		this.maze.setContent(this.mazeArray);
 		// TODO
-		return null;
+		return this.maze;
 	}
 
 	@Override
@@ -79,11 +77,10 @@ public class PrimStrategy extends MazeFactoryStrategy
 			randomNum = rand.nextInt(((neighbors.size()-1)) + 1);
 			selectedNeighbor = neighbors.get(randomNum);
 			
+			this.direction(selectedFrontier, selectedNeighbor);
 			
+			this.markCell(selectedFrontier.getPositionX(), selectedFrontier.getPositionY(), mazeArray, frontier);
 		}
-		
-		
-		
 	}
 	
 	private void markCell(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier){
@@ -92,7 +89,6 @@ public class PrimStrategy extends MazeFactoryStrategy
 		this.add_frontier(x+1, y, mazeArray, frontier);
 		this.add_frontier(x, y-1, mazeArray, frontier);
 		this.add_frontier(x, y+1, mazeArray, frontier);
-		
 	}
 	
 	private void add_frontier(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier){
@@ -125,8 +121,24 @@ public class PrimStrategy extends MazeFactoryStrategy
 		return neighbors;
 	}
 	
-	private String direction() {
-		return "temp";
+	private void direction(PrimCell selectedFrontier, PrimCell selectedNeighbor) {
+		if (selectedFrontier.getPositionX() < selectedNeighbor.getPositionX()){
+			//Going East
+			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallEast(false);
+			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallWest(false);
+		}else if (selectedFrontier.getPositionX() > selectedNeighbor.getPositionX()){
+			//Going West
+			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallWest(false);
+			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallEast(false);
+		}else if (selectedFrontier.getPositionY() < selectedNeighbor.getPositionY()){
+			//Going South
+			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallSouth(false);
+			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallNorth(false);
+		}else if (selectedFrontier.getPositionY() > selectedNeighbor.getPositionY()){
+			//Going North
+			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallNorth(false);
+			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallSouth(false);
+		}
 	}
 	
 	private void initializeMazeArray()
