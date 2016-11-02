@@ -65,6 +65,7 @@ public final class DataBaseFacade
 		catch(PolymazeException e)
 		{
 			LOGGER.log(Level.SEVERE, "createMaze failed.", e);
+			throw e;
 		}
 		return myMaze;
 	}

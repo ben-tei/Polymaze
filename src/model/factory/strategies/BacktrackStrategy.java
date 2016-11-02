@@ -26,11 +26,12 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	/**
 	 * Default constructor
 	 */
-	public BacktrackStrategy(){
+	public BacktrackStrategy()
+	{
 		super();
 		NAME = MazeFactoryStrategyName.Backtrack;
 	}
-	
+
 	/**
 	 * Method to create a Maze using Backtrack method.
 	 * 

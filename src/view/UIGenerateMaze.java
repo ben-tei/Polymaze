@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -142,24 +143,38 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 			int width = (int) this.widthSpinner.getValue();
 			String strategy = this.comboBox.getSelectedItem().toString().replaceAll("'s Algorithm", "");
 
-			try
+			if(!name.isEmpty() && length > 2 && width > 2)
 			{
-				MazeManager mm = this.myUIView.getUIController().getMazeManager();
 
-				mm.getMazeFactory().setStrategy(MazeFactoryStrategyName.valueOf(strategy));
+				try
+				{
+					MazeManager mm = this.myUIView.getUIController().getMazeManager();
 
-				mm.generateMaze(name, length, width, creator);
+					mm.getMazeFactory().setStrategy(MazeFactoryStrategyName.valueOf(strategy));
 
-				mm.setMazesByCreator(creator);
+					mm.generateMaze(name, length, width, creator);
 
-				mm.setAllMazes();
+					mm.setMazesByCreator(creator);
 
-				this.myTabs.updateTab(0, new UIMyMazes(this.myUIView, this.myTabs));
+					mm.setAllMazes();
+
+					this.myTabs.updateTab(0, new UIMyMazes(this.myUIView, this.myTabs));
+
+					this.myTabs.updateTab(1, new UIAllMazes(this.myUIView, this.myTabs));
+				}
+				catch(PolymazeException e1)
+				{
+					// TODO Auto-generated catch block
+
+					JOptionPane.showMessageDialog(null, "The Maze \"" + name + "\" already exists !", "Failure",
+							JOptionPane.ERROR_MESSAGE);
+
+				}
 			}
-			catch(PolymazeException e1)
+			else
 			{
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Some fields are incorrect !", "Failure",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(cmd.equals("back"))

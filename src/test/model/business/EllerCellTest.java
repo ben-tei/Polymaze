@@ -1,13 +1,13 @@
 package test.model.business;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import model.business.cell.EllerCell;
 
-public class EllerCellTest {
+public class EllerCellTest
+{
 	@Test
 	public void constructorTest_00()
 	{

@@ -65,6 +65,7 @@ public class MazeManager
 		catch(PolymazeException e)
 		{
 			LOGGER.log(Level.SEVERE, "generateMaze failed.", e);
+			throw e;
 		}
 	}
 

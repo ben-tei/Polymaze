@@ -17,11 +17,12 @@ import model.factory.MazeFactoryStrategyName;
 public class EllerStrategy extends MazeFactoryStrategy
 {
 	private EllerCell[][] mazeArray;
-	
+
 	/**
 	 * Default constructor
 	 */
-	public EllerStrategy(){
+	public EllerStrategy()
+	{
 		super();
 		NAME = MazeFactoryStrategyName.Eller;
 	}
@@ -43,7 +44,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 	{
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
 		Maze maze = new Maze(name, length, width, timeNow, creator);
-		
+
 		initMazeArrayContent(length, width);
 		for(int x = 0; x < width; ++x)
 		{
@@ -86,16 +87,16 @@ public class EllerStrategy extends MazeFactoryStrategy
 	@Override
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
-	{	
+	{
 		Maze maze = generateMaze(name, length, width, creator);
 		maze.setStartX(startX);
 		maze.setStartY(startY);
 		maze.setEndX(endX);
 		maze.setEndY(endY);
-		
+
 		return maze;
 	}
-	
+
 	private void initMazeArrayContent(Integer length, Integer width)
 	{
 		mazeArray = new EllerCell[width][length];
@@ -252,66 +253,33 @@ public class EllerStrategy extends MazeFactoryStrategy
 	}
 
 	/*
-	public void drawMaze()
-	{
-		int outputHeight = 2 * this.maze.getLength() + 1;
-		int outputWidth = 2 * this.maze.getWidth() + 1;
-
-		char[][] outputMaze = new char[outputWidth][outputHeight];
-
-		for(int y = 0; y < outputHeight; y++)
-		{
-			for(int x = 0; x < outputWidth; x++)
-			{
-
-				if(y == 0 || y == outputHeight - 1 || x == 0 || x == outputWidth - 1)
-				{
-					// border wall
-					outputMaze[x][y] = 'M';
-				}
-				else if(y % 2 == 0 && x % 2 == 0)
-				{
-					// intern wall
-					outputMaze[x][y] = 'M';
-				}
-
-				if(y % 2 == 1 && x % 2 == 1)
-				{
-					outputMaze[x][y] = ' ';
-					if(this.mazeArray[(x - 1) / 2][(y - 1) / 2].isWallEast())
-					{
-						outputMaze[x + 1][y] = 'M';
-					}
-					else
-					{
-						outputMaze[x + 1][y] = ' ';
-					}
-
-					if(this.mazeArray[(x - 1) / 2][(y - 1) / 2].isWallSouth())
-					{
-						outputMaze[x][y + 1] = 'M';
-					}
-					else
-					{
-						outputMaze[x][y + 1] = ' ';
-					}
-				}
-			}
-		}
-
-		outputMaze[this.maze.getStartX() * 2 + 1][this.maze.getStartY() * 2 + 1] = 'S';
-		outputMaze[this.maze.getEndX() * 2 + 1][this.maze.getEndY() * 2 + 1] = 'E';
-
-		// now we can print it.
-		for(int y = 0; y < outputHeight; y++)
-		{
-			for(int x = 0; x < outputWidth; x++)
-			{
-				System.out.print(outputMaze[x][y]);
-			}
-			System.out.println("");
-		}
-
-	}
-	*/
+	 * public void drawMaze() { int outputHeight = 2 * this.maze.getLength() +
+	 * 1; int outputWidth = 2 * this.maze.getWidth() + 1;
+	 * 
+	 * char[][] outputMaze = new char[outputWidth][outputHeight];
+	 * 
+	 * for(int y = 0; y < outputHeight; y++) { for(int x = 0; x < outputWidth;
+	 * x++) {
+	 * 
+	 * if(y == 0 || y == outputHeight - 1 || x == 0 || x == outputWidth - 1) {
+	 * // border wall outputMaze[x][y] = 'M'; } else if(y % 2 == 0 && x % 2 ==
+	 * 0) { // intern wall outputMaze[x][y] = 'M'; }
+	 * 
+	 * if(y % 2 == 1 && x % 2 == 1) { outputMaze[x][y] = ' ';
+	 * if(this.mazeArray[(x - 1) / 2][(y - 1) / 2].isWallEast()) { outputMaze[x
+	 * + 1][y] = 'M'; } else { outputMaze[x + 1][y] = ' '; }
+	 * 
+	 * if(this.mazeArray[(x - 1) / 2][(y - 1) / 2].isWallSouth()) {
+	 * outputMaze[x][y + 1] = 'M'; } else { outputMaze[x][y + 1] = ' '; } } } }
+	 * 
+	 * outputMaze[this.maze.getStartX() * 2 + 1][this.maze.getStartY() * 2 + 1]
+	 * = 'S'; outputMaze[this.maze.getEndX() * 2 + 1][this.maze.getEndY() * 2 +
+	 * 1] = 'E';
+	 * 
+	 * // now we can print it. for(int y = 0; y < outputHeight; y++) { for(int x
+	 * = 0; x < outputWidth; x++) { System.out.print(outputMaze[x][y]); }
+	 * System.out.println(""); }
+	 * 
+	 * }
+	 */
 }
