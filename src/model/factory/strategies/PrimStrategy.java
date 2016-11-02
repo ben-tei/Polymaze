@@ -46,6 +46,8 @@ public class PrimStrategy extends MazeFactoryStrategy
 		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
 
 		this.maze.setContent(this.mazeArray);
+		
+		return this.maze;
 	}
 
 	@Override
@@ -152,7 +154,8 @@ public class PrimStrategy extends MazeFactoryStrategy
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallNorth(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallSouth(false);
 		}
-
+	}
+	
 	private void initializeMazeArray()
 	{
 		this.mazeArray = new PrimCell[this.maze.getWidth()][this.maze.getLength()];
