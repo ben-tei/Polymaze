@@ -10,10 +10,12 @@ public class KruskalStrategy extends MazeFactoryStrategy
 	/**
 	 * Default constructor
 	 */
-	public KruskalStrategy(){
+	public KruskalStrategy()
+	{
 		super();
 		NAME = MazeFactoryStrategyName.Kruskal;
 	}
+
 	/**
 	 * Method to create a Maze using Kruskal's algorithm.
 	 * 

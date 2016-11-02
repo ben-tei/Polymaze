@@ -179,13 +179,18 @@ public class Maze
 		return this.width;
 	}
 
-	public String getStrContent() {
-		if (this.strContent == null) {
-			try {
+	public String getStrContent()
+	{
+		if(this.strContent == null)
+		{
+			try
+			{
 				this.setStrContent(this.contentToString());
 			}
-			catch (ContentToStringException e) {
-				LOGGER.log(Level.SEVERE, "strContent null and impossible to generate strContent because content is null.", e);
+			catch(ContentToStringException e)
+			{
+				LOGGER.log(Level.SEVERE,
+						"strContent null and impossible to generate strContent because content is null.", e);
 			}
 		}
 		return this.strContent;
@@ -193,11 +198,14 @@ public class Maze
 
 	public Cell[][] getContent()
 	{
-		if (this.content == null) {
-			try {
+		if(this.content == null)
+		{
+			try
+			{
 				this.setContent(this.contentFromString(this.getStrContent(), this.getWidth(), this.getLength()));
 			}
-			catch (Exception e) {
+			catch(Exception e)
+			{
 				LOGGER.log(Level.SEVERE, "Content null and impossible to generate content from strContent.", e);
 			}
 		}
@@ -259,7 +267,7 @@ public class Maze
 	{
 		this.strContent = strContent;
 	}
-	
+
 	public void setContent(Cell[][] content)
 	{
 		this.content = content;

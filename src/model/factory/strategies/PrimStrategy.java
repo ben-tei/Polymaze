@@ -15,11 +15,12 @@ public class PrimStrategy extends MazeFactoryStrategy
 {
 	private Maze maze;
 	private PrimCell[][] mazeArray;
-	
+
 	/**
 	 * Default constructor
 	 */
-	public PrimStrategy(){
+	public PrimStrategy()
+	{
 		super();
 		NAME = MazeFactoryStrategyName.Prim;
 	}
@@ -39,13 +40,12 @@ public class PrimStrategy extends MazeFactoryStrategy
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-		
+
 		this.maze = new Maze(name, length, width, timeNow, creator);
 		this.initializeMazeArray();
 		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
+
 		this.maze.setContent(this.mazeArray);
-		// TODO
-		return this.maze;
 	}
 
 	@Override
@@ -55,72 +55,85 @@ public class PrimStrategy extends MazeFactoryStrategy
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	private void launchPrim(Integer StartX, Integer StartY){
-		
+
+	private void launchPrim(Integer StartX, Integer StartY)
+	{
+
 		ArrayList<PrimCell> frontier = new ArrayList<PrimCell>();
 		ArrayList<PrimCell> neighbors = new ArrayList<PrimCell>();
-		
+
 		Random rand = new Random();
 		PrimCell selectedFrontier;
 		PrimCell selectedNeighbor;
-		
-		this.markCell(StartX,StartY,this.mazeArray,frontier);
-		
-		while (!frontier.isEmpty()){
-			int randomNum = rand.nextInt(((frontier.size()-1)) + 1);
-			
+
+		this.markCell(StartX, StartY, this.mazeArray, frontier);
+
+		while(!frontier.isEmpty())
+		{
+			int randomNum = rand.nextInt(((frontier.size() - 1)) + 1);
+
 			selectedFrontier = frontier.get(randomNum);
 			frontier.remove(randomNum);
-			
-			neighbors = this.neighbors(selectedFrontier,this.mazeArray);
-			randomNum = rand.nextInt(((neighbors.size()-1)) + 1);
+
+			neighbors = this.neighbors(selectedFrontier, this.mazeArray);
+			randomNum = rand.nextInt(((neighbors.size() - 1)) + 1);
 			selectedNeighbor = neighbors.get(randomNum);
-			
+
 			this.direction(selectedFrontier, selectedNeighbor);
 			
 			this.markCell(selectedFrontier.getPositionX(), selectedFrontier.getPositionY(), mazeArray, frontier);
 		}
+
 	}
-	
-	private void markCell(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier){
+
+	private void markCell(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier)
+	{
 		mazeArray[x][y].setVisited(true);
-		this.add_frontier(x-1, y, mazeArray, frontier);
-		this.add_frontier(x+1, y, mazeArray, frontier);
-		this.add_frontier(x, y-1, mazeArray, frontier);
-		this.add_frontier(x, y+1, mazeArray, frontier);
+
+		this.add_frontier(x - 1, y, mazeArray, frontier);
+		this.add_frontier(x + 1, y, mazeArray, frontier);
+		this.add_frontier(x, y - 1, mazeArray, frontier);
+		this.add_frontier(x, y + 1, mazeArray, frontier);
+
 	}
-	
-	private void add_frontier(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier){
-		if (x >= 0 && y >= 0 && x < mazeArray.length && y < mazeArray[0].length && mazeArray[x][y].isVisited() == false){
+
+	private void add_frontier(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier)
+	{
+		if(x >= 0 && y >= 0 && x < mazeArray.length && y < mazeArray[0].length && mazeArray[x][y].isVisited() == false)
+		{
 			frontier.add(mazeArray[x][y]);
 		}
 	}
-	
-	private ArrayList<PrimCell> neighbors(PrimCell cell, PrimCell[][] mazeArray){
+
+	private ArrayList<PrimCell> neighbors(PrimCell cell, PrimCell[][] mazeArray)
+	{
 		ArrayList<PrimCell> neighbors = new ArrayList<PrimCell>();
 		int x = cell.getPositionX();
 		int y = cell.getPositionY();
-		
-		if (x > 0 && mazeArray[x-1][y].isVisited() == true){
-			neighbors.add(mazeArray[x-1][y]);
+
+		if(x > 0 && mazeArray[x - 1][y].isVisited() == true)
+		{
+			neighbors.add(mazeArray[x - 1][y]);
 		}
-		
-		if (x+1 < mazeArray.length && mazeArray[x+1][y].isVisited() == true){
-			neighbors.add(mazeArray[x+1][y]);
+
+		if(x + 1 < mazeArray.length && mazeArray[x + 1][y].isVisited() == true)
+		{
+			neighbors.add(mazeArray[x + 1][y]);
 		}
-		
-		if (y > 0 && mazeArray[x][y-1].isVisited() == true){
-			neighbors.add(mazeArray[x][y-1]);
+
+		if(y > 0 && mazeArray[x][y - 1].isVisited() == true)
+		{
+			neighbors.add(mazeArray[x][y - 1]);
 		}
-		
-		if (y+1 < mazeArray[0].length && mazeArray[x][y+1].isVisited() == true){
-			neighbors.add(mazeArray[x][y+1]);
+
+		if(y + 1 < mazeArray[0].length && mazeArray[x][y + 1].isVisited() == true)
+		{
+			neighbors.add(mazeArray[x][y + 1]);
 		}
-		
+
 		return neighbors;
 	}
-	
+
 	private void direction(PrimCell selectedFrontier, PrimCell selectedNeighbor) {
 		if (selectedFrontier.getPositionX() < selectedNeighbor.getPositionX()){
 			//Going East
@@ -139,8 +152,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallNorth(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallSouth(false);
 		}
-	}
-	
+
 	private void initializeMazeArray()
 	{
 		this.mazeArray = new PrimCell[this.maze.getWidth()][this.maze.getLength()];
