@@ -91,8 +91,8 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 
 		// Spinner - Width and Height
 
-		SpinnerModel spinnerModel = new SpinnerNumberModel(3, 3, 500, 1);
-		SpinnerModel spinnerModel2 = new SpinnerNumberModel(3, 3, 500, 1);
+		SpinnerModel spinnerModel = new SpinnerNumberModel(3, 3, 100, 1);
+		SpinnerModel spinnerModel2 = new SpinnerNumberModel(3, 3, 100, 1);
 		// I add a new spinner to avoid edition of both fields.
 
 		this.lengthSpinner = new JSpinner(spinnerModel);
