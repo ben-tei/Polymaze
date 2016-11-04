@@ -194,9 +194,19 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 							int endX = this.parseInteger(endCoords[0]);
 							int endY = this.parseInteger(endCoords[1]);
 
-							mm.generateMazeWithStartEnd(name, length, width, startX, startY, endX, endY, creator);
+							if(startX >= 0 && startX < width && startY >= 0 && startY < length && endX >= 0
+									&& endX < width && endY >= 0 && endY < length)
+							{
+								mm.generateMazeWithStartEnd(name, length, width, startX, startY, endX, endY, creator);
 
-							this.redirect();
+								this.redirect();
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "Coordinates fields are incorrect !", "Failure",
+										JOptionPane.ERROR_MESSAGE);
+							}
+
 						}
 						else
 						{
