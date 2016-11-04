@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 
 import org.junit.Test;
 
-import model.business.Cell;
 import model.business.Maze;
 import model.business.MazeSolver;
 import model.business.Person;

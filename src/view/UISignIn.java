@@ -141,7 +141,7 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 					this.add(loadingIconLbl);
 
 					JLabel loadingLbl = new JLabel("Loading...");
-					loadingLbl.setBounds((this.myUIView.getWidth() - loadingIcon.getIconWidth()) / 2,
+					loadingLbl.setBounds((this.myUIView.getWidth() - loadingIcon.getIconWidth()) / 2 + 20,
 							this.myUIView.getHeight() - 180, 100, 25);
 					loadingLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 					this.add(loadingLbl);
