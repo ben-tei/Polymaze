@@ -1,17 +1,21 @@
 package view;
 
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 
 public class UISignIn extends JPanel implements KeyListener, ActionListener
 {
@@ -121,7 +125,35 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 					JOptionPane.showMessageDialog(null, "Welcome on Polymaze, " + this.loginTextField.getText() + " !",
 							"Success", JOptionPane.INFORMATION_MESSAGE);
 
-					this.myUIView.updatePanel(new UIHome(this.myUIView));
+					Component[] com = this.getComponents();
+
+					for(int i = 0; i < com.length; i++)
+					{
+						com[i].setEnabled(false);
+					}
+
+					ImageIcon loading = new ImageIcon(new ImageIcon("sprites/loading.gif").getImage()
+							.getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+
+					JLabel loadingLbl = new JLabel(loading);
+					loadingLbl.setBounds((this.myUIView.getWidth() - loading.getIconWidth()) / 2,
+							this.myUIView.getHeight() - 300, loading.getIconWidth(), loading.getIconWidth());
+					this.add(loadingLbl);
+
+					this.revalidate();
+					this.repaint();
+
+					SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>()
+					{
+						@Override
+						protected Boolean doInBackground() throws Exception
+						{
+							myUIView.updatePanel(new UIHome(myUIView));
+							return true;
+						}
+
+					};
+					worker.execute();
 
 				}
 				else

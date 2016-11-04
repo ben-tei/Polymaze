@@ -6,7 +6,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.MazeManager;
@@ -24,6 +26,8 @@ public class UIHome extends JPanel implements ActionListener
 	private UIMyMazes myLabyrinths;
 
 	private UIAllMazes allLabyrinths;
+
+	private JButton signOutBtn;
 
 	public UIHome(UIView uiView)
 	{
@@ -56,12 +60,32 @@ public class UIHome extends JPanel implements ActionListener
 		this.tabs.setBounds(0, this.homeLbl.getY() + 50, (int) screenSize.getWidth(), (int) screenSize.getHeight());
 
 		this.add(this.tabs);
+
+		this.signOutBtn = new JButton("Sign Out");
+		this.signOutBtn.addActionListener(this);
+		this.signOutBtn.setActionCommand("signOut");
+		this.signOutBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.signOutBtn.setBounds(650, 10, 100, 25);
+		this.add(this.signOutBtn);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
+		String cmd = arg0.getActionCommand();
+
+		if(cmd.equals("signOut"))
+		{
+			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure ?", "Warning",
+					JOptionPane.WARNING_MESSAGE);
+
+			if(dialogResult == JOptionPane.YES_OPTION)
+			{
+				this.myUIView.updatePanel(new UISignIn(this.myUIView));
+			}
+
+		}
 
 	}
 

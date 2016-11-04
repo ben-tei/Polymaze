@@ -144,7 +144,7 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 		// Button - Generate and Back
 
 		this.generateBtn = new JButton("Generate");
-		this.generateBtn.setBounds((int) (this.endLbl.getX()), this.strategyLbl.getY() + 100, 100, 25);
+		this.generateBtn.setBounds((int) (this.endTextField.getX()), this.strategyLbl.getY() + 100, 100, 25);
 		this.generateBtn.addActionListener(this);
 		this.generateBtn.setActionCommand("generate");
 		this.generateBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -188,11 +188,11 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 
 						if(startCoords.length == 2 && endCoords.length == 2)
 						{
-							int startX = Integer.parseInt(startCoords[0]);
-							int startY = Integer.parseInt(startCoords[1]);
+							int startX = this.parseInteger(startCoords[0]);
+							int startY = this.parseInteger(startCoords[1]);
 
-							int endX = Integer.parseInt(endCoords[0]);
-							int endY = Integer.parseInt(endCoords[1]);
+							int endX = this.parseInteger(endCoords[0]);
+							int endY = this.parseInteger(endCoords[1]);
 
 							mm.generateMazeWithStartEnd(name, length, width, startX, startY, endX, endY, creator);
 
@@ -239,6 +239,18 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 		this.myTabs.updateTab(0, new UIMyMazes(this.myUIView, this.myTabs));
 
 		this.myTabs.updateTab(1, new UIAllMazes(this.myUIView, this.myTabs));
+	}
+
+	public int parseInteger(String string)
+	{
+		try
+		{
+			return Integer.parseInt(string);
+		}
+		catch(NumberFormatException e)
+		{
+			return 0;
+		}
 	}
 
 }
