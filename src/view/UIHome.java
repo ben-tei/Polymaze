@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.MazeManager;
+
 public class UIHome extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -33,10 +35,11 @@ public class UIHome extends JPanel implements ActionListener
 		this.homeLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		this.add(homeLbl);
 
-		this.myUIView.getUIController().getMazeManager()
-				.setMazesByCreator(this.myUIView.getUIController().getUserManager().getCurrentPerson());
+		MazeManager mm = this.myUIView.getUIController().getMazeManager();
 
-		this.myUIView.getUIController().getMazeManager().setAllMazes();
+		mm.setAllMazes();
+
+		mm.setMazesByCreator(this.myUIView.getUIController().getUserManager().getCurrentPerson());
 
 		this.tabs = new MyTabbedPane();
 		this.myLabyrinths = new UIMyMazes(uiView, this.tabs);

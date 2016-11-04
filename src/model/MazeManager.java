@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -162,7 +163,15 @@ public class MazeManager
 	 */
 	public void setMazesByCreator(Person creator)
 	{
-		this.setCreatorMazesList(DataBaseFacade.getMazesByCreator(creator));
+		this.creatorMazesList = new ArrayList<Maze>();
+
+		for(int i = 0; i < this.allMazesList.size(); i++)
+		{
+			if(this.allMazesList.get(i).getCreator().getId() == creator.getId())
+			{
+				this.creatorMazesList.add(this.allMazesList.get(i));
+			}
+		}
 	}
 
 	/**
