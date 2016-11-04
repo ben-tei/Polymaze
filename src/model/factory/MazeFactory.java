@@ -41,4 +41,10 @@ public class MazeFactory
 	{
 		return currentStrategy.generateMaze(name, length, width, creator);
 	}
+
+	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
+			int endY, Person creator)
+	{
+		return currentStrategy.generateMazeWithStartEnd(name, length, width, startX, startY, endX, endY, creator);
+	}
 }

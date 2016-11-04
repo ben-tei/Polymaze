@@ -84,7 +84,7 @@ public class UISignUp extends JPanel implements KeyListener, ActionListener
 		this.confirmPasswordTextField.setColumns(10);
 
 		this.registerBtn = new JButton("Register");
-		this.registerBtn.setBounds(this.loginTextField.getX() + this.loginTextField.getWidth() - 100,
+		this.registerBtn.setBounds((int) (this.loginTextField.getX() + this.loginTextField.getSize().getWidth() - 100),
 				this.confirmPasswordLbl.getY() + 100, 100, 25);
 		this.registerBtn.addActionListener(this);
 		this.registerBtn.setActionCommand("register");

@@ -71,6 +71,46 @@ public class MazeManager
 	}
 
 	/**
+	 * Method to create a Maze. This method creates a maze using the currently
+	 * selected algorithm, add it to the list of existing mazes, and adds it to
+	 * the DB.
+	 * 
+	 * @param name
+	 *            the Maze's name
+	 * @param length
+	 *            the Maze's length
+	 * @param width
+	 *            the Maze's width
+	 * @param startX
+	 *            the Maze's starting point coordinate in X
+	 * @param startY
+	 *            the Maze's starting point coordinate in Y
+	 * @param endX
+	 *            the Maze's ending point coordinate in X
+	 * @param endY
+	 *            the Maze's ending point coordinate in Y
+	 * @param creator
+	 *            the Person who created the Maze
+	 * @throws PolymazeException
+	 */
+	public void generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
+			int endY, Person creator) throws PolymazeException
+	{
+		Maze tempMaze = mazeFactory.generateMazeWithStartEnd(name, length, width, startX, startY, endX, endY, creator);
+		try
+		{
+			DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
+			this.allMazesList.add(tempMaze);
+			this.creatorMazesList.add(tempMaze);
+		}
+		catch(PolymazeException e)
+		{
+			LOGGER.log(Level.SEVERE, "generateMaze failed.", e);
+			throw e;
+		}
+	}
+
+	/**
 	 * This method sets a Maze by its id
 	 * 
 	 * @param id

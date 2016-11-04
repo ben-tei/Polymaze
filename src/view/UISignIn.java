@@ -67,7 +67,7 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 		this.passwordTextField.setColumns(10);
 
 		this.loginBtn = new JButton("Login");
-		this.loginBtn.setBounds(this.loginTextField.getX() + this.loginTextField.getWidth() - 100,
+		this.loginBtn.setBounds((int) (this.loginTextField.getX() + this.loginTextField.getSize().getWidth() - 100),
 				this.passwordLbl.getY() + 100, 100, 25);
 		this.loginBtn.addActionListener(this);
 		this.loginBtn.setActionCommand("login");

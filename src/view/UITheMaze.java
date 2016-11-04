@@ -55,15 +55,15 @@ public class UITheMaze extends JPanel implements ActionListener
 		this.nameLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		this.add(nameLbl);
 
-		px = 0;
+		this.px = 0;
 
 		if(this.myMaze.getWidth() > 50 || this.myMaze.getLength() > 50)
 		{
-			px = 5;
+			this.px = 5;
 		}
 		else
 		{
-			px = 10;
+			this.px = 10;
 		}
 
 		this.startX = (this.myUIView.getWidth() - this.myMaze.getWidth() * px) / 2;
@@ -128,7 +128,7 @@ public class UITheMaze extends JPanel implements ActionListener
 		}
 
 		this.backBtn = new JButton("Back");
-		this.backBtn.setBounds(this.nameLbl.getX() + this.nameLbl.getSize().width + 50, 30, 100, 25);
+		this.backBtn.setBounds((int) (this.nameLbl.getX() + this.nameLbl.getSize().getWidth() + 50), 30, 100, 25);
 		this.backBtn.addActionListener(this);
 		this.backBtn.setActionCommand("back");
 		this.backBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
