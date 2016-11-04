@@ -115,7 +115,7 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	 * @param Y
 	 *            int of the current position
 	 */
-	public void exploreMaze(int x, int y)
+	private void exploreMaze(int x, int y)
 	{
 		this.mazeArray[x][y].setBtCellVisited(true);
 
@@ -158,7 +158,7 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	 *            x current x position
 	 * @param int
 	 *            y current y position
-	 * @return String All directions for possible non visited neighbour.
+	 * @return String All directions for possible non visited neighbour. order : N E S W
 	 */
 	private String getNonVisitedNeighbour(BacktrackCell[][] mazeArray2, int x, int y)
 	{
@@ -188,10 +188,10 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 
 		if(north)
 			result = result + "N";
-		if(south)
-			result = result + "S";
 		if(east)
 			result = result + "E";
+		if(south)
+			result = result + "S";
 		if(west)
 			result = result + "W";
 
@@ -214,53 +214,4 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 			}
 		}
 	}
-
-	//	public void drawMaze() {
-	//		int outputHeight = 2 * this.maze.getLength() + 1;
-	//		int outputWidth = 2 * this.maze.getWidth() + 1;
-	//
-	//		char[][] outputMaze = new char[outputWidth][outputHeight];
-	//
-	//		for (int y = 0; y < outputHeight; y++) {
-	//			for (int x = 0; x < outputWidth; x++) {
-	//
-	//				if (y == 0 || y == outputHeight - 1 || x == 0
-	//						|| x == outputWidth - 1) {
-	//					// border wall
-	//					outputMaze[x][y] = 'M';
-	//				} else if (y % 2 == 0 && x % 2 == 0) {
-	//					// intern wall
-	//					outputMaze[x][y] = 'M';
-	//				}
-	//
-	//				if (y % 2 == 1 && x % 2 == 1) {
-	//					outputMaze[x][y] = ' ';
-	//					if (this.mazeArray[(x - 1) / 2][(y - 1) / 2].isWallEast()) {
-	//						outputMaze[x + 1][y] = 'M';
-	//					} else {
-	//						outputMaze[x + 1][y] = ' ';
-	//					}
-	//
-	//					if (this.mazeArray[(x - 1) / 2][(y - 1) / 2].isWallSouth()) {
-	//						outputMaze[x][y + 1] = 'M';
-	//					} else {
-	//						outputMaze[x][y + 1] = ' ';
-	//					}
-	//				}
-	//			}
-	//		}
-	//
-	//		outputMaze[this.maze.getStartX() * 2 + 1][this.maze.getStartY() * 2 + 1] = 'S';
-	//		outputMaze[this.maze.getEndX() * 2 + 1][this.maze.getEndY() * 2 + 1] = 'E';
-	//
-	//		// now we can print it.
-	//		for (int y = 0; y < outputHeight; y++) {
-	//			for (int x = 0; x < outputWidth; x++) {
-	//				System.out.print(outputMaze[x][y]);
-	//			}
-	//			System.out.println("");
-	//		}
-	//
-	//	}
-
 }

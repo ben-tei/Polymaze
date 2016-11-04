@@ -1,4 +1,4 @@
-package test.model.business;
+package test.model.business.cell;
 
 import static org.junit.Assert.assertEquals;
 
