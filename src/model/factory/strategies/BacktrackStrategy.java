@@ -47,7 +47,6 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	@Override
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
-		//TODO Loic
 		// Get current date with format YYYY-MM-DD
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
 		
@@ -89,9 +88,12 @@ public class BacktrackStrategy extends MazeFactoryStrategy
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
 	{
+		// Get current date with format YYYY-MM-DD
+		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		
 		Long timerStart = System.nanoTime();
 		
-		this.maze = new Maze(name, length, width, startX, startY, endX, endY, null, creator);
+		this.maze = new Maze(name, length, width, startX, startY, endX, endY, timeNow, creator);
 
 		this.initializeMazeArray();
 		this.exploreMaze(this.maze.getStartX(), this.maze.getStartY());
