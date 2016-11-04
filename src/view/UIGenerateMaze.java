@@ -154,10 +154,6 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 
 					mm.generateMaze(name, length, width, creator);
 
-					mm.setMazesByCreator(creator);
-
-					mm.setAllMazes();
-
 					this.myTabs.updateTab(0, new UIMyMazes(this.myUIView, this.myTabs));
 
 					this.myTabs.updateTab(1, new UIAllMazes(this.myUIView, this.myTabs));
