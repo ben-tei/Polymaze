@@ -31,7 +31,7 @@ public class UIView extends JFrame
 	public void updatePanel(JPanel jpanel)
 	{
 
-		jpanel.setPreferredSize(new Dimension(800, 600));
+		jpanel.setPreferredSize(new Dimension(800, 720));
 		jpanel.setLayout(null);
 		this.setContentPane(jpanel);
 
