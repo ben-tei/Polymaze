@@ -27,7 +27,7 @@ public class MazeManager
 	private List<Maze> creatorMazesList;
 	private MazeFactory mazeFactory;
 	// TODO: What to do with the attribute personManager?
-	//private PersonManager personManager; // maze manager needs a reference to the user manager to instanciate mazes and to know current user
+	//private PersonManager personManager; // maze manager needs a reference to the user manager to instantiate mazes and to know current user
 
 	/**
 	 * Default constructor

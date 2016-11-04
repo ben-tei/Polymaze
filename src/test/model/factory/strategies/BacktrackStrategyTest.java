@@ -16,7 +16,7 @@ import model.factory.strategies.BacktrackStrategy;
 import util.exception.PolymazeException;
 
 /**
- * @author Loic TODO finish to do these tests.
+ * @author Loic 
  */
 public class BacktrackStrategyTest {
 	// minimum size defined for the application

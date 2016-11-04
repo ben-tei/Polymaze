@@ -224,8 +224,6 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 				}
 				catch(PolymazeException e1)
 				{
-					// TODO Auto-generated catch block
-
 					JOptionPane.showMessageDialog(null, "The Maze \"" + name + "\" already exists !", "Failure",
 							JOptionPane.ERROR_MESSAGE);
 

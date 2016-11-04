@@ -72,7 +72,6 @@ public class UIHome extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		// TODO Auto-generated method stub
 		String cmd = arg0.getActionCommand();
 
 		if(cmd.equals("signOut"))

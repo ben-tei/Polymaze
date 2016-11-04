@@ -82,7 +82,6 @@ public class UITheMaze extends JPanel implements ActionListener
 			}
 			catch(IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -123,7 +122,6 @@ public class UITheMaze extends JPanel implements ActionListener
 		}
 		catch(IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -177,7 +175,6 @@ public class UITheMaze extends JPanel implements ActionListener
 			}
 			catch(PolymazeException | IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
