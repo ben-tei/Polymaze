@@ -59,9 +59,9 @@ public class MazeManager
 		Maze tempMaze = mazeFactory.generateMaze(name, length, width, creator);
 		try
 		{
-			DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
-			this.allMazesList.add(tempMaze);
-			this.creatorMazesList.add(tempMaze);
+			Maze maze = DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
+			this.allMazesList.add(maze);
+			this.creatorMazesList.add(maze);
 		}
 		catch(PolymazeException e)
 		{
@@ -99,9 +99,9 @@ public class MazeManager
 		Maze tempMaze = mazeFactory.generateMazeWithStartEnd(name, length, width, startX, startY, endX, endY, creator);
 		try
 		{
-			DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
-			this.allMazesList.add(tempMaze);
-			this.creatorMazesList.add(tempMaze);
+			Maze maze = DataBaseFacade.createMaze(tempMaze); // this tries to add the maze to the BD
+			this.allMazesList.add(maze);
+			this.creatorMazesList.add(maze);
 		}
 		catch(PolymazeException e)
 		{

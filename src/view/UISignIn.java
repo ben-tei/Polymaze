@@ -132,12 +132,18 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 						com[i].setEnabled(false);
 					}
 
-					ImageIcon loading = new ImageIcon(new ImageIcon("sprites/loading.gif").getImage()
+					ImageIcon loadingIcon = new ImageIcon(new ImageIcon("sprites/loading.gif").getImage()
 							.getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
-					JLabel loadingLbl = new JLabel(loading);
-					loadingLbl.setBounds((this.myUIView.getWidth() - loading.getIconWidth()) / 2,
-							this.myUIView.getHeight() - 300, loading.getIconWidth(), loading.getIconWidth());
+					JLabel loadingIconLbl = new JLabel(loadingIcon);
+					loadingIconLbl.setBounds((this.myUIView.getWidth() - loadingIcon.getIconWidth()) / 2,
+							this.myUIView.getHeight() - 300, loadingIcon.getIconWidth(), loadingIcon.getIconWidth());
+					this.add(loadingIconLbl);
+
+					JLabel loadingLbl = new JLabel("Loading...");
+					loadingLbl.setBounds((this.myUIView.getWidth() - loadingIcon.getIconWidth()) / 2,
+							this.myUIView.getHeight() - 180, 100, 25);
+					loadingLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 					this.add(loadingLbl);
 
 					this.revalidate();
