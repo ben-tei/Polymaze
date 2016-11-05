@@ -1,12 +1,19 @@
 package model.factory.strategies;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import model.business.Maze;
 import model.business.Person;
+import model.business.cell.KruskalCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
 public class KruskalStrategy extends MazeFactoryStrategy
 {
+	private Maze maze;
+	private KruskalCell[][] mazeArray;
+	
 	/**
 	 * Default constructor
 	 */
@@ -31,7 +38,11 @@ public class KruskalStrategy extends MazeFactoryStrategy
 	@Override
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
-		// TODO KruskalStrategy Auto-generated method stub
+		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		
+		this.maze = new Maze(name, length, width, timeNow, creator);
+		this.initializeMazeArray();
+		
 		return null;
 	}
 
@@ -61,5 +72,18 @@ public class KruskalStrategy extends MazeFactoryStrategy
 	{
 		// TODO KruskalStrategy Auto-generated method stub
 		return null;
+	}
+	
+	private void initializeMazeArray()
+	{
+		this.mazeArray = new KruskalCell[this.maze.getWidth()][this.maze.getLength()];
+
+		for(int y = 0; y < this.maze.getLength(); y++)
+		{
+			for(int x = 0; x < this.maze.getWidth(); x++)
+			{
+				this.mazeArray[x][y] = new KruskalCell(x, y);
+			}
+		}
 	}
 }
