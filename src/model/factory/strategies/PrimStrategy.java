@@ -54,8 +54,15 @@ public class PrimStrategy extends MazeFactoryStrategy
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		
+		this.maze = new Maze(name, length, width, startX, startY, endX, endY, timeNow, creator);
+		this.initializeMazeArray();
+		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
+		
+		this.maze.setContent(this.mazeArray);
+		
+		return this.maze;
 	}
 
 	private void launchPrim(Integer StartX, Integer StartY)
@@ -67,20 +74,19 @@ public class PrimStrategy extends MazeFactoryStrategy
 		Random rand = new Random();
 		PrimCell selectedFrontier;
 		PrimCell selectedNeighbor;
-
+	
 		this.markCell(StartX, StartY, this.mazeArray, frontier);
 
 		while(!frontier.isEmpty())
 		{
-			int randomNum = rand.nextInt(((frontier.size() - 1)) + 1);
-
+			int randomNum = rand.nextInt(frontier.size());
 			selectedFrontier = frontier.get(randomNum);
 			frontier.remove(randomNum);
-
+			
 			neighbors = this.neighbors(selectedFrontier, this.mazeArray);
-			randomNum = rand.nextInt(((neighbors.size() - 1)) + 1);
+			randomNum = rand.nextInt(neighbors.size());
 			selectedNeighbor = neighbors.get(randomNum);
-
+			
 			this.direction(selectedFrontier, selectedNeighbor);
 
 			this.markCell(selectedFrontier.getPositionX(), selectedFrontier.getPositionY(), mazeArray, frontier);
@@ -101,7 +107,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 
 	private void add_frontier(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier)
 	{
-		if(x >= 0 && y >= 0 && x < mazeArray.length && y < mazeArray[0].length && mazeArray[x][y].isVisited() == false)
+		if(x >= 0 && y >= 0 && x < this.maze.getWidth() && y < this.maze.getLength() && mazeArray[x][y].isVisited() == false && !frontier.contains(mazeArray[x][y]))
 		{
 			frontier.add(mazeArray[x][y]);
 		}
@@ -118,7 +124,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 			neighbors.add(mazeArray[x - 1][y]);
 		}
 
-		if(x + 1 < mazeArray.length && mazeArray[x + 1][y].isVisited() == true)
+		if(x + 1 < this.maze.getWidth() && mazeArray[x + 1][y].isVisited() == true)
 		{
 			neighbors.add(mazeArray[x + 1][y]);
 		}
@@ -128,7 +134,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 			neighbors.add(mazeArray[x][y - 1]);
 		}
 
-		if(y + 1 < mazeArray[0].length && mazeArray[x][y + 1].isVisited() == true)
+		if(y + 1 < this.maze.getLength() && mazeArray[x][y + 1].isVisited() == true)
 		{
 			neighbors.add(mazeArray[x][y + 1]);
 		}
@@ -140,25 +146,25 @@ public class PrimStrategy extends MazeFactoryStrategy
 	{
 		if(selectedFrontier.getPositionX() < selectedNeighbor.getPositionX())
 		{
-			//Going East
+			//Going West
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallEast(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallWest(false);
 		}
 		else if(selectedFrontier.getPositionX() > selectedNeighbor.getPositionX())
 		{
-			//Going West
+			//Going East
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallWest(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallEast(false);
 		}
 		else if(selectedFrontier.getPositionY() < selectedNeighbor.getPositionY())
 		{
-			//Going South
+			//Going North
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallSouth(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallNorth(false);
 		}
 		else if(selectedFrontier.getPositionY() > selectedNeighbor.getPositionY())
 		{
-			//Going North
+			//Going South
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallNorth(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallSouth(false);
 		}
