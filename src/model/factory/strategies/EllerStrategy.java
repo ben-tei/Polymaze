@@ -43,7 +43,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
 		Long timerStart = System.nanoTime();
-		
+
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
 		Maze maze = new Maze(name, length, width, timeNow, creator);
 
@@ -62,10 +62,9 @@ public class EllerStrategy extends MazeFactoryStrategy
 			}
 		}
 		maze.setContent(mazeArray);
-		
-		System.out.println("Maze of size " + width +"*" + length
-				+ " generated in (ms) : " + (System.nanoTime() - timerStart)/1000000 
-				+ " with " + MazeFactoryStrategyName.Eller.name());
+
+		System.out.println("Maze of size " + width + "*" + length + " generated in (ms) : "
+				+ (System.nanoTime() - timerStart) / 1000000 + " with " + MazeFactoryStrategyName.Eller.name());
 
 		return maze;
 	}
@@ -95,16 +94,15 @@ public class EllerStrategy extends MazeFactoryStrategy
 			int endY, Person creator)
 	{
 		Long timerStart = System.nanoTime();
-		
+
 		Maze maze = generateMaze(name, length, width, creator);
 		maze.setStartX(startX);
 		maze.setStartY(startY);
 		maze.setEndX(endX);
 		maze.setEndY(endY);
-		
-		System.out.println("Maze of size " + width +"*" + length
-				+ " generated in (ms) : " + (System.nanoTime() - timerStart)/1000000 
-				+ " with " + MazeFactoryStrategyName.Eller.name());
+
+		System.out.println("Maze of size " + width + "*" + length + " generated in (ms) : "
+				+ (System.nanoTime() - timerStart) / 1000000 + " with " + MazeFactoryStrategyName.Eller.name());
 
 		return maze;
 	}

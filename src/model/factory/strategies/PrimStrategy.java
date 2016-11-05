@@ -46,7 +46,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
 
 		this.maze.setContent(this.mazeArray);
-		
+
 		return this.maze;
 	}
 
@@ -82,7 +82,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 			selectedNeighbor = neighbors.get(randomNum);
 
 			this.direction(selectedFrontier, selectedNeighbor);
-			
+
 			this.markCell(selectedFrontier.getPositionX(), selectedFrontier.getPositionY(), mazeArray, frontier);
 		}
 
@@ -136,26 +136,34 @@ public class PrimStrategy extends MazeFactoryStrategy
 		return neighbors;
 	}
 
-	private void direction(PrimCell selectedFrontier, PrimCell selectedNeighbor) {
-		if (selectedFrontier.getPositionX() < selectedNeighbor.getPositionX()){
+	private void direction(PrimCell selectedFrontier, PrimCell selectedNeighbor)
+	{
+		if(selectedFrontier.getPositionX() < selectedNeighbor.getPositionX())
+		{
 			//Going East
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallEast(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallWest(false);
-		}else if (selectedFrontier.getPositionX() > selectedNeighbor.getPositionX()){
+		}
+		else if(selectedFrontier.getPositionX() > selectedNeighbor.getPositionX())
+		{
 			//Going West
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallWest(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallEast(false);
-		}else if (selectedFrontier.getPositionY() < selectedNeighbor.getPositionY()){
+		}
+		else if(selectedFrontier.getPositionY() < selectedNeighbor.getPositionY())
+		{
 			//Going South
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallSouth(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallNorth(false);
-		}else if (selectedFrontier.getPositionY() > selectedNeighbor.getPositionY()){
+		}
+		else if(selectedFrontier.getPositionY() > selectedNeighbor.getPositionY())
+		{
 			//Going North
 			this.mazeArray[selectedFrontier.getPositionX()][selectedFrontier.getPositionY()].setWallNorth(false);
 			this.mazeArray[selectedNeighbor.getPositionX()][selectedNeighbor.getPositionY()].setWallSouth(false);
 		}
 	}
-	
+
 	private void initializeMazeArray()
 	{
 		this.mazeArray = new PrimCell[this.maze.getWidth()][this.maze.getLength()];

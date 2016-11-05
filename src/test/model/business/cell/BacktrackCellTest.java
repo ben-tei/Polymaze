@@ -6,11 +6,13 @@ import org.junit.Test;
 
 import model.business.cell.BacktrackCell;
 
-public class BacktrackCellTest {
+public class BacktrackCellTest
+{
 
 	@Test
-	public void constructor1_Test() {
-		BacktrackCell cell = new BacktrackCell(1,2);
+	public void constructor1_Test()
+	{
+		BacktrackCell cell = new BacktrackCell(1, 2);
 
 		assertEquals(1, cell.getPositionX());
 		assertEquals(2, cell.getPositionY());
@@ -26,10 +28,11 @@ public class BacktrackCellTest {
 		cell.setBtCellVisited(false);
 		assertEquals(false, cell.isBtCellVisited());
 	}
-	
+
 	@Test
-	public void constructor2_Test() {
-		BacktrackCell cell = new BacktrackCell(1,2, true, false, false, true);
+	public void constructor2_Test()
+	{
+		BacktrackCell cell = new BacktrackCell(1, 2, true, false, false, true);
 
 		assertEquals(1, cell.getPositionX());
 		assertEquals(2, cell.getPositionY());
