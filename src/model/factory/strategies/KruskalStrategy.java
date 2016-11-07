@@ -75,8 +75,16 @@ public class KruskalStrategy extends MazeFactoryStrategy
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
 	{
-		// TODO KruskalStrategy Auto-generated method stub
-		return null;
+		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+		
+		this.maze = new Maze(name, length, width, startX, startY, endX, endY, timeNow, creator);
+		this.initializeMazeArray();
+		
+		this.launchKruskal(this.maze.getStartX(), this.maze.getStartY());
+		
+		this.maze.setContent(this.mazeArray);
+		
+		return this.maze;
 	}
 	
 	private void launchKruskal(Integer StartX, Integer StartY)
@@ -182,8 +190,7 @@ public class KruskalStrategy extends MazeFactoryStrategy
 		}
 	}
 	
-	
-	
+
 	private void initializeMazeArray()
 	{
 		this.mazeArray = new KruskalCell[this.maze.getWidth()][this.maze.getLength()];
