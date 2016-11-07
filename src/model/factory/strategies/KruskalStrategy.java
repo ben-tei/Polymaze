@@ -11,6 +11,13 @@ import model.business.cell.KruskalCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
+/**
+ * @author Aurélien : This class generate a Maze by using the Kruskal Strategy.
+ * @see <a href=
+ *      "http://weblog.jamisbuck.org/2011/1/3/maze-generation-kruskal-s-algorithm">
+ *      Kruskal </>
+ */
+
 public class KruskalStrategy extends MazeFactoryStrategy
 {
 	private Maze maze;

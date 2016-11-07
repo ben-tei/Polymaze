@@ -1,6 +1,7 @@
 package model.factory.strategies;
 
 import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -10,6 +11,13 @@ import model.business.Person;
 import model.business.cell.PrimCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
+
+/**
+ * @author Aurélien : This class generate a Maze by using the Prime Strategy.
+ * @see <a href=
+ *      "http://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm">
+ *      Prime </>
+ */
 
 public class PrimStrategy extends MazeFactoryStrategy
 {
