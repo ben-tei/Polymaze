@@ -5,6 +5,8 @@ import model.business.Cell;
 public class KruskalCell extends Cell
 {
 
+	private Integer setID;
+	
 	/**
 	 * @param positionX:
 	 *            int : x coordinate of the cell
@@ -32,8 +34,20 @@ public class KruskalCell extends Cell
 	 *            int : y coordinate of the cell Set all walls of this Cell to
 	 *            true.
 	 */
-	public KruskalCell(int positionX, int positionY)
+	public KruskalCell(int positionX, int positionY, int setID)
 	{
 		super(positionX, positionY, true, true, true, true);
+		this.setID = setID;
+	}
+	
+
+	public void setSetID(Integer value)
+	{
+		this.setID = value;
+	}
+
+	public Integer getSetID()
+	{
+		return this.setID;
 	}
 }
