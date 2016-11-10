@@ -63,13 +63,13 @@ public class PrimStrategy extends MazeFactoryStrategy
 			int endY, Person creator)
 	{
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-		
+
 		this.maze = new Maze(name, length, width, startX, startY, endX, endY, timeNow, creator);
 		this.initializeMazeArray();
 		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
-		
+
 		this.maze.setContent(this.mazeArray);
-		
+
 		return this.maze;
 	}
 
@@ -82,7 +82,7 @@ public class PrimStrategy extends MazeFactoryStrategy
 		Random rand = new Random();
 		PrimCell selectedFrontier;
 		PrimCell selectedNeighbor;
-	
+
 		this.markCell(StartX, StartY, this.mazeArray, frontier);
 
 		while(!frontier.isEmpty())
@@ -90,11 +90,11 @@ public class PrimStrategy extends MazeFactoryStrategy
 			int randomNum = rand.nextInt(frontier.size());
 			selectedFrontier = frontier.get(randomNum);
 			frontier.remove(randomNum);
-			
+
 			neighbors = this.neighbors(selectedFrontier, this.mazeArray);
 			randomNum = rand.nextInt(neighbors.size());
 			selectedNeighbor = neighbors.get(randomNum);
-			
+
 			this.direction(selectedFrontier, selectedNeighbor);
 
 			this.markCell(selectedFrontier.getPositionX(), selectedFrontier.getPositionY(), mazeArray, frontier);
@@ -115,7 +115,8 @@ public class PrimStrategy extends MazeFactoryStrategy
 
 	private void add_frontier(Integer x, Integer y, PrimCell[][] mazeArray, ArrayList<PrimCell> frontier)
 	{
-		if(x >= 0 && y >= 0 && x < this.maze.getWidth() && y < this.maze.getLength() && mazeArray[x][y].isVisited() == false && !frontier.contains(mazeArray[x][y]))
+		if(x >= 0 && y >= 0 && x < this.maze.getWidth() && y < this.maze.getLength()
+				&& mazeArray[x][y].isVisited() == false && !frontier.contains(mazeArray[x][y]))
 		{
 			frontier.add(mazeArray[x][y]);
 		}

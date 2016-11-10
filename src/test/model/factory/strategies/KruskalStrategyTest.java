@@ -8,10 +8,12 @@ import model.business.MazeSolver;
 import model.business.Person;
 import model.factory.strategies.KruskalStrategy;
 import util.exception.PolymazeException;
+
 /**
  * @author Aurelien
  */
-public class KruskalStrategyTest {
+public class KruskalStrategyTest
+{
 
 	//minimum size test with default start and end points
 	@Test
@@ -20,7 +22,7 @@ public class KruskalStrategyTest {
 		KruskalStrategy kruskal = new KruskalStrategy();
 		Maze maze = kruskal.generateMaze("Test kruskal1", 3, 3, new Person(779, "Aurios4"));
 
-		try			
+		try
 		{
 			MazeSolver.solveMaze(maze);
 		}
@@ -29,7 +31,7 @@ public class KruskalStrategyTest {
 			//Cannot solve the maze
 			System.out.println(p);
 		}
-			
+
 		assertEquals("Test kruskal1", maze.getName());
 		assertEquals(3, (int) maze.getLength());
 		assertEquals(3, (int) maze.getWidth());
@@ -38,8 +40,7 @@ public class KruskalStrategyTest {
 		assertEquals(2, maze.getEndX());
 		assertEquals(2, maze.getEndY());
 	}
-	
-	
+
 	//maximum size test with default start and end points
 	@Test
 	public void kruskalStrategy2_test()
@@ -47,7 +48,7 @@ public class KruskalStrategyTest {
 		KruskalStrategy kruskal = new KruskalStrategy();
 		Maze maze = kruskal.generateMaze("Test kruskal2", 100, 100, new Person(780, "Aurios5"));
 
-		try			
+		try
 		{
 			MazeSolver.solveMaze(maze);
 		}
@@ -56,7 +57,7 @@ public class KruskalStrategyTest {
 			//Cannot solve the maze
 			System.out.println(p);
 		}
-				
+
 		assertEquals("Test kruskal2", maze.getName());
 		assertEquals(100, (int) maze.getLength());
 		assertEquals(100, (int) maze.getWidth());
@@ -65,7 +66,7 @@ public class KruskalStrategyTest {
 		assertEquals(99, maze.getEndX());
 		assertEquals(99, maze.getEndY());
 	}
-	
+
 	// normal maze with start and end
 	@Test
 	public void kruskalStrategy3_test()

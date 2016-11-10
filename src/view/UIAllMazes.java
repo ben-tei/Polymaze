@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import javax.swing.table.TableModel;
 
 import model.business.Maze;
 
-public class UIAllMazes extends JPanel implements ActionListener
+public class UIAllMazes extends JPanel
 {
 
 	private static final long serialVersionUID = 1L;
@@ -85,13 +84,6 @@ public class UIAllMazes extends JPanel implements ActionListener
 
 		ButtonColumn seeButton = new ButtonColumn(this.table, see, 2);
 		seeButton.setMnemonic(KeyEvent.VK_D);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-
 	}
 
 }

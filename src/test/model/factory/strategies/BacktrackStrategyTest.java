@@ -52,7 +52,7 @@ public class BacktrackStrategyTest
 		Person creator = new Person(42, "FRG");
 
 		Maze maze = backtrack.generateMazeWithStartEnd("maze", 100, 70, startX, startY, endX, endY, creator);
-		
+
 		MazeSolver.solveMaze(maze);
 
 		assertEquals("maze", maze.getName());

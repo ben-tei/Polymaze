@@ -12,7 +12,7 @@ public class BacktrackCell extends Cell
 
 	public boolean isBtCellVisited()
 	{
-		return btCellVisited;
+		return this.btCellVisited;
 	}
 
 	public void setBtCellVisited(boolean btCellVisited)

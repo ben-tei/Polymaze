@@ -22,7 +22,7 @@ public class KruskalStrategy extends MazeFactoryStrategy
 {
 	private Maze maze;
 	private KruskalCell[][] mazeArray;
-	
+
 	/**
 	 * Default constructor
 	 */
@@ -48,13 +48,13 @@ public class KruskalStrategy extends MazeFactoryStrategy
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-		
+
 		this.maze = new Maze(name, length, width, timeNow, creator);
 		this.initializeMazeArray();
 		this.launchKruskal(this.maze.getStartX(), this.maze.getStartY());
-		
+
 		this.maze.setContent(this.mazeArray);
-		
+
 		return this.maze;
 	}
 
@@ -83,21 +83,21 @@ public class KruskalStrategy extends MazeFactoryStrategy
 			int endY, Person creator)
 	{
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
-		
+
 		this.maze = new Maze(name, length, width, startX, startY, endX, endY, timeNow, creator);
 		this.initializeMazeArray();
-		
+
 		this.launchKruskal(this.maze.getStartX(), this.maze.getStartY());
-		
+
 		this.maze.setContent(this.mazeArray);
-		
+
 		return this.maze;
 	}
-	
+
 	private void launchKruskal(Integer StartX, Integer StartY)
 	{
 		ArrayList<KruskalCell> edges = new ArrayList<KruskalCell>();
-		
+
 		Random rand = new Random();
 		KruskalCell initEdgeNorth;
 		KruskalCell initEdgeWest;
@@ -105,8 +105,7 @@ public class KruskalStrategy extends MazeFactoryStrategy
 		KruskalCell cellSelectedEdge;
 		KruskalCell nextCell;
 		String direction;
-		
-		
+
 		//Initialization set of edges
 		for(int y = 0; y < this.maze.getLength(); y++)
 		{
@@ -114,7 +113,7 @@ public class KruskalStrategy extends MazeFactoryStrategy
 			{
 				initEdgeNorth = new KruskalCell(x, y, 0);
 				initEdgeWest = new KruskalCell(x, y, 0);
-				
+
 				if(y > 0)
 				{
 					initEdgeNorth.setWallEast(false);
@@ -131,51 +130,54 @@ public class KruskalStrategy extends MazeFactoryStrategy
 				}
 			}
 		}
-		
-		while (!edges.isEmpty())
+
+		while(!edges.isEmpty())
 		{
 			int randomNum = rand.nextInt(edges.size());
 			selectedEdge = edges.get(randomNum);
-			
+
 			direction = this.getDirection(selectedEdge);
-			
+
 			cellSelectedEdge = this.mazeArray[selectedEdge.getPositionX()][selectedEdge.getPositionY()];
-			
-			if (direction == "N"){
-				
+
+			if(direction == "N")
+			{
+
 				nextCell = this.mazeArray[selectedEdge.getPositionX()][selectedEdge.getPositionY() - 1];
-				
+
 				if(cellSelectedEdge.getSetID() != nextCell.getSetID())
 				{
 					if(cellSelectedEdge.getSetID() < nextCell.getSetID())
 						this.changeSet(nextCell.getSetID(), cellSelectedEdge.getSetID());
 					else
 						this.changeSet(cellSelectedEdge.getSetID(), nextCell.getSetID());
-					
+
 					this.mazeArray[selectedEdge.getPositionX()][selectedEdge.getPositionY()].setWallNorth(false);
 					this.mazeArray[selectedEdge.getPositionX()][selectedEdge.getPositionY() - 1].setWallSouth(false);
 				}
-				
-			}else if (direction == "W"){
-				
+
+			}
+			else if(direction == "W")
+			{
+
 				nextCell = this.mazeArray[selectedEdge.getPositionX() - 1][selectedEdge.getPositionY()];
-				
+
 				if(cellSelectedEdge.getSetID() != nextCell.getSetID())
 				{
 					if(cellSelectedEdge.getSetID() < nextCell.getSetID())
 						this.changeSet(nextCell.getSetID(), cellSelectedEdge.getSetID());
 					else
 						this.changeSet(cellSelectedEdge.getSetID(), nextCell.getSetID());
-					
+
 					this.mazeArray[selectedEdge.getPositionX()][selectedEdge.getPositionY()].setWallWest(false);
 					this.mazeArray[selectedEdge.getPositionX() - 1][selectedEdge.getPositionY()].setWallEast(false);
 				}
 			}
-			
+
 			edges.remove(randomNum);
 		}
 	}
-	
+
 	private String getDirection(KruskalCell selectedEdge)
 	{
 		if(selectedEdge.isWallNorth())
@@ -185,24 +187,24 @@ public class KruskalStrategy extends MazeFactoryStrategy
 		else
 			return "";
 	}
-	
-	private void changeSet(Integer toBeChanged, Integer newValue){
+
+	private void changeSet(Integer toBeChanged, Integer newValue)
+	{
 		for(int y = 0; y < this.maze.getLength(); y++)
 		{
 			for(int x = 0; x < this.maze.getWidth(); x++)
 			{
-				if (this.mazeArray[x][y].getSetID() == toBeChanged)
+				if(this.mazeArray[x][y].getSetID() == toBeChanged)
 					this.mazeArray[x][y].setSetID(newValue);
 			}
 		}
 	}
-	
 
 	private void initializeMazeArray()
 	{
 		this.mazeArray = new KruskalCell[this.maze.getWidth()][this.maze.getLength()];
 		int setID = 0;
-		
+
 		for(int y = 0; y < this.maze.getLength(); y++)
 		{
 			for(int x = 0; x < this.maze.getWidth(); x++)

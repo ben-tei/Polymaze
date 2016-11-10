@@ -12,7 +12,8 @@ import util.exception.PolymazeException;
 /**
  * @author Aurelien
  */
-public class PrimStrategyTest {
+public class PrimStrategyTest
+{
 
 	//minimum size test with default start and end points
 	@Test
@@ -29,7 +30,7 @@ public class PrimStrategyTest {
 		{
 			System.out.println(p);
 		}
-		
+
 		assertEquals("Test prim1", maze.getName());
 		assertEquals(3, (int) maze.getLength());
 		assertEquals(3, (int) maze.getWidth());
@@ -38,14 +39,14 @@ public class PrimStrategyTest {
 		assertEquals(2, maze.getEndX());
 		assertEquals(2, maze.getEndY());
 	}
-	
+
 	//maximum size test with default start and end points
 	@Test
 	public void primStrategy2_test()
 	{
 		PrimStrategy prim = new PrimStrategy();
 		Maze maze = prim.generateMaze("Test prim2", 100, 100, new Person(778, "Aurios2"));
-		
+
 		try
 		{
 			MazeSolver.solveMaze(maze);
@@ -54,7 +55,7 @@ public class PrimStrategyTest {
 		{
 			System.out.println(p);
 		}
-		
+
 		assertEquals("Test prim2", maze.getName());
 		assertEquals(100, (int) maze.getLength());
 		assertEquals(100, (int) maze.getWidth());
@@ -63,7 +64,7 @@ public class PrimStrategyTest {
 		assertEquals(99, maze.getEndX());
 		assertEquals(99, maze.getEndY());
 	}
-	
+
 	// normal maze with start and end
 	@Test
 	public void primStrategy3_test()

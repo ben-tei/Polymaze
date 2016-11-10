@@ -6,7 +6,7 @@ public class KruskalCell extends Cell
 {
 
 	private Integer setID;
-	
+
 	/**
 	 * @param positionX:
 	 *            int : x coordinate of the cell
@@ -40,7 +40,6 @@ public class KruskalCell extends Cell
 		super(positionX, positionY, true, true, true, true);
 		this.setID = setID;
 	}
-	
 
 	public void setSetID(Integer value)
 	{
