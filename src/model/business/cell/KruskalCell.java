@@ -25,6 +25,7 @@ public class KruskalCell extends Cell
 			boolean wallWest)
 	{
 		super(positionX, positionY, wallNorth, wallEast, wallSouth, wallWest);
+		this.setID = 0;
 	}
 
 	/**
