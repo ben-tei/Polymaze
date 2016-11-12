@@ -47,6 +47,8 @@ public class PrimStrategy extends MazeFactoryStrategy
 	 */
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
 	{
+		Long timerStart = System.nanoTime();
+
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
 
 		this.maze = new Maze(name, length, width, timeNow, creator);
@@ -55,13 +57,38 @@ public class PrimStrategy extends MazeFactoryStrategy
 
 		this.maze.setContent(this.mazeArray);
 
+		System.out.println("Maze of size " + width + "*" + length + " generated in (ms) : "
+				+ (System.nanoTime() - timerStart) / 1000000 + " with " + MazeFactoryStrategyName.Prim.name());
+
 		return this.maze;
 	}
 
+	/**
+	 * Method to create a Maze using Prim's algorithm
+	 * 
+	 * @param name
+	 *            the Maze's name
+	 * @param length
+	 *            the Maze's length
+	 * @param width
+	 *            the Maze's width
+	 * @param startX
+	 *            the Maze's starting point coordinate in X
+	 * @param startY
+	 *            the Maze's starting point coordinate in Y
+	 * @param endX
+	 *            the Maze's ending point coordinate in X
+	 * @param endY
+	 *            the Maze's ending point coordinate in Y
+	 * @param creator
+	 *            the Person who created the Maze
+	 */
 	@Override
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
 	{
+		Long timerStart = System.nanoTime();
+
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
 
 		this.maze = new Maze(name, length, width, startX, startY, endX, endY, timeNow, creator);
@@ -69,6 +96,9 @@ public class PrimStrategy extends MazeFactoryStrategy
 		this.launchPrim(this.maze.getStartX(), this.maze.getStartY());
 
 		this.maze.setContent(this.mazeArray);
+
+		System.out.println("Maze of size " + width + "*" + length + " generated in (ms) : "
+				+ (System.nanoTime() - timerStart) / 1000000 + " with " + MazeFactoryStrategyName.Prim.name());
 
 		return this.maze;
 	}

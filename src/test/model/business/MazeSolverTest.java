@@ -118,6 +118,7 @@ public class MazeSolverTest
 
 		exception.expect(PolymazeException.class);
 
+		// Suppress pathSolution never used as it supposed to produce an Error.
 		@SuppressWarnings("unused")
 		ArrayList<Point> pathSolution = MazeSolver.solveMaze(maze);
 

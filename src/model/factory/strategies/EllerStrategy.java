@@ -93,17 +93,12 @@ public class EllerStrategy extends MazeFactoryStrategy
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
 			int endY, Person creator)
 	{
-		Long timerStart = System.nanoTime();
-
 		Maze maze = generateMaze(name, length, width, creator);
 		maze.setStartX(startX);
 		maze.setStartY(startY);
 		maze.setEndX(endX);
 		maze.setEndY(endY);
-
-		System.out.println("Maze of size " + width + "*" + length + " generated in (ms) : "
-				+ (System.nanoTime() - timerStart) / 1000000 + " with " + MazeFactoryStrategyName.Eller.name());
-
+		
 		return maze;
 	}
 
@@ -181,7 +176,6 @@ public class EllerStrategy extends MazeFactoryStrategy
 		Iterator<Entry<Integer, ArrayList<EllerCell>>> it = setsToCells.entrySet().iterator();
 		if(column1[0].getPositionX() == 1)
 		{
-			System.out.println("");
 		}
 		while(it.hasNext())
 		{
