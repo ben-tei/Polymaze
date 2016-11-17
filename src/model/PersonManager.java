@@ -104,7 +104,7 @@ public class PersonManager
 	 *            the Person's login
 	 * @param password
 	 *            the Person's password
-	 * @return
+	 * @return true if success, false otherwise (profile already exists)
 	 */
 	public boolean createPerson(String login, String password)
 	{

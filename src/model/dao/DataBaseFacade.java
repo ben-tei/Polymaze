@@ -8,6 +8,12 @@ import model.business.Maze;
 import model.business.Person;
 import util.exception.PolymazeException;
 
+/**
+ * The static class that is made to make all calls to the BD, It is facade for BD calls
+ * throughout the application.
+ * 
+ * @author Rodolphe 
+ */
 public final class DataBaseFacade
 {
 	// Logger
@@ -23,7 +29,6 @@ public final class DataBaseFacade
 		super();
 	}
 
-	// Maze
 	/**
 	 * Gets a Maze by its id
 	 * 

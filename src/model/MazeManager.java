@@ -26,8 +26,6 @@ public class MazeManager
 	private List<Maze> allMazesList;
 	private List<Maze> creatorMazesList;
 	private MazeFactory mazeFactory;
-	// TODO: What to do with the attribute personManager?
-	//private PersonManager personManager; // maze manager needs a reference to the user manager to instantiate mazes and to know current user
 
 	/**
 	 * Default constructor
@@ -36,7 +34,6 @@ public class MazeManager
 	{
 		super();
 		this.mazeFactory = new MazeFactory();
-		//this.personManager = personManager;
 	}
 
 	/**
@@ -243,10 +240,6 @@ public class MazeManager
 		return this.mazeFactory;
 	}
 
-	/*
-	 * public PersonManager getPersonManager() { return personManager; }
-	 */
-
 	// Setters
 	public void setMaze(Maze maze)
 	{
@@ -267,10 +260,5 @@ public class MazeManager
 	{
 		this.mazeFactory = mazeFactory;
 	}
-
-	/*
-	 * public void setPersonManager(PersonManager personManager) {
-	 * this.personManager = personManager; }
-	 */
 
 }

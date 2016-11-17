@@ -14,6 +14,11 @@ import model.business.cell.EllerCell;
 import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
+/**
+ * Class used to generate mazes with Eller's method. It is a maze strategy concrete class.
+ *         
+ * @author Rodolphe
+ */
 public class EllerStrategy extends MazeFactoryStrategy
 {
 	private EllerCell[][] mazeArray;
@@ -38,6 +43,8 @@ public class EllerStrategy extends MazeFactoryStrategy
 	 *            the Maze's width
 	 * @param creator
 	 *            the Person who created the Maze
+	 * 
+	 * @return Maze : the generated maze
 	 */
 	@Override
 	public Maze generateMaze(String name, Integer length, Integer width, Person creator)
@@ -88,6 +95,8 @@ public class EllerStrategy extends MazeFactoryStrategy
 	 *            the Maze's ending point coordinate in Y
 	 * @param creator
 	 *            the Person who created the Maze
+	 *            
+	 * @return Maze : the generated maze
 	 */
 	@Override
 	public Maze generateMazeWithStartEnd(String name, Integer length, Integer width, int startX, int startY, int endX,
