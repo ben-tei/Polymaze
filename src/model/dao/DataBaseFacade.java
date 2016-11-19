@@ -9,10 +9,10 @@ import model.business.Person;
 import util.exception.PolymazeException;
 
 /**
- * The static class that is made to make all calls to the BD, It is facade for BD calls
- * throughout the application.
+ * The static class that is made to make all calls to the BD, It is facade for
+ * BD calls throughout the application.
  * 
- * @author Rodolphe 
+ * @author Rodolphe
  */
 public final class DataBaseFacade
 {

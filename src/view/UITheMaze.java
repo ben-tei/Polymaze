@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -181,6 +182,8 @@ public class UITheMaze extends JPanel implements ActionListener
 		else if(cmd.equals("back"))
 		{
 			this.myUIView.setResizable(false);
+			this.myUIView.setSize(new Dimension(800, 720));
+			this.myUIView.setLocationRelativeTo(null);
 
 			if(this.myTabs.getSelectedIndex() == 0)
 			{

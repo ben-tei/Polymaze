@@ -5,7 +5,7 @@ import model.business.Person;
 
 /**
  * Strategy base class. It is the parent of all concrete strategies
- *         
+ * 
  * @author Rodolphe
  */
 public abstract class MazeFactoryStrategy

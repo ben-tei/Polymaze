@@ -15,8 +15,9 @@ import model.factory.MazeFactoryStrategy;
 import model.factory.MazeFactoryStrategyName;
 
 /**
- * Class used to generate mazes with Eller's method. It is a maze strategy concrete class.
- *         
+ * Class used to generate mazes with Eller's method. It is a maze strategy
+ * concrete class.
+ * 
  * @author Rodolphe
  */
 public class EllerStrategy extends MazeFactoryStrategy
@@ -95,7 +96,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 	 *            the Maze's ending point coordinate in Y
 	 * @param creator
 	 *            the Person who created the Maze
-	 *            
+	 * 
 	 * @return Maze : the generated maze
 	 */
 	@Override
@@ -107,7 +108,7 @@ public class EllerStrategy extends MazeFactoryStrategy
 		maze.setStartY(startY);
 		maze.setEndX(endX);
 		maze.setEndY(endY);
-		
+
 		return maze;
 	}
 
