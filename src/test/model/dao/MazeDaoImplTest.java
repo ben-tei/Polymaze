@@ -15,71 +15,71 @@ import util.exception.PolymazeException;*/
 
 public class MazeDaoImplTest
 {
-
-	@Test
-	public void getMazeByIdTest()
-	{
-		Maze maze = DataBaseFacade.getMazeById(1);
-
-		assertNotNull(maze);
-		assertEquals(maze.getId(), Integer.valueOf(1));
-		assertEquals(maze.getName(), "TestMaze");
-		assertEquals(maze.getLength(), Integer.valueOf(20));
-		assertEquals(maze.getWidth(), Integer.valueOf(10));
-		assertEquals(maze.getCreationDate(), java.sql.Date.valueOf("2016-10-20"));
-		assertEquals(maze.getCreator().getId(), Integer.valueOf(4));
-		assertEquals(maze.getCreator().getName(), "test");
-	}
-
-	@Test
-	public void getMazeByNameTest()
-	{
-		Maze maze = DataBaseFacade.getMazeByName("TestMaze");
-
-		assertNotNull(maze);
-		assertEquals(maze.getId(), Integer.valueOf(1));
-		assertEquals(maze.getName(), "TestMaze");
-		assertEquals(maze.getLength(), Integer.valueOf(20));
-		assertEquals(maze.getWidth(), Integer.valueOf(10));
-		assertEquals(maze.getCreationDate(), java.sql.Date.valueOf("2016-10-20"));
-		assertEquals(maze.getCreator().getId(), Integer.valueOf(4));
-		assertEquals(maze.getCreator().getName(), "test");
-	}
-
-	@Test
-	public void getMazesByCreatorTest()
-	{
-		Person person = DataBaseFacade.getPersonByName("test");
-
-		List<Maze> mazes = DataBaseFacade.getMazesByCreator(person);
-
-		assertEquals(mazes.size(), 2);
-		assertEquals(mazes.get(0).getId(), Integer.valueOf(1));
-		assertEquals(mazes.get(0).getName(), "TestMaze");
-		assertEquals(mazes.get(0).getCreator().getName(), "test");
-		assertEquals(mazes.get(1).getId(), Integer.valueOf(2));
-		assertEquals(mazes.get(1).getName(), "MySecondMaze");
-		assertEquals(mazes.get(1).getCreationDate(), java.sql.Date.valueOf("2016-10-21"));
-		assertEquals(mazes.get(1).getCreator().getName(), "test");
-	}
-
-	@Test
-	public void getAllMazesTest()
-	{
-		List<Maze> mazes = DataBaseFacade.getAllMazes();
-
-		assertEquals(mazes.size(), 5);
-		assertEquals(mazes.get(0).getId(), Integer.valueOf(1));
-		assertEquals(mazes.get(0).getName(), "TestMaze");
-		assertEquals(mazes.get(0).getCreator().getName(), "test");
-		assertEquals(mazes.get(1).getId(), Integer.valueOf(2));
-		assertEquals(mazes.get(1).getName(), "MySecondMaze");
-		assertEquals(mazes.get(1).getCreationDate(), java.sql.Date.valueOf("2016-10-21"));
-		assertEquals(mazes.get(1).getCreator().getName(), "test");
-		assertEquals(mazes.get(2).getId(), Integer.valueOf(3));
-		assertEquals(mazes.get(2).getName(), "MuscuMaze");
-		assertEquals(mazes.get(2).getCreator().getName(), "Benji");
-	}
+//
+//	@Test
+//	public void getMazeByIdTest()
+//	{
+//		Maze maze = DataBaseFacade.getMazeById(1);
+//
+//		assertNotNull(maze);
+//		assertEquals(maze.getId(), Integer.valueOf(1));
+//		assertEquals(maze.getName(), "TestMaze");
+//		assertEquals(maze.getLength(), Integer.valueOf(20));
+//		assertEquals(maze.getWidth(), Integer.valueOf(10));
+//		assertEquals(maze.getCreationDate(), java.sql.Date.valueOf("2016-10-20"));
+//		assertEquals(maze.getCreator().getId(), Integer.valueOf(4));
+//		assertEquals(maze.getCreator().getName(), "test");
+//	}
+//
+//	@Test
+//	public void getMazeByNameTest()
+//	{
+//		Maze maze = DataBaseFacade.getMazeByName("TestMaze");
+//
+//		assertNotNull(maze);
+//		assertEquals(maze.getId(), Integer.valueOf(1));
+//		assertEquals(maze.getName(), "TestMaze");
+//		assertEquals(maze.getLength(), Integer.valueOf(20));
+//		assertEquals(maze.getWidth(), Integer.valueOf(10));
+//		assertEquals(maze.getCreationDate(), java.sql.Date.valueOf("2016-10-20"));
+//		assertEquals(maze.getCreator().getId(), Integer.valueOf(4));
+//		assertEquals(maze.getCreator().getName(), "test");
+//	}
+//
+//	@Test
+//	public void getMazesByCreatorTest()
+//	{
+//		Person person = DataBaseFacade.getPersonByName("test");
+//
+//		List<Maze> mazes = DataBaseFacade.getMazesByCreator(person);
+//
+//		assertEquals(mazes.size(), 2);
+//		assertEquals(mazes.get(0).getId(), Integer.valueOf(1));
+//		assertEquals(mazes.get(0).getName(), "TestMaze");
+//		assertEquals(mazes.get(0).getCreator().getName(), "test");
+//		assertEquals(mazes.get(1).getId(), Integer.valueOf(2));
+//		assertEquals(mazes.get(1).getName(), "MySecondMaze");
+//		assertEquals(mazes.get(1).getCreationDate(), java.sql.Date.valueOf("2016-10-21"));
+//		assertEquals(mazes.get(1).getCreator().getName(), "test");
+//	}
+//
+//	@Test
+//	public void getAllMazesTest()
+//	{
+//		List<Maze> mazes = DataBaseFacade.getAllMazes();
+//
+//		assertEquals(mazes.size(), 5);
+//		assertEquals(mazes.get(0).getId(), Integer.valueOf(1));
+//		assertEquals(mazes.get(0).getName(), "TestMaze");
+//		assertEquals(mazes.get(0).getCreator().getName(), "test");
+//		assertEquals(mazes.get(1).getId(), Integer.valueOf(2));
+//		assertEquals(mazes.get(1).getName(), "MySecondMaze");
+//		assertEquals(mazes.get(1).getCreationDate(), java.sql.Date.valueOf("2016-10-21"));
+//		assertEquals(mazes.get(1).getCreator().getName(), "test");
+//		assertEquals(mazes.get(2).getId(), Integer.valueOf(3));
+//		assertEquals(mazes.get(2).getName(), "MuscuMaze");
+//		assertEquals(mazes.get(2).getCreator().getName(), "Benji");
+//	}
 
 	/*
 	 * @Test public void deleteMazeTest() throws PolymazeException { boolean

@@ -13,8 +13,8 @@ public class Cell
 	private boolean wallSouth;
 	private boolean wallEast;
 	private boolean wallWest;
-
-	private boolean visited = false; // true if the cell have been visited, otherwise false
+	// true if the cell have been visited, otherwise false
+	private boolean visited = false; 
 
 	/**
 	 * @param positionX
@@ -44,8 +44,8 @@ public class Cell
 	 * @param positionX
 	 *            int : x coordinate of the cell
 	 * @param positionY
-	 *            int : y coordinate of the cell Set all walls of this Cell to
-	 *            true.
+	 *            int : y coordinate of the cell
+	 * Set all walls of this Cell to true.
 	 */
 	public Cell(int positionX, int positionY)
 	{
