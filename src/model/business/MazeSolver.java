@@ -17,7 +17,6 @@ import util.exception.PolymazeException;
  */
 public class MazeSolver
 {
-
 	private static ArrayList<Point> pathSolution = new ArrayList<Point>();
 	private static Cell[][] mazeArray;
 	private static Integer endX;

@@ -27,6 +27,9 @@ public class MazeFactoryTest
 
 		factory.setStrategy(MazeFactoryStrategyName.Prim);
 		assertEquals(MazeFactoryStrategyName.Prim, factory.getStrategyName());
+
+		factory.setStrategy(MazeFactoryStrategyName.Default);
+		assertEquals(MazeFactoryStrategyName.Backtrack, factory.getStrategyName());
 	}
 
 	// test if the method returns a maze with the specified parameter
@@ -42,6 +45,28 @@ public class MazeFactoryTest
 		Person creatorTest = new Person();
 		Maze maze = factory.generateMaze(nameTest, lengthTest, widthTest, creatorTest);
 
+		assertEquals(nameTest, maze.getName());
+		assertEquals(Integer.valueOf(lengthTest), maze.getLength());
+		assertEquals(Integer.valueOf(widthTest), maze.getWidth());
+		assertEquals(creatorTest, maze.getCreator());
+	}
+	
+	@Test
+	public void mazeFactoryTest3()
+	{
+		MazeFactory factory = new MazeFactory();
+		factory.setStrategy(MazeFactoryStrategyName.Backtrack);
+
+		String nameTest = "Test";
+		int lengthTest = 40;
+		int widthTest = 40;
+		int StartX = 15;
+		int StartY = 16;
+		int EndX = 17;
+		int EndY = 18;
+		Person creatorTest = new Person();
+		Maze maze = factory.generateMazeWithStartEnd(nameTest, lengthTest, widthTest, StartX, StartY, EndX,
+				EndY, creatorTest);
 		assertEquals(nameTest, maze.getName());
 		assertEquals(Integer.valueOf(lengthTest), maze.getLength());
 		assertEquals(Integer.valueOf(widthTest), maze.getWidth());

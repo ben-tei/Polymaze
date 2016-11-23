@@ -23,6 +23,61 @@ public class CellTest
 {
 
 	@Test
+	public void ConstructorTest_01() throws Exception
+	{
+		Cell cell = new Cell(0, 2);
+		assertEquals(0, cell.getPositionX());
+		assertEquals(2, cell.getPositionY());
+		assertEquals(true, cell.isWallNorth());
+		assertEquals(true, cell.isWallEast());
+		assertEquals(true, cell.isWallSouth());
+		assertEquals(true, cell.isWallWest());
+		assertEquals(false, cell.isVisited());
+		
+		cell.setPositionX(15);
+		cell.setPositionY(16);
+		assertEquals(15, cell.getPositionX());
+		assertEquals(16, cell.getPositionY());
+		
+		cell.setWallNorth(false);
+		assertEquals(false, cell.isWallNorth());
+		cell.setWallEast(false);
+		assertEquals(false, cell.isWallEast());
+		cell.setWallSouth(false);
+		assertEquals(false, cell.isWallSouth());
+		cell.setWallWest(false);
+		assertEquals(false, cell.isWallWest());
+		cell.setVisited(true);
+		assertEquals(true, cell.isVisited());
+	}
+	
+	@Test
+	public void ConstructorTest_02() throws Exception
+	{
+		Cell cell = new Cell(0, 2, true, false, true, false);
+		assertEquals(0, cell.getPositionX());
+		assertEquals(2, cell.getPositionY());
+		assertEquals(true, cell.isWallNorth());
+		assertEquals(false, cell.isWallEast());
+		assertEquals(true, cell.isWallSouth());
+		assertEquals(false, cell.isWallWest());
+		assertEquals(false, cell.isVisited());
+	}
+	
+	@Test
+	public void ConstructorTest_03() throws Exception
+	{
+		Cell cell = new Cell(0, 2, true, true, false, false);
+		assertEquals(0, cell.getPositionX());
+		assertEquals(2, cell.getPositionY());
+		assertEquals(true, cell.isWallNorth());
+		assertEquals(true, cell.isWallEast());
+		assertEquals(false, cell.isWallSouth());
+		assertEquals(false, cell.isWallWest());
+		assertEquals(false, cell.isVisited());
+	}
+
+	@Test
 	public void wallToStringTest_00()
 	{
 		Cell cell = new Cell(1, 1, true, true, true, true);
@@ -234,5 +289,6 @@ public class CellTest
 		assertFalse(cell.isWallSouth());
 		assertFalse(cell.isWallWest());
 	}
+	
 
 }

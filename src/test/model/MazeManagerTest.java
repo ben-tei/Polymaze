@@ -193,5 +193,4 @@ public class MazeManagerTest
 		mazeManager.setAllMazes();
 		assertNotEquals(Integer.valueOf(mazeManager.getAllMazesList().size()), Integer.valueOf(0));
 	}
-
 }
