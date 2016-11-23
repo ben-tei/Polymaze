@@ -34,6 +34,8 @@ public class MazeManager
 	{
 		super();
 		this.mazeFactory = new MazeFactory();
+		this.allMazesList = new ArrayList<Maze>();
+		this.creatorMazesList = new ArrayList<Maze>();
 	}
 
 	/**
@@ -249,16 +251,6 @@ public class MazeManager
 	public void setAllMazesList(List<Maze> list)
 	{
 		this.allMazesList = list;
-	}
-
-	public void setCreatorMazesList(List<Maze> list)
-	{
-		this.creatorMazesList = list;
-	}
-
-	public void setMazeFactory(MazeFactory mazeFactory)
-	{
-		this.mazeFactory = mazeFactory;
 	}
 
 }
