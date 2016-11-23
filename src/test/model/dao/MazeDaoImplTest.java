@@ -9,12 +9,67 @@ import org.junit.Test;
 import model.business.Maze;
 import model.business.Person;
 import model.dao.DataBaseFacade;
-/*import model.factory.MazeFactory;
+import model.dao.MazeDao;
+import model.factory.MazeFactory;
 import model.factory.MazeFactoryStrategyName;
-import util.exception.PolymazeException;*/
+import util.exception.PolymazeException;
+import model.dao.MazeDaoImpl;
 
 public class MazeDaoImplTest
 {
+	
+	@Test
+	public void mazeDaoDriver00(){
+		MazeDao m = new MazeDaoImpl();
+		
+		// create a maze;
+		Person personTest = DataBaseFacade.getPersonById(3); 
+		MazeFactory mazeFactory = new MazeFactory();
+		mazeFactory.setStrategy(MazeFactoryStrategyName.Backtrack); 
+		Maze testMaze = mazeFactory.generateMaze("mazeDaoDriverTest00", 12, 12, personTest); 
+		Maze createdMaze = new Maze();
+		try {
+			createdMaze = m.createMaze(testMaze);
+		} catch (PolymazeException e) {
+			e.printStackTrace();
+		}
+		
+		// test if it was created in database;
+		Maze createdDBTestMaze = m.getMazeById(createdMaze.getId());
+		assertNotNull(createdDBTestMaze);
+		/*
+		assertEquals(createdDBTestMaze.getId(),testMaze.getId());
+		assertEquals(createdDBTestMaze.getName(), testMaze.getName());
+		assertEquals(createdDBTestMaze.getLength(), testMaze.getLength());
+		assertEquals(createdDBTestMaze.getWidth(), testMaze.getWidth());
+		assertEquals(createdDBTestMaze.getCreationDate(), testMaze.getCreationDate());
+		assertEquals(createdDBTestMaze.getCreator().getId(), testMaze.getCreator().getId());
+		assertEquals(createdDBTestMaze.getCreator().getName(), testMaze.getCreator().getName());
+		*/
+		
+		//test get by ID
+		Maze testGetIdMaze = m.getMazeById(createdMaze.getId());
+		assertNotNull(testGetIdMaze);
+		
+		//test get by name
+		Maze testGetNameMaze = m.getMazeByName(testMaze.getName());
+		assertNotNull(testGetNameMaze);
+		
+		//test get by creator
+		List<Maze> testGetMazeByCreator = m.getMazesByCreator(personTest);
+		assertNotNull(testGetMazeByCreator);
+		assertNotEquals(Integer.valueOf(testGetMazeByCreator.size()), Integer.valueOf(0));
+		
+		//test getAllMaze
+		List<Maze> testGetAllMaze = m.getAllMazes();
+		assertNotNull(testGetAllMaze);
+		assertNotEquals(Integer.valueOf(testGetAllMaze.size()), Integer.valueOf(0));
+		
+		// delete the created maze to cleanup:
+		m.deleteMaze(createdMaze.getId());
+		Maze deletedDBMaze = DataBaseFacade.getMazeById(createdMaze.getId());
+		assertNull(deletedDBMaze);
+	}
 //
 //	@Test
 //	public void getMazeByIdTest()

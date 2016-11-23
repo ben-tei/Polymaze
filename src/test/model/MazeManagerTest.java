@@ -168,8 +168,6 @@ public class MazeManagerTest
 		try {
 			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);
 			mazeManager.generateMaze("getMazesByCreatorTest1", 10, 10, personTest);
-			mazeManager.generateMaze("getMazesByCreatorTest2", 10, 10, personTest);
-			mazeManager.generateMaze("getMazesByCreatorTest3", 10, 10, personTest);
 		} catch (PolymazeException e) {
 		}
 		
