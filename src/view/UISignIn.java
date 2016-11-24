@@ -132,8 +132,8 @@ public class UISignIn extends JPanel implements KeyListener, ActionListener
 						com[i].setEnabled(false);
 					}
 
-					ImageIcon loadingIcon = new ImageIcon(new ImageIcon("sprites/loading.gif").getImage()
-							.getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+					ImageIcon loadingIcon = new ImageIcon(new ImageIcon(getClass().getResource("/assets/loading.gif"))
+							.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
 					JLabel loadingIconLbl = new JLabel(loadingIcon);
 					loadingIconLbl.setBounds((this.myUIView.getWidth() - loadingIcon.getIconWidth()) / 2,

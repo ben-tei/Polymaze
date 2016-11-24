@@ -50,7 +50,7 @@ public class MazeFactoryTest
 		assertEquals(Integer.valueOf(widthTest), maze.getWidth());
 		assertEquals(creatorTest, maze.getCreator());
 	}
-	
+
 	@Test
 	public void mazeFactoryTest3()
 	{
@@ -65,8 +65,8 @@ public class MazeFactoryTest
 		int EndX = 17;
 		int EndY = 18;
 		Person creatorTest = new Person();
-		Maze maze = factory.generateMazeWithStartEnd(nameTest, lengthTest, widthTest, StartX, StartY, EndX,
-				EndY, creatorTest);
+		Maze maze = factory.generateMazeWithStartEnd(nameTest, lengthTest, widthTest, StartX, StartY, EndX, EndY,
+				creatorTest);
 		assertEquals(nameTest, maze.getName());
 		assertEquals(Integer.valueOf(lengthTest), maze.getLength());
 		assertEquals(Integer.valueOf(widthTest), maze.getWidth());

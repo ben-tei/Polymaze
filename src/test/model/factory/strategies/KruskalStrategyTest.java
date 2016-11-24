@@ -33,10 +33,10 @@ public class KruskalStrategyTest
 		assertEquals(0, maze.getStartY());
 		assertEquals(2, maze.getEndX());
 		assertEquals(2, maze.getEndY());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -54,10 +54,10 @@ public class KruskalStrategyTest
 		assertEquals(0, maze.getStartY());
 		assertEquals(99, maze.getEndX());
 		assertEquals(99, maze.getEndY());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -74,7 +74,6 @@ public class KruskalStrategyTest
 
 		Maze maze = kruskal.generateMazeWithStartEnd("Test kruskal3", 80, 90, startX, startY, endX, endY, creator);
 
-
 		assertEquals("Test kruskal3", maze.getName());
 		assertEquals(80, (int) maze.getLength());
 		assertEquals(90, (int) maze.getWidth());
@@ -83,27 +82,28 @@ public class KruskalStrategyTest
 		assertEquals(33, maze.getEndX());
 		assertEquals(35, maze.getEndY());
 		assertEquals(creator, maze.getCreator());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
-	
+
 	/**
 	 * 
 	 * @param maze
 	 * @return the solution path for a maze with reverse start/end point
 	 * @throws PolymazeException
 	 */
-	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException{
+	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException
+	{
 		ArrayList<Point> pathEndToBegin;
 
 		int newStartX = maze.getStartX();
 		int newStartY = maze.getStartY();
 		int newEndX = maze.getEndX();
 		int newEndY = maze.getEndY();
-		
+
 		maze.setStartX(newStartX);
 		maze.setStartY(newStartY);
 		maze.setEndX(newEndX);
@@ -111,7 +111,7 @@ public class KruskalStrategyTest
 
 		pathEndToBegin = MazeSolver.solveMaze(maze);
 		Collections.reverse(pathEndToBegin);
-		
+
 		return pathEndToBegin;
 	}
 

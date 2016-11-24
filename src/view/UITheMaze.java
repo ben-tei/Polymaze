@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -70,42 +71,44 @@ public class UITheMaze extends JPanel implements ActionListener
 		this.startX = (this.myUIView.getWidth() - this.myMaze.getWidth() * px) / 2;
 		this.startY = 100;
 
-		File[] files = new File("sprites/" + this.px + "px/").listFiles();
-
-		HashMap<String, BufferedImage> hm = new HashMap<String, BufferedImage>();
-
-		for(File file : files)
-		{
-
-			try
-			{
-				hm.put(file.getName(), ImageIO.read(file));
-			}
-			catch(IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-
-		for(int i = 0; i < this.myMaze.getLength(); i++)
-		{
-			for(int j = 0; j < this.myMaze.getWidth(); j++)
-			{
-
-				BufferedImage img = hm.get(this.myMaze.getContent()[j][i].wallToString() + ".png");
-				JLabel jl = new JLabel(new ImageIcon(img));
-				jl.setBounds(this.startX + j * img.getWidth(), this.startY + i * img.getHeight(), img.getWidth(),
-						img.getHeight());
-				this.add(jl);
-
-			}
-		}
-
-		File file = new File("sprites/" + this.px + "px/green.png");
-		BufferedImage img;
+		File[] files;
 
 		try
 		{
+			files = new File(getClass().getResource("/assets/" + this.px + "px/").toURI()).listFiles();
+
+			HashMap<String, BufferedImage> hm = new HashMap<String, BufferedImage>();
+
+			for(File file : files)
+			{
+
+				try
+				{
+					hm.put(file.getName(), ImageIO.read(file));
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+
+			for(int i = 0; i < this.myMaze.getLength(); i++)
+			{
+				for(int j = 0; j < this.myMaze.getWidth(); j++)
+				{
+
+					BufferedImage img = hm.get(this.myMaze.getContent()[j][i].wallToString() + ".png");
+					JLabel jl = new JLabel(new ImageIcon(img));
+					jl.setBounds(this.startX + j * img.getWidth(), this.startY + i * img.getHeight(), img.getWidth(),
+							img.getHeight());
+					this.add(jl);
+
+				}
+			}
+
+			File file = new File(getClass().getResource("/assets/" + this.px + "px/green.png").toURI());
+			BufferedImage img;
+
 			img = ImageIO.read(file);
 
 			JLabel start = new JLabel(new ImageIcon(img));
@@ -121,7 +124,7 @@ public class UITheMaze extends JPanel implements ActionListener
 			this.setComponentZOrder(end, 1);
 
 		}
-		catch(IOException e)
+		catch(IOException | URISyntaxException e)
 		{
 			e.printStackTrace();
 		}
@@ -155,7 +158,7 @@ public class UITheMaze extends JPanel implements ActionListener
 
 				int i = 1;
 
-				File file = new File("sprites/" + this.px + "px/red.png");
+				File file = new File(getClass().getResource("/assets/" + this.px + "px/red.png").toURI());
 				BufferedImage img = ImageIO.read(file);
 
 				while(i < sol.size() - 1)
@@ -174,7 +177,7 @@ public class UITheMaze extends JPanel implements ActionListener
 				this.repaint();
 
 			}
-			catch(PolymazeException | IOException e)
+			catch(PolymazeException | IOException | URISyntaxException e)
 			{
 				e.printStackTrace();
 			}

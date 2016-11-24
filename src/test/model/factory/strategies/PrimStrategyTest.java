@@ -33,10 +33,10 @@ public class PrimStrategyTest
 		assertEquals(0, maze.getStartY());
 		assertEquals(2, maze.getEndX());
 		assertEquals(2, maze.getEndY());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -54,10 +54,10 @@ public class PrimStrategyTest
 		assertEquals(0, maze.getStartY());
 		assertEquals(99, maze.getEndX());
 		assertEquals(99, maze.getEndY());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -82,27 +82,28 @@ public class PrimStrategyTest
 		assertEquals(33, maze.getEndX());
 		assertEquals(35, maze.getEndY());
 		assertEquals(creator, maze.getCreator());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
-	
+
 	/**
 	 * 
 	 * @param maze
 	 * @return the solution path for a maze with reverse start/end point
 	 * @throws PolymazeException
 	 */
-	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException{
+	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException
+	{
 		ArrayList<Point> pathEndToBegin;
 
 		int newStartX = maze.getStartX();
 		int newStartY = maze.getStartY();
 		int newEndX = maze.getEndX();
 		int newEndY = maze.getEndY();
-		
+
 		maze.setStartX(newStartX);
 		maze.setStartY(newStartY);
 		maze.setEndX(newEndX);
@@ -110,7 +111,7 @@ public class PrimStrategyTest
 
 		pathEndToBegin = MazeSolver.solveMaze(maze);
 		Collections.reverse(pathEndToBegin);
-		
+
 		return pathEndToBegin;
 	}
 

@@ -33,12 +33,12 @@ public class CellTest
 		assertEquals(true, cell.isWallSouth());
 		assertEquals(true, cell.isWallWest());
 		assertEquals(false, cell.isVisited());
-		
+
 		cell.setPositionX(15);
 		cell.setPositionY(16);
 		assertEquals(15, cell.getPositionX());
 		assertEquals(16, cell.getPositionY());
-		
+
 		cell.setWallNorth(false);
 		assertEquals(false, cell.isWallNorth());
 		cell.setWallEast(false);
@@ -50,7 +50,7 @@ public class CellTest
 		cell.setVisited(true);
 		assertEquals(true, cell.isVisited());
 	}
-	
+
 	@Test
 	public void ConstructorTest_02() throws Exception
 	{
@@ -63,7 +63,7 @@ public class CellTest
 		assertEquals(false, cell.isWallWest());
 		assertEquals(false, cell.isVisited());
 	}
-	
+
 	@Test
 	public void ConstructorTest_03() throws Exception
 	{
@@ -289,6 +289,5 @@ public class CellTest
 		assertFalse(cell.isWallSouth());
 		assertFalse(cell.isWallWest());
 	}
-	
 
 }

@@ -17,67 +17,76 @@ import util.exception.PolymazeException;
 public class MazeManagerTest
 {
 	private Integer testPersonID = 3;
-	
-	@Test 
-	public void generateMaze_00(){
+
+	@Test
+	public void generateMaze_00()
+	{
 		MazeManager mazeManager = new MazeManager();
 		PersonManager pm = new PersonManager();
 		pm.setPersonById(testPersonID);
 		Person personTest = pm.getCurrentPerson();
-		try {
-			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);;
+		try
+		{
+			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);
+			;
 			mazeManager.generateMaze("generateMazeTest00", 10, 10, personTest);
-		} catch (PolymazeException e) {
+		}
+		catch(PolymazeException e)
+		{
 			e.printStackTrace();
 		}
-		
+
 		// create maze test
 		Maze m = mazeManager.getAllMazesList().get(mazeManager.getAllMazesList().size() - 1);
 		assertEquals(m.getLength(), new Integer(10));
 		assertEquals(m.getName(), "generateMazeTest00");
 		assertEquals(m.getWidth(), new Integer(10));
-		
+
 		// set maze test
 		mazeManager.setMazeById(m.getId());
 		assertEquals(mazeManager.getMaze().getId(), m.getId());
-		
+
 		// delete maze test
 		mazeManager.deleteMaze(m.getId());
 		assertEquals(mazeManager.getAllMazesList().size(), 0);
 	}
-	
+
 	@Test
-	public void generateMaze_01(){
+	public void generateMaze_01()
+	{
 		MazeManager mazeManager = new MazeManager();
 		PersonManager pm = new PersonManager();
 		pm.setPersonById(testPersonID);
 		Person personTest = pm.getCurrentPerson();
-		try {
+		try
+		{
 			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);
 			mazeManager.generateMazeWithStartEnd("generateMazeTest01", 10, 10, 0, 0, 1, 1, personTest);
-		} catch (PolymazeException e) {
+		}
+		catch(PolymazeException e)
+		{
 			e.printStackTrace();
 		}
-		
+
 		// create maze test
 		Maze m = mazeManager.getAllMazesList().get(mazeManager.getAllMazesList().size() - 1);
 		assertEquals(m.getLength(), new Integer(10));
 		assertEquals(m.getName(), "generateMazeTest01");
 		assertEquals(m.getWidth(), new Integer(10));
-		assertEquals(m.getStartX(),0);
-		assertEquals(m.getStartY(),0);
-		assertEquals(m.getEndX(),1);
-		assertEquals(m.getEndY(),1);
-		
+		assertEquals(m.getStartX(), 0);
+		assertEquals(m.getStartY(), 0);
+		assertEquals(m.getEndX(), 1);
+		assertEquals(m.getEndY(), 1);
+
 		// set maze test
 		mazeManager.setMazeById(m.getId());
 		assertEquals(mazeManager.getMaze().getId(), m.getId());
-		
+
 		// delete maze test
 		mazeManager.deleteMaze(m.getId());
 		assertEquals(mazeManager.getAllMazesList().size(), 0);
 	}
-	
+
 	@Test
 	public void getMazeById_00()
 	{
@@ -85,28 +94,31 @@ public class MazeManagerTest
 		PersonManager pm = new PersonManager();
 		pm.setPersonById(testPersonID);
 		Person personTest = pm.getCurrentPerson();
-		try {
+		try
+		{
 			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);
 			mazeManager.generateMaze("getMazeByIdTest00", 10, 10, personTest);
-		} catch (PolymazeException e) {
+		}
+		catch(PolymazeException e)
+		{
 			e.printStackTrace();
 		}
-		
+
 		// create maze test
 		Maze m = mazeManager.getAllMazesList().get(mazeManager.getAllMazesList().size() - 1);
-		
+
 		Integer id = m.getId();
 		boolean bool = mazeManager.setMazeById(id);
 		assertEquals(bool, true);
-		
+
 		assertEquals(mazeManager.getMaze().getId(), Integer.valueOf(m.getId()));
 		assertEquals(mazeManager.getMaze().getName(), "getMazeByIdTest00");
 		assertEquals(mazeManager.getMaze().getCreator().getId(), testPersonID);
-		
+
 		// delete maze test
 		mazeManager.deleteMaze(m.getId());
 		assertEquals(mazeManager.getAllMazesList().size(), 0);
-		
+
 	}
 
 	@Test
@@ -122,18 +134,21 @@ public class MazeManagerTest
 	@Test
 	public void getMazeByName_00()
 	{
-		
+
 		MazeManager mazeManager = new MazeManager();
 		PersonManager pm = new PersonManager();
 		pm.setPersonById(testPersonID);
 		Person personTest = pm.getCurrentPerson();
-		try {
+		try
+		{
 			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);
 			mazeManager.generateMaze("getMazeByNameTest00", 10, 10, personTest);
-		} catch (PolymazeException e) {
+		}
+		catch(PolymazeException e)
+		{
 			e.printStackTrace();
 		}
-		
+
 		// create maze test
 		Maze m = mazeManager.getAllMazesList().get(mazeManager.getAllMazesList().size() - 1);
 		boolean bool = mazeManager.setMazeByName(m.getName());
@@ -142,7 +157,7 @@ public class MazeManagerTest
 		assertEquals(mazeManager.getMaze().getId(), Integer.valueOf(m.getId()));
 		assertEquals(mazeManager.getMaze().getName(), "getMazeByNameTest00");
 		assertEquals(mazeManager.getMaze().getCreator().getId(), testPersonID);
-		
+
 		// delete maze test
 		mazeManager.deleteMaze(m.getId());
 		assertEquals(mazeManager.getAllMazesList().size(), 0);
@@ -165,21 +180,25 @@ public class MazeManagerTest
 		PersonManager pm = new PersonManager();
 		pm.setPersonById(testPersonID);
 		Person personTest = pm.getCurrentPerson();
-		try {
+		try
+		{
 			mazeManager.getMazeFactory().setStrategy(MazeFactoryStrategyName.Backtrack);
 			mazeManager.generateMaze("getMazesByCreatorTest1", 10, 10, personTest);
-		} catch (PolymazeException e) {
 		}
-		
+		catch(PolymazeException e)
+		{
+		}
+
 		mazeManager.setAllMazes();
 		mazeManager.setMazesByCreator(personTest);
-		
+
 		// verify that there is some mazes
 		assertNotEquals(Integer.valueOf(mazeManager.getCreatorMazesList().size()), Integer.valueOf(0));
-		
+
 		// clean up:
 		List<Maze> mazesTest = mazeManager.getCreatorMazesList();
-		for(int i = 0 ; i < mazesTest.size() ; ++i){
+		for(int i = 0; i < mazesTest.size(); ++i)
+		{
 			mazeManager.deleteMaze(mazesTest.get(i).getId());
 		}
 	}

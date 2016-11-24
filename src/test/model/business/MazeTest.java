@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Date;
 import java.util.Calendar;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -27,24 +28,25 @@ public class MazeTest
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();
 
-	@Test 
-	public void constructorTest_01(){
+	@Test
+	public void constructorTest_01()
+	{
 		Maze maze = new Maze();
-		Cell[][] contentTest = {{new Cell(1,3)},{new Cell(1,2)}};
+		Cell[][] contentTest = { { new Cell(1, 3) }, { new Cell(1, 2) } };
 		java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
 		Person creatorTest = new Person(15, "John");
-		
+
 		maze.setId(15);
 		assertEquals((Integer) 15, maze.getId());
-		
+
 		maze.setName("Maze");
 		assertEquals("Maze", maze.getName());
-		
+
 		maze.setLength(12);
 		assertEquals((Integer) 12, maze.getLength());
 		maze.setWidth(16);
 		assertEquals((Integer) 16, maze.getWidth());
-		
+
 		maze.setStartX(0);
 		assertEquals(0, maze.getStartX());
 		maze.setStartY(1);
@@ -53,49 +55,52 @@ public class MazeTest
 		assertEquals(3, maze.getEndX());
 		maze.setEndY(4);
 		assertEquals(4, maze.getEndY());
-		
+
 		maze.setStrContent("1011");
 		assertEquals("1011", maze.getStrContent());
 		maze.setContent(contentTest);
-		assertEquals(contentTest, maze.getContent());
-		
+		Assert.assertArrayEquals(contentTest, maze.getContent());
+
 		maze.setCreationDate(timeNow);
 		assertEquals(timeNow, maze.getCreationDate());
 		maze.setCreator(creatorTest);
 		assertEquals(creatorTest, maze.getCreator());
-		
+
 	}
 
-	@Test 
-	public void constructorTest_02(){
+	@Test
+	public void constructorTest_02()
+	{
 		Maze maze = new Maze();
 		maze.setWidth(2);
 		maze.setLength(1);
-		Cell[][] contentTest = {{new Cell(0,0)},{new Cell(1,0,true,true,false,false)}};
+		Cell[][] contentTest = { { new Cell(0, 0) }, { new Cell(1, 0, true, true, false, false) } };
 		maze.setContent(contentTest);
-		
+
 		assertEquals("11111100", maze.getStrContent());
-		
+
 	}
 
-	@Test 
-	public void constructorTest_03() throws ContentToStringException{
+	@Test
+	public void constructorTest_03() throws ContentToStringException
+	{
 		Maze maze = new Maze();
 		maze.setWidth(2);
 		maze.setLength(1);
 		maze.setStrContent("11111100");
-		
+
 		maze.getContent();
-		String strParsed = "FAULT"; 
-		
+		String strParsed = "FAULT";
+
 		strParsed = maze.contentToString();
-		
+
 		assertEquals("11111100", strParsed);
-		
+
 	}
 
-	@Test 
-	public void constructorTest_04(){
+	@Test
+	public void constructorTest_04()
+	{
 		String name = "Test";
 		Integer length = 15;
 		Integer width = 16;
@@ -105,15 +110,14 @@ public class MazeTest
 		int endY = 10;
 		Date creationDate = new Date(Calendar.getInstance().getTimeInMillis());
 		Person creator = new Person(15, "Isaaaac");
-		
-		Maze maze = new Maze(name, length, width, startX, startY, endX, endY,
-				creationDate, creator);
-		
+
+		Maze maze = new Maze(name, length, width, startX, startY, endX, endY, creationDate, creator);
+
 		assertEquals(name, maze.getName());
-		
+
 		assertEquals(length, maze.getLength());
 		assertEquals(width, maze.getWidth());
-		
+
 		assertEquals(startX, maze.getStartX());
 		assertEquals(startY, maze.getStartY());
 		assertEquals(endX, maze.getEndX());
@@ -122,8 +126,9 @@ public class MazeTest
 		assertEquals(creator, maze.getCreator());
 	}
 
-	@Test 
-	public void constructorTest_05(){
+	@Test
+	public void constructorTest_05()
+	{
 		Integer id = 165;
 		String name = "Test";
 		Integer length = 15;
@@ -135,17 +140,15 @@ public class MazeTest
 		String strContent = "1111";
 		Date creationDate = new Date(Calendar.getInstance().getTimeInMillis());
 		Person creator = new Person(15, "Isaaaac");
-		
-		Maze maze = new Maze(id, name, length, width, startX, startY, endX, endY,
-				strContent, creationDate, creator);
-		
-		
+
+		Maze maze = new Maze(id, name, length, width, startX, startY, endX, endY, strContent, creationDate, creator);
+
 		assertEquals(id, maze.getId());
 		assertEquals(name, maze.getName());
-		
+
 		assertEquals(length, maze.getLength());
 		assertEquals(width, maze.getWidth());
-		
+
 		assertEquals(startX, maze.getStartX());
 		assertEquals(startY, maze.getStartY());
 		assertEquals(endX, maze.getEndX());
@@ -154,24 +157,23 @@ public class MazeTest
 		assertEquals(creationDate, maze.getCreationDate());
 		assertEquals(creator, maze.getCreator());
 	}
-	
-	@Test 
-	public void setAllCellToNotVisitedTest_01(){
+
+	@Test
+	public void setAllCellToNotVisitedTest_01()
+	{
 		Maze maze = new Maze();
 		maze.setWidth(2);
 		maze.setLength(1);
-		Cell[][] contentTest = {{new Cell(1,3)},{new Cell(1,2)}};
+		Cell[][] contentTest = { { new Cell(1, 3) }, { new Cell(1, 2) } };
 		contentTest[0][0].setVisited(true);
 		contentTest[1][0].setVisited(true);
 		maze.setContent(contentTest);
-		
+
 		maze.setAllCellToNotVisited();
 		assertEquals(false, contentTest[0][0].isVisited());
 		assertEquals(false, contentTest[1][0].isVisited());
 	}
-	
-	
-	
+
 	@Test
 	public void contentToStringTest_00() throws ContentToStringException
 	{

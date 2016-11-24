@@ -27,7 +27,7 @@ public class EllerStrategyTest
 
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(mazeToSolve);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(mazeToSolve);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -37,10 +37,10 @@ public class EllerStrategyTest
 	{
 		EllerStrategy eller = new EllerStrategy();
 		Maze mazeToSolve = eller.generateMaze("Test Eller2", 100, 100, new Person(999, "rb"));
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(mazeToSolve);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(mazeToSolve);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -50,10 +50,10 @@ public class EllerStrategyTest
 	{
 		EllerStrategy eller = new EllerStrategy();
 		Maze mazeToSolve = eller.generateMaze("Test Eller3", 400, 400, new Person(999, "rb"));
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(mazeToSolve);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(mazeToSolve);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -73,27 +73,28 @@ public class EllerStrategyTest
 		assertEquals(mazeToSolve.getStartY(), startY);
 		assertEquals(mazeToSolve.getEndX(), endX);
 		assertEquals(mazeToSolve.getEndY(), endY);
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(mazeToSolve);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(mazeToSolve);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
-	
+
 	/**
 	 * 
 	 * @param maze
 	 * @return the solution path for a maze with reverse start/end point
 	 * @throws PolymazeException
 	 */
-	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException{
+	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException
+	{
 		ArrayList<Point> pathEndToBegin;
 
 		int newStartX = maze.getStartX();
 		int newStartY = maze.getStartY();
 		int newEndX = maze.getEndX();
 		int newEndY = maze.getEndY();
-		
+
 		maze.setStartX(newStartX);
 		maze.setStartY(newStartY);
 		maze.setEndX(newEndX);
@@ -101,9 +102,8 @@ public class EllerStrategyTest
 
 		pathEndToBegin = MazeSolver.solveMaze(maze);
 		Collections.reverse(pathEndToBegin);
-		
+
 		return pathEndToBegin;
 	}
-	
 
 }

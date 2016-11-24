@@ -31,8 +31,9 @@ public class BacktrackStrategyTest
 
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
-		assertEquals(pathBeginToEnd, pathEndToBegin);	}
+
+		assertEquals(pathBeginToEnd, pathEndToBegin);
+	}
 
 	// max size
 	@Test
@@ -43,9 +44,9 @@ public class BacktrackStrategyTest
 
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
-		
+
 	}
 
 	// normal maze with start and end
@@ -69,10 +70,10 @@ public class BacktrackStrategyTest
 		assertEquals(50, maze.getEndX());
 		assertEquals(49, maze.getEndY());
 		assertEquals(creator, maze.getCreator());
-		
+
 		ArrayList<Point> pathBeginToEnd = MazeSolver.solveMaze(maze);
 		ArrayList<Point> pathEndToBegin = getSolutionPathEndToBegin(maze);
-		
+
 		assertEquals(pathBeginToEnd, pathEndToBegin);
 	}
 
@@ -104,21 +105,22 @@ public class BacktrackStrategyTest
 		result = (String) method.invoke(backtrackStrat, maze, 1, 1);
 		assertEquals("NEW", result);
 	}
-	
+
 	/**
 	 * 
 	 * @param maze
 	 * @return the solution path for a maze with reverse start/end point
 	 * @throws PolymazeException
 	 */
-	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException{
+	private ArrayList<Point> getSolutionPathEndToBegin(Maze maze) throws PolymazeException
+	{
 		ArrayList<Point> pathEndToBegin;
 
 		int newStartX = maze.getStartX();
 		int newStartY = maze.getStartY();
 		int newEndX = maze.getEndX();
 		int newEndY = maze.getEndY();
-		
+
 		maze.setStartX(newStartX);
 		maze.setStartY(newStartY);
 		maze.setEndX(newEndX);
@@ -126,9 +128,8 @@ public class BacktrackStrategyTest
 
 		pathEndToBegin = MazeSolver.solveMaze(maze);
 		Collections.reverse(pathEndToBegin);
-		
+
 		return pathEndToBegin;
 	}
-	
 
 }

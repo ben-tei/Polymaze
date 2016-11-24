@@ -1,6 +1,5 @@
 package model.util;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,20 +26,20 @@ public class Connect
 	// Attributes
 	private static Connect instance = null;
 	private Properties properties;
-	private FileInputStream fis;
+	//private FileInputStream fis;
 	private MysqlDataSource dataSource;
 
 	// Constructor
 	private Connect()
 	{
 		properties = new Properties();
-		fis = null;
+		//fis = null;
 		dataSource = null;
 
 		try
 		{
-			fis = new FileInputStream("db.properties");
-			properties.load(fis);
+			//fis = new FileInputStream("db.properties");
+			properties.load(getClass().getResourceAsStream("/assets/db.properties"));
 			dataSource = new MysqlDataSource();
 			dataSource.setURL(properties.getProperty("DB_URL"));
 			dataSource.setUser(properties.getProperty("DB_USERNAME"));
