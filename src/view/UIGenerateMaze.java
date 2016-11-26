@@ -37,9 +37,9 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 
 	private JLabel strategyLbl;
 
-	private JLabel startLbl;
+	// private JLabel startLbl;
 
-	private JLabel endLbl;
+	// private JLabel endLbl;
 
 	private JTextField nameTextField;
 
@@ -119,7 +119,7 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 		this.comboBox.setBounds(this.strategyLbl.getX() + 100, this.strategyLbl.getY(), 210, 25);
 		this.add(this.comboBox);
 
-		this.startLbl = new JLabel("Start");
+		/*this.startLbl = new JLabel("Start");
 		this.startLbl.setBounds((int) (this.nameTextField.getX() + this.nameTextField.getSize().getWidth() + 100), 100,
 				100, 25);
 		this.startLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -139,7 +139,7 @@ public class UIGenerateMaze extends JPanel implements ActionListener
 		this.endTextField = new JTextField("0,0");
 		this.endTextField.setBounds(this.endLbl.getX() + 100, this.endLbl.getY(), 210, 25);
 		this.add(this.endTextField);
-		this.endTextField.setColumns(10);
+		this.endTextField.setColumns(10);*/
 
 		// Button - Generate and Back
 
